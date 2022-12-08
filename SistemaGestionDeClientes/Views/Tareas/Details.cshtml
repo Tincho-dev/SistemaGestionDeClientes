@@ -1,0 +1,80 @@
+﻿@model Model.Custom.TareasGrid
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Tarea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Tarea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomTarea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomTarea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechFin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Avance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Avance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TituloProy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TituloProy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Tarea }, new { @class = "btn btn-warning" }) 
+    @Html.ActionLink("Volver a la Lista", "Index", "Tareas", new { @class = "btn btn-primary" })
+</p>

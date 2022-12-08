@@ -1,0 +1,65 @@
+﻿@model Model.Custom.EmpleadoGrid
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Legajo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Legajo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DNI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DNI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApyNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApyNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rol)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Legajo }, new { @class = "btn btn-warning" }) 
+    @Html.ActionLink("Volver a la Lista", "Index", "Empleado", new { @class = "btn btn-primary" })
+</p>

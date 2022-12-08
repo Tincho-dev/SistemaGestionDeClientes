@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- control k y control c para comentar y control u para descomentar -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Sistema de Gestión de clientes</title>
+  </head>
+  <body>
+    <header>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/index.html"
+            >Sistema de gestión de clientes</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" href="#">Login</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- Fin navbar -->
+    </header>
+
+    <main>
+      <section>
+          <div class="container">
+              <div class="row my-5">
+                  <div class="col">
+                      <div class="vstack gap-2 col-md-5 mx-auto">
+                          <!-- Boton clientes -->
+                          <div class="btn-group">
+                              <button type="button"
+                                      class="btn btn-outline-secondary dropdown-toggle"
+                                      data-bs-toggle="dropdown"
+                                      data-bs-display="static"
+                                      aria-expanded="false">
+                                  Clientes
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-dark">
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./CrearCliente.html"
+                                         type="button">
+                                          Crear Cliente
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./VisualizarCliente.html"
+                                         type="button">
+                                          Visualizar cliente
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./EliminarCliente .html"
+                                         type="button">
+                                          Eliminar cliente
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                          <!-- Boton proyectos -->
+                          <div class="btn-group">
+                              <button type="button"
+                                      class="btn btn-outline-secondary dropdown-toggle"
+                                      data-bs-toggle="dropdown"
+                                      data-bs-display="static"
+                                      aria-expanded="false">
+                                  Proyectos
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-dark">
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./CrearProyecto.html"
+                                         type="button">
+                                          Crear proyecto
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./ModificarProyecto.html"
+                                         type="button">
+                                          Modificar proyecto
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./probando.html"
+                                         type="button">
+                                          Busqueda proyecto
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./AsociarClienteProyecto.html"
+                                         type="button">
+                                          Asociar cliente con proyecto
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./EliminarProyecto.html"
+                                         type="button">
+                                          Eliminar proyecto
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                          <!-- ----- -->
+                          <!-- Boton factura -->
+                          <div class="btn-group">
+
+                              <button type="button"
+                                      class="btn btn-outline-secondary dropdown-toggle"
+                                      data-bs-toggle="dropdown"
+                                      data-bs-display="static"
+                                      aria-expanded="false">
+                                  Facturas
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-dark">
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./MostrarFactura.html"
+                                         type="button">
+                                          Mostrar Facturas
+                                      </a>
+                                  </li>
+                              </ul>
+                              <!-- ----- -->
+
+                          </div>
+                          <div class="btn-group">
+                              <button type="button"
+                                      class="btn btn-outline-secondary dropdown-toggle"
+                                      data-bs-toggle="dropdown"
+                                      data-bs-display="static"
+                                      aria-expanded="false">
+                                  Reportes
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-dark">
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./GenerarReporte.html"
+                                         type="button">
+                                          Generar Reporte
+                                      </a>
+                                  </li>
+                              </ul>
+                              <!-- -------- -->
+                          </div>
+                          <!-- boton usuarios -->
+                          <div class="btn-group">
+                              <button type="button"
+                                      class="btn btn-outline-secondary dropdown-toggle"
+                                      data-bs-toggle="dropdown"
+                                      data-bs-display="static"
+                                      aria-expanded="false">
+                                  Usuarios
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-dark">
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./CrearUsuario.html"
+                                         type="button">
+                                          Crear Usuario
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./VisualizarUsuario.html"
+                                         type="button">
+                                          Visualizar Usuario
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item"
+                                         href="./EliminarUsuario.html"
+                                         type="button">
+                                          Eliminar Usuario
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            </section>
+    </main>
+    <footer></footer>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

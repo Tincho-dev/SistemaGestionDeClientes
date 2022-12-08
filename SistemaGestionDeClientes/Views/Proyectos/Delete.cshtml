@@ -1,0 +1,64 @@
+﻿@model Model.Custom.ProyectosGrid
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro que deseas eliminar este Proyecto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Proyecto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Proyecto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechFin)
+        </dd>
+
+      
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> 
+            @Html.ActionLink("Volver a la Lista", "Index", "Proyectos", new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

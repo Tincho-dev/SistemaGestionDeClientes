@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Model.Custom.TareasGrid>
+
+@{
+    ViewBag.Title = "Tareas";
+}
+
+<h2>Tareas</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva Tarea", "Create", "Tareas", new { @class = "btn btn-success" })
+    @Html.ActionLink("Generar Reporte", "Reporte", "Tareas", new { @class = "btn btn-success" })
+</p>
+<br />
+@using (Html.BeginForm("Buscar", "Tareas", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <p>
+        @Html.DropDownList("Opcion", (IEnumerable<SelectListItem>)ViewBag.Opcion, htmlAttributes: new { @class = "form-control" })
+
+        Proyecto: @Html.TextBox("palabra")
+        <input type="submit" value="Filter" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Id_Tarea)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.NomTarea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechFin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Avance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TituloProy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Costo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    @*<td>
+        @Html.DisplayFor(modelItem => item.Id_Tarea)
+    </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.NomTarea)
+    </td>
+    <td width="20%">
+        @Html.DisplayFor(modelItem => item.Descripcion)
+    </td>
+    <td>
+        @item.FechInicio.ToString("dd/MM/yyyy")
+    </td>
+    <td>
+        @item.FechFin.ToString("dd/MM/yyyy")
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Avance)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TituloProy)
+    </td>
+    <td width="10%">
+        $ @Html.DisplayFor(modelItem => item.Costo)
+    </td>
+    <td width="25%">
+        @Html.ActionLink("Editar", "Edit", new { id = item.Id_Tarea }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Detalles", "Details", new { id = item.Id_Tarea }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Tarea }, new { @class = "btn btn-danger" })
+        <hr />
+        @Html.ActionLink("Ver Recursos", "RecursosXTarea","Recurso", new { id = item.Id_Tarea }, new { @class = "btn btn-primary" })
+    </td>
+</tr>
+    }
+
+</table>

@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<div class="jumbotron">
+    @if (Request.IsAuthenticated)
+    {
+        <h1>Hola @Common.CurrentUser.Get.Name</h1>
+        <p class="lead">Bienvenido al Menu Principal!</p>
+    }
+    else
+    {
+        <h1>Sistema de Gestión de Clientes</h1>
+        <p class="lead">Inicie Sesión para comenzar.</p>
+        <p>
+            <a href='@Url.Action("Login", "Account")' class="btn btn-primary btn-lg">Iniciar Sesión &raquo;</a>
+        </p>
+    }
+</div>
+
+<div class="row">
+    @if (Request.IsAuthenticated)
+    {
+        <div class="col-md-4">
+            <h2>Clientes</h2>
+            <p>Gestion de Clientes</p>
+            <p><a class="btn btn-default" href='@Url.Action("Index", "Cliente")'>Gestionar Cliente &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Proyectos</h2>
+            <p> Creación de Proyectos</p>
+            <p><a class="btn btn-default" href='@Url.Action("Index", "Proyectos")'>Crear Proyectos &raquo;</a></p>
+            <p> Modificación de Proyectos</p>
+            <p><a class="btn btn-default" href='@Url.Action("Index", "Proyectos")'>Modificar Proyectos &raquo;</a></p>
+            <p> Busqueda de Proyectos</p>
+            <p><a class="btn btn-default" href='@Url.Action("Index", "Proyectos")'>Buscar Proyecto &raquo;</a></p>
+            <p> Eliminación de Proyectos</p>
+            <p><a class="btn btn-default" href='@Url.Action("Index", "Proyectos")'>Eliminar Proyectos &raquo;</a></p>
+            <p> Asociación de Clientes con Proyectos</p>
+            <p><a class="btn btn-default" href='@Url.Action("Index", "Proyectos")'>Asociar Cliente &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Facturas</h2>
+            <p>Mostrar Factura.</p>
+            <p><a class="btn btn-default" href='@Url.Action("Index", "Factura")'>Ver Factura &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Reportes</h2>
+            <p>Generar Reporte</p>
+            <p><a class="btn btn-default" href='@Url.Action("Index", "Reporte")'>Generar &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Usuarios</h2>
+            <p>Creacion de Usuarios.</p>
+            <p><a class="btn btn-default" href='@Url.Action("Index", "")'>Crear Usuario &raquo;</a></p>
+            <p>Visualización de Usuarios.</p>
+            <p><a class="btn btn-default" href='@Url.Action("Index", "")'>Visualizar Usuarios &raquo;</a></p>
+            <p>Eliminación de Usuarios.</p>
+            <p><a class="btn btn-default" href='@Url.Action("Index", "")'>Eliminar Usuario &raquo;</a></p>
+        </div>
+    }
+</div>

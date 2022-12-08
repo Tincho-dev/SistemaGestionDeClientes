@@ -1,0 +1,42 @@
+﻿@model Model.Custom.FacturaGrid
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FacturaGrid</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Factura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Factura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClienteDNI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClienteDNI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreProyecto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreProyecto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

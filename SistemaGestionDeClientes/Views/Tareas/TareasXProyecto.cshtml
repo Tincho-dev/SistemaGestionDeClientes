@@ -1,0 +1,124 @@
+﻿@model IEnumerable<Model.Domain.Tareas>
+@{
+    ViewBag.Title = "Tareas por Proyecto";
+}
+
+<h2>Listado de Tareas del Proyecto: @ViewBag.ProyectoGrid.Titulo </h2>
+<br />
+<form>
+
+    <div class="form-inline row">
+        <label class="col-md-1"><b>Descripción del proyecto:</b></label>
+        <div class="col-sm-5">
+            <textarea class="form-control" style="border:0; background-color:white;" readonly cols="40" rows="2">@ViewBag.ProyectoGrid.Descripcion</textarea>
+        </div>
+        <label class="col-md-1"><b>Costo:</b></label>
+        <div class="col-md-2">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="$@ViewBag.ProyectoGrid.Costo" />
+        </div>
+    </div>
+    <br />
+    <div class="form-inline row">
+        <label class="col-md-1"><b>Fecha de Inicio:</b></label>
+        <div class="col-md-2">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.ProyectoGrid.FechInicio.ToString("dd/MM/yyyy")" />
+        </div>
+        <label class="col-md-1"><b>Fecha de Fin:</b></label>
+        <div class="col-md-2">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.ProyectoGrid.FechFin.ToString("dd/MM/yyyy")" />
+        </div>
+        <label class="col-md-1"><b>Avance:</b></label>
+        <div class="col-md-2">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@(ViewBag.ProyectoGrid.Avance*100)%" />
+        </div>
+    </div>
+    <br />
+    <div class="form-inline row">
+        <label class="col-md-2"><b>Encargado del proyecto:</b></label>
+        <div class="col-md-3">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.ProyectoGrid.Encargado" />
+        </div>
+        <label class="col-md-2"><b>Categoria del Proyecto:</b></label>
+        <div class="col-md-3">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.ProyectoGrid.Categoria" />
+        </div>
+    </div>
+
+</form>
+
+<br />
+<br />
+<p>
+    @Html.ActionLink("Gestion de Tareas", "Index", "Tareas", new { @class = "btn btn-success" })
+    @Html.ActionLink("Imprimir", "Imprimir", "Tareas", new { @class = "btn btn-success", @target = "_blank" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Tarea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomTarea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechFin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Avance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Costo)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Tarea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomTarea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @item.FechInicio.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.FechFin.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Avance)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Costo)
+            </td>
+        </tr>
+    }
+</table>
+
+<hr />
+
+<form>
+    <div class="form-inline row center-block">
+        <label class="col-xs-2" style="margin-left:1rem;"><b>Cantidad de Registros:</b></label>
+        <div class="col-xs-2">
+            <input class="form-control" type="text" style="border:0;" readonly value="@Model.Count()" />
+        </div>
+    </div>
+</form>
+
+<hr />
+
+<div>
+    @Html.ActionLink("Volver a la Lista", "Index", "Proyectos", null, new { @class = "btn btn-primary" })
+</div>
+
+

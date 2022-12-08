@@ -1,0 +1,87 @@
+﻿@model Model.Custom.TareasGrid
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro que deseas eliminar esta Tarea?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Tarea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Tarea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomTarea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomTarea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Avance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Avance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TituloProy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TituloProy)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            @Html.ActionLink("Volver a la Lista", "Index", "Tareas", new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

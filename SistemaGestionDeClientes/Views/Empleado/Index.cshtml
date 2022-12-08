@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Model.Custom.EmpleadoGrid>
+
+@{
+    ViewBag.Title = "Empleado";
+}
+
+<h2>Empleados</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create", "Empleado", new { @class = "btn btn-success" })
+    @Html.ActionLink("Generar Reporte", "Reporte", "Empleado", new { @class = "btn btn-success" })
+</p>
+
+
+@using (Html.BeginForm("Buscar", "Empleado", FormMethod.Get))
+    {
+        <p>
+            Nombre: @Html.TextBox("palabra")
+            <input type="submit" value="Filter" />
+        </p>
+    }
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Legajo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DNI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApyNom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Legajo)
+            </td>
+            <td>
+                @Html.ActionLink(@item.DNI.ToString(), "Get", new { id = item.Legajo })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApyNom)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.FechNacimiento)*@
+                @item.FechaNacimiento.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Legajo }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Detalles", "Details", new { id = item.Legajo }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Legajo }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+}
+
+</table>

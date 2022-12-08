@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Model.Custom.RecursoGrid>
+@{
+    ViewBag.Title = "Recursos por Tarea";
+}
+
+<h2>Listado de Recursos de la Tarea: @ViewBag.TareaGrid.NomTarea </h2>
+
+<br />
+<form>
+
+    <div class="form-group row">
+        <label class="col-md-1"><b>Descripción de la Tarea:</b></label>
+        <div class="col-sm-10">
+            <textarea class="form-control" style="border:0; background-color:white;" readonly cols="40" rows="2">@ViewBag.TareaGrid.Descripcion</textarea>
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <label class="col-md-1"><b>Fecha de Inicio:</b></label>
+        <div class="col-md-2">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.TareaGrid.FechInicio.ToString("dd/MM/yyyy")" />
+        </div>
+        <label class="col-md-1"><b>Fecha de Fin:</b></label>
+        <div class="col-md-2">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.TareaGrid.FechFin.ToString("dd/MM/yyyy")" />
+        </div>
+        <label class="col-md-1"><b>Avance:</b></label>
+        <div class="col-md-2">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@(ViewBag.TareaGrid.Avance*100)%" />
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <label class="col-md-2"><b>Proyecto al que pertenece:</b></label>
+        <div class="col-md-3">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.TareaGrid.TituloProy" />
+        </div>
+        <label class="col-md-2"><b>Costo de la Tarea:</b></label>
+        <div class="col-md-3">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.TareaGrid.Costo" />
+        </div>
+    </div>
+
+</form>
+
+<br />
+<br />
+<p>
+    @Html.ActionLink("Gestion de Recursos", "Index", "Recurso", new { @class = "btn btn-success" })
+    @Html.ActionLink("Imprimir", "Imprimir", "Recurso", new { @class = "btn btn-success", @target = "_blank" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApyNom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Presupuesto)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApyNom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rol)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Presupuesto)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<hr />
+
+<form>
+    <div class="form-inline row center-block">
+        <label class="col-xs-2" style="margin-left:1rem;"><b>Cantidad de Registros:</b></label>
+        <div class="col-xs-2">
+            <input class="form-control" type="text" style="border:0;" readonly value="@Model.Count()" />
+        </div>
+    </div>
+</form>
+
+<hr />
+
+<div>
+    @Html.ActionLink("Volver a la Lista", "Index", "Tareas", null, new { @class = "btn btn-primary" })
+</div>

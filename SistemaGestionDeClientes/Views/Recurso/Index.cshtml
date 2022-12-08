@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Model.Custom.RecursoGrid>
+
+@{
+    ViewBag.Title = "Recursos";
+}
+
+<h2>Recursos</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Recurso", "Create", "Recurso", new { @class = "btn btn-success" })
+    @Html.ActionLink("Generar Reporte", "Reporte", "Recurso", new { @class = "btn btn-success" })
+</p>
+<br />
+@using (Html.BeginForm("Buscar", "Recurso", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <p>
+        @Html.DropDownList("Opcion", (IEnumerable<SelectListItem>)ViewBag.Opcion, htmlAttributes: new { @class = "form-control" })
+
+        <input type="submit" value="Filter" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Recurso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Presupuesto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApyNom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTarea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomTarea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechFin)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id_Recurso)
+    </td>
+    <td>
+        $ @Html.DisplayFor(modelItem => item.Presupuesto)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ApyNom)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Rol)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IdTarea)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NomTarea)
+    </td>
+    <td>
+        @item.FechInicio.ToString("dd/MM/yyyy")
+    </td>
+    <td>
+        @item.FechFin.ToString("dd/MM/yyyy")
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.Id_Recurso }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Detalles", "Details", new { id = item.Id_Recurso }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Recurso }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
+}
+
+</table>

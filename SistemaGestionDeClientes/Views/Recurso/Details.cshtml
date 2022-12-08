@@ -1,0 +1,65 @@
+﻿@model Model.Custom.RecursoGrid
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Recurso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Recurso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Presupuesto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Presupuesto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApyNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApyNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTarea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdTarea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomTarea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomTarea)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Recurso }, new { @class = "btn btn-warning" }) 
+    @Html.ActionLink("Volver a la Lista", "Index", "Recurso", new { @class = "btn btn-primary" })
+</p>

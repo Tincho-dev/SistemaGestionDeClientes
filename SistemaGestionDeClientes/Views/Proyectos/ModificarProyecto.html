@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>✏️ Modificar Proyectos</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/index.html"
+          >Sistema de gestión de clientes</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="#">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Fin navbar -->
+    <main>
+      <section>
+        <div class="container">
+          <div class="row my-2">
+            <div class="col-3">
+              <br />
+              <img
+                src="./img/registrarse.png"
+                class="d-block w-100"
+                alt="imagen crear cliente"
+                width="25"
+              />
+            </div>
+            <div class="col-7">
+              <br />
+              <h2 class="row my-2">Modificar Proyecto</h2>
+              <select
+                class="form-select form-select-lg mb-3"
+                aria-label=".form-select-lg example"
+              >
+                <option selected>Seleccione el CUIL/CUIT del proyecto</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Fecha inicio</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="exampleFormControlInput1"
+                  placeholder="dd/mm/aaaa"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Fecha estimada de finalización</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="exampleFormControlInput1"
+                  placeholder="dd/mm/aaaa"
+                />
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text">Costo de desarrollo $</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Amount (to the nearest dollar)"
+                />
+                <span class="input-group-text">.00</span>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text">Horas de capacitación</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Amount (to the nearest dollar)"
+                />
+                <span class="input-group-text"> hs </span>
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Descripción</label
+                >
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ></textarea>
+              </div>
+              <a type="button" class="btn btn-outline-dark" href="./index.html">
+                ⬅️ Volver
+              </a>
+              <a type="button" class="btn btn-outline-dark" href="">
+                ✅ Aceptar
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
