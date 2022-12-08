@@ -41,8 +41,10 @@
     border-color: #023047;
 }
 
-.btn:hover {
+.btn:hover, btn:focus {
     background-color: #f1faee;
+    color: black;
+    border-color: #023047;
 }
 }
 /* Override the default bootstrap behavior where horizontal description lists 
