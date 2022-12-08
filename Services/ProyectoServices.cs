@@ -81,7 +81,11 @@ namespace Services
                 proyecto.Descripcion = model.Descripcion;
                 proyecto.FechInicio = model.FechInicio;
                 proyecto.FechFin = model.FechFin;
-                proyecto.Cliente_DNI = 1;
+                proyecto.Cliente_DNI = (
+                        from clie in db.Clientes.Where(x => x.DNI == model.Cliente_DNI)
+                        select clie.Id).Single();
+                proyecto.Costo = 0;
+                proyecto.Finalizado = false;
 
                 db.Proyectos.Add(proyecto);
                 db.SaveChanges();
@@ -97,7 +101,7 @@ namespace Services
                 originalEntity.Titulo = model.Titulo;
                 originalEntity.Descripcion = model.Descripcion;
                 originalEntity.FechFin = model.FechFin;
-                originalEntity.Cliente_DNI = 1;
+                originalEntity.Cliente_DNI = model.Cliente_DNI;
 
                 db.Entry(originalEntity).State = EntityState.Modified;
                 db.SaveChanges();

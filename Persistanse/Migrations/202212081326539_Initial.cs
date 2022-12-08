@@ -3,7 +3,7 @@ namespace Persistanse.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -85,65 +85,16 @@ namespace Persistanse.Migrations
                 "dbo.Clientes",
                 c => new
                     {
-                        DNI = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
+                        DNI = c.Int(nullable: false),
                         Telefono = c.Int(nullable: false),
                         Mail = c.String(maxLength: 150),
                         Condicion_Tributaria = c.String(maxLength: 150),
                         Nombre = c.String(maxLength: 150),
                         Apellido = c.String(maxLength: 150),
-                        Id_Domicilio = c.Int(nullable: false),
                         FechaNacimiento = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.DNI)
-                .ForeignKey("dbo.Domicilios", t => t.Id_Domicilio, cascadeDelete: true)
-                .Index(t => t.Id_Domicilio);
-            
-            CreateTable(
-                "dbo.Domicilios",
-                c => new
-                    {
-                        Id_Domicilio = c.Int(nullable: false, identity: true),
-                        Calle = c.String(),
-                        Barrio = c.String(),
-                        Altura = c.String(),
-                        Cod_Postal = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id_Domicilio)
-                .ForeignKey("dbo.Localidads", t => t.Cod_Postal, cascadeDelete: true)
-                .Index(t => t.Cod_Postal);
-            
-            CreateTable(
-                "dbo.Localidads",
-                c => new
-                    {
-                        Cod_Postal = c.Int(nullable: false, identity: true),
-                        Nombre = c.String(),
-                        Id_Provincia = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Cod_Postal)
-                .ForeignKey("dbo.Provincias", t => t.Id_Provincia, cascadeDelete: true)
-                .Index(t => t.Id_Provincia);
-            
-            CreateTable(
-                "dbo.Provincias",
-                c => new
-                    {
-                        Id_Provincia = c.Int(nullable: false, identity: true),
-                        Nombre = c.String(),
-                        Id_Pais = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id_Provincia)
-                .ForeignKey("dbo.Pais", t => t.Id_Pais, cascadeDelete: true)
-                .Index(t => t.Id_Pais);
-            
-            CreateTable(
-                "dbo.Pais",
-                c => new
-                    {
-                        IdPais = c.Int(nullable: false, identity: true),
-                        nombre = c.String(),
-                    })
-                .PrimaryKey(t => t.IdPais);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Detalles",
@@ -191,13 +142,10 @@ namespace Persistanse.Migrations
                         FechaNacimiento = c.DateTime(nullable: false),
                         FechaIngreso = c.DateTime(nullable: false),
                         Telefono = c.Int(nullable: false),
-                        Id_Domicilio = c.Int(nullable: false),
                         Id_RolServicio = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Legajo)
-                .ForeignKey("dbo.Domicilios", t => t.Id_Domicilio, cascadeDelete: true)
                 .ForeignKey("dbo.RolEmps", t => t.Id_RolServicio, cascadeDelete: true)
-                .Index(t => t.Id_Domicilio)
                 .Index(t => t.Id_RolServicio);
             
             CreateTable(
@@ -219,7 +167,7 @@ namespace Persistanse.Migrations
                         Cliente_DNI = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id_Historial)
-                .ForeignKey("dbo.Clientes", t => t.Cliente_DNI, cascadeDelete: false)
+                .ForeignKey("dbo.Clientes", t => t.Cliente_DNI, cascadeDelete: true)
                 .Index(t => t.Cliente_DNI);
             
             CreateTable(
@@ -248,7 +196,7 @@ namespace Persistanse.Migrations
                         Cliente_CUIT = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id_Llamada)
-                .ForeignKey("dbo.Clientes", t => t.Cliente_CUIT, cascadeDelete: true)
+                .ForeignKey("dbo.Clientes", t => t.Cliente_CUIT, cascadeDelete: false)
                 .Index(t => t.Cliente_CUIT);
             
             CreateTable(
@@ -283,26 +231,16 @@ namespace Persistanse.Migrations
             DropForeignKey("dbo.Historials", "Cliente_DNI", "dbo.Clientes");
             DropForeignKey("dbo.Facturas", "LegajoEmpleado", "dbo.Empleadoes");
             DropForeignKey("dbo.Empleadoes", "Id_RolServicio", "dbo.RolEmps");
-            DropForeignKey("dbo.Empleadoes", "Id_Domicilio", "dbo.Domicilios");
-            DropForeignKey("dbo.Clientes", "Id_Domicilio", "dbo.Domicilios");
-            DropForeignKey("dbo.Domicilios", "Cod_Postal", "dbo.Localidads");
-            DropForeignKey("dbo.Localidads", "Id_Provincia", "dbo.Provincias");
-            DropForeignKey("dbo.Provincias", "Id_Pais", "dbo.Pais");
             DropIndex("dbo.UserPorEmps", new[] { "IdUsuario" });
             DropIndex("dbo.UserPorEmps", new[] { "Legajo" });
             DropIndex("dbo.Llamadas", new[] { "Cliente_CUIT" });
             DropIndex("dbo.Proyectos", new[] { "Cliente_DNI" });
             DropIndex("dbo.Historials", new[] { "Cliente_DNI" });
             DropIndex("dbo.Empleadoes", new[] { "Id_RolServicio" });
-            DropIndex("dbo.Empleadoes", new[] { "Id_Domicilio" });
             DropIndex("dbo.Facturas", new[] { "LegajoEmpleado" });
             DropIndex("dbo.Facturas", new[] { "Id_Historial" });
             DropIndex("dbo.Detalles", new[] { "Id_Factura" });
             DropIndex("dbo.Detalles", new[] { "Id_Proyecto" });
-            DropIndex("dbo.Provincias", new[] { "Id_Pais" });
-            DropIndex("dbo.Localidads", new[] { "Id_Provincia" });
-            DropIndex("dbo.Domicilios", new[] { "Cod_Postal" });
-            DropIndex("dbo.Clientes", new[] { "Id_Domicilio" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
@@ -317,10 +255,6 @@ namespace Persistanse.Migrations
             DropTable("dbo.Empleadoes");
             DropTable("dbo.Facturas");
             DropTable("dbo.Detalles");
-            DropTable("dbo.Pais");
-            DropTable("dbo.Provincias");
-            DropTable("dbo.Localidads");
-            DropTable("dbo.Domicilios");
             DropTable("dbo.Clientes");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");

@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Model.Custom.ClienteGrid>
 
 @{
-    ViewBag.Title = "Cliente";
+    ViewBag.Title = "Clientes";
 }
 
-<h2>Index</h2>
+<h2>Clientes</h2>
 
 <p>
     @Html.ActionLink("Crear Nuevo Cliente", "Create", "Cliente", new { @class = "btn btn-success" })
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.Mail)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.DNI  }) |
-            @Html.ActionLink("Details", "Details", new {  id=item.DNI  }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.DNI })
+            @Html.ActionLink("Edit", "Edit", new {  id=item.DNI  }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.DNI  }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.DNI }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

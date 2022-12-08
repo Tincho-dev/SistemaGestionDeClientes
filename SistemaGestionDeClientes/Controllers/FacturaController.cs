@@ -1,9 +1,6 @@
 ﻿using Model.Domain;
 using Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SistemaGestionDeFacturas.Controllers
@@ -12,6 +9,7 @@ namespace SistemaGestionDeFacturas.Controllers
     public class FacturaController : Controller
     {
         private readonly FacturaServices _FacturaService = new FacturaServices();
+        private readonly ClienteServices clienteServices = new ClienteServices();
 
         // GET: Factura
         public ActionResult Index()
@@ -21,7 +19,7 @@ namespace SistemaGestionDeFacturas.Controllers
             return View(listado);
         }
 
-        
+
         // GET: Factura/Details/5
         public ActionResult Details(int id)
         {
@@ -30,46 +28,45 @@ namespace SistemaGestionDeFacturas.Controllers
         }
 
         // GET: Factura/Create
-        public ActionResult Create(Factura Factura)
+        public ActionResult Create()
         {
-            _FacturaService.Create(Factura);
-            return RedirectToAction("Index");
+            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
+            return View();
         }
 
         // POST: Factura/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Factura factura)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                _FacturaService.Create(factura);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            //ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom", proyecto.Cliente_DNI);
+
+            return View(factura);
         }
 
         // GET: Factura/Edit/5
         public ActionResult Edit(int id)
         {
             var model = _FacturaService.GetEdit(id);
+            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
             return View(model);
         }
 
         // POST: Factura/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Factura Factura)
+        public ActionResult Edit(int id, Factura factura)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _FacturaService.Update(Factura);
+                    _FacturaService.Update(factura);
                 }
-
 
                 return RedirectToAction("Index");
             }

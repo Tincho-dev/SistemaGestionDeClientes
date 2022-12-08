@@ -7,8 +7,8 @@ namespace Model.Domain
     public class Cliente
     {
         [Key]
+        public int Id { get; set; }
         public int DNI { get; set; }
-        //[MaxLength(150)]
         public int Telefono { get; set; }
         [MaxLength(150)]
         public string Mail { get; set; }
@@ -18,7 +18,7 @@ namespace Model.Domain
         public string Nombre { get; set; }
         [MaxLength(150)]
         public string Apellido { get; set; }
-        public int Id_Domicilio { get; set; }
+        //public int Id_Domicilio { get; set; }
         //[ForeignKey("Id_Domicilio")]
         //public virtual Domicilio Domicilio { get; set; }
         [DataType(DataType.Date)]

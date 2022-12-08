@@ -176,13 +176,11 @@
     <Compile Include="Controllers\HistorialRolesController.cs" />
     <Compile Include="Controllers\LlamadaController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
-    <Compile Include="Controllers\RecursoController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\RolesEmpController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -215,18 +213,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Cliente\AsociarClienteProyecto.html" />
-    <Content Include="Views\Proyectos\BuscarProyecto.html" />
     <Content Include="Views\Cliente\CrearCliente.html" />
-    <Content Include="Views\Proyectos\CrearProyecto.html" />
-    <Content Include="Views\User\CrearUsuario.html" />
     <Content Include="Views\Cliente\EliminarCliente .html" />
-    <Content Include="Views\User\EliminarUsuario.html" />
     <Content Include="Views\ReportesYFacturas\GenerarReporte.html" />
-    <Content Include="Views\Agostina\index.html" />
-    <Content Include="Views\Proyectos\ModificarProyecto.html" />
     <Content Include="Views\ReportesYFacturas\MostrarFactura.html" />
     <Content Include="Views\Cliente\VisualizarCliente.html" />
-    <Content Include="Views\User\VisualizarUsuario.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -278,28 +269,12 @@
     <Content Include="Views\Proyectos\Details.cshtml" />
     <Content Include="Views\Proyectos\Delete.cshtml" />
     <Content Include="Views\Proyectos\Edit.cshtml" />
-    <Content Include="Views\Tareas\Index.cshtml" />
-    <Content Include="Views\Tareas\Details.cshtml" />
-    <Content Include="Views\Tareas\Edit.cshtml" />
-    <Content Include="Views\Tareas\Create.cshtml" />
-    <Content Include="Views\Tareas\Delete.cshtml" />
-    <Content Include="Views\Tareas\TareasXProyecto.cshtml" />
     <Content Include="Views\Proyectos\Reporte.cshtml" />
-    <Content Include="Views\Tareas\Reporte.cshtml" />
     <Content Include="Views\Empleado\Reporte.cshtml" />
     <Content Include="Views\RolesEmp\Reporte.cshtml" />
-    <Content Include="Views\Tareas\Imprimir.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
-    <Content Include="Views\Recurso\Create.cshtml" />
-    <Content Include="Views\Recurso\Delete.cshtml" />
-    <Content Include="Views\Recurso\Details.cshtml" />
-    <Content Include="Views\Recurso\Edit.cshtml" />
-    <Content Include="Views\Recurso\Imprimir.cshtml" />
-    <Content Include="Views\Recurso\Index.cshtml" />
-    <Content Include="Views\Recurso\RecursosXTarea.cshtml" />
-    <Content Include="Views\Recurso\Reporte.cshtml" />
     <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\Create.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
@@ -308,15 +283,18 @@
     <Content Include="Views\Factura\Create.cshtml" />
     <Content Include="Views\Factura\Edit.cshtml" />
     <Content Include="Views\Factura\DeleteConfirmed.cshtml" />
+    <Content Include="Views\Llamada\Index.cshtml" />
+    <Content Include="Views\Llamada\Details.cshtml" />
+    <Content Include="Views\Llamada\Create.cshtml" />
+    <Content Include="Views\Llamada\Edit.cshtml" />
+    <Content Include="Views\Llamada\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Detalle\" />
     <Folder Include="Views\HistorialRoles\" />
     <Folder Include="Views\Historial\" />
-    <Folder Include="Views\Llamada\" />
     <Folder Include="Views\Rol\" />
-    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

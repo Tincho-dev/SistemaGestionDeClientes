@@ -1,13 +1,12 @@
 ﻿using Model.Custom;
 using Model.Domain;
+using Persistanse;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Persistanse
+namespace Services
 {
     public class HistorialServices
     {

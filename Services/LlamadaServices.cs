@@ -1,12 +1,11 @@
 ﻿using Model.Domain;
+using Persistanse;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Persistanse
+namespace Services
 {
     public class LlamadaServices
     {
@@ -49,8 +48,17 @@ namespace Persistanse
                 ctx.SaveChanges();
             }
         }
+        public Llamada GetEdit(int id)
+        {
+            var result = new Llamada();
 
-        public void update(Llamada llamada)
+            using (var db = new ApplicationDbContext())
+            {
+                result = db.Llamadas.Where(x => x.Id_Llamada == id).Single();
+            }
+            return result;
+        }
+        public void Update(Llamada llamada)
         {
             using (ctx)
             {
@@ -68,7 +76,7 @@ namespace Persistanse
             }
         }
 
-        public void delete(int id)
+        public void Delete(int id)
         {
             try
             {

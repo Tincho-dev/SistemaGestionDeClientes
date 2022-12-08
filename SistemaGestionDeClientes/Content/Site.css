@@ -6,11 +6,33 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    background-color: red;
+    background-color: #264653;
     margin: 0px auto;
     align-content: center;
 }
+.h2{
+    color: #f1faee;
+}
+.table {
+    color: #f1faee;
+}
+.col-md-4 {
+    background-color: #264653;
+}
 
+.col-md-4 h2 {
+color: #f1faee;
+}
+
+.col-md-4 p {
+    color: #f1faee;
+}
+
+.btn-default {
+    background-color: #219ebc;
+}
+
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */

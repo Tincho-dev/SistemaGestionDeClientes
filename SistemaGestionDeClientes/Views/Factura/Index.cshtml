@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Model.Custom.FacturaGrid>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Facturas";
 }
 
-<h2>Index</h2>
+<h2>Facturas</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nueva Factura", "Create", "Factura", new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -41,5 +41,4 @@
         </td>
     </tr>
 }
-
 </table>

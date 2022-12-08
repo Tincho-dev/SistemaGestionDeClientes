@@ -12,37 +12,20 @@ namespace SistemaGestionDeClientes.Controllers
     {
         private readonly ProyectoServices proyectoservice = new ProyectoServices();
         private readonly ClienteServices clienteServices = new ClienteServices();
-        
+
         // GET: Proyectos
         //[Authorize]
         public ActionResult Index()
         {
-            List<SelectListItem> Fecha = new List<SelectListItem>()
-            {
-                new SelectListItem { Text="Todos", Value="1"},
-                new SelectListItem { Text="Proyectos Atrasados", Value="2" },
-                new SelectListItem { Text="Proyectos Proximos a Iniciar", Value="3" }
-            };
-
-            ViewBag.Fecha = Fecha;
             var listado = proyectoservice.GetAll();
 
             return View(listado);
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Buscar(string palabra, string Fecha)
         {
             var proyectos = proyectoservice.Buscar(palabra, Fecha);
-
-            List<SelectListItem> Fecha2 = new List<SelectListItem>()
-            {
-                new SelectListItem { Text="Todos", Value="1"},
-                new SelectListItem { Text="Proyectos Atrasados", Value="2" },
-                new SelectListItem { Text="Proyectos Proximos a Iniciar", Value="3" }
-            };
-
-            ViewBag.Fecha = Fecha2;
 
             Session["Palabra"] = palabra;
             Session["Fecha"] = Fecha;

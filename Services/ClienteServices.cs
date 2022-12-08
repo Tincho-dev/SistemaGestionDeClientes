@@ -2,11 +2,8 @@
 using Model.Domain;
 using Persistanse;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
 
 namespace Services
@@ -49,6 +46,10 @@ namespace Services
                 cliente.Nombre = model.Nombre;
                 cliente.Apellido = model.Apellido;
                 cliente.DNI = model.DNI;
+                cliente.Condicion_Tributaria = model.Condicion_Tributaria;
+                cliente.FechaNacimiento = model.FechaNacimiento;
+                cliente.Mail = cliente.Mail;
+                cliente.Telefono = cliente.Telefono;
 
 
                 db.Clientes.Add(cliente);
@@ -56,20 +57,21 @@ namespace Services
             }
         }
 
-        public ClienteGrid Get(int legajo)
+        public ClienteGrid Get(int dni)
         {
             var result = new ClienteGrid();
 
             using (var db = new ApplicationDbContext())
             {
                 result = (
-                        from emp in db.Empleado.Where(x => x.Legajo == legajo)
-                        from uxp in db.UserPorEmp.Where(x => x.Legajo == emp.Legajo).DefaultIfEmpty()
-                        from us in db.ApplicationUsers.Where(x => x.Id == uxp.IdUsuario).DefaultIfEmpty()
-                        from rol in db.RolEmpleado.Where(x => x.Id_Rol == emp.Id_RolServicio).DefaultIfEmpty()
+                        from clie in db.Clientes.Where(x => x.DNI == dni)
                         select new ClienteGrid
                         {
-
+                            DNI = clie.DNI,
+                            ApyNom = clie.Nombre + " " + clie.Apellido,
+                            Telefono = clie.Telefono.ToString(),
+                            Mail = clie.Mail,
+                            FechaNacimiento = clie.FechaNacimiento 
                         }
                     ).Single();
             }

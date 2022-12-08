@@ -45,9 +45,11 @@
         <th>
             @Html.DisplayNameFor(model => model.FechFin)
         </th>
-
         <th>
             @Html.DisplayNameFor(model => model.Costo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClienteDNI)
         </th>
     </tr>
 
@@ -69,9 +71,11 @@
     <td>
         @item.FechFin.ToString("dd/MM/yyyy")
     </td>
-
     <td>
         $@Html.DisplayFor(modelItem => item.Costo)
+    </td>
+    <td>
+        $@Html.DisplayFor(modelItem => item.ClienteDNI)
     </td>
 </tr>
     }

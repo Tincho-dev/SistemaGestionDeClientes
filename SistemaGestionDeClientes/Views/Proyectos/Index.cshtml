@@ -16,8 +16,6 @@
 @using (Html.BeginForm("Buscar", "Proyectos", FormMethod.Get, new { @class = "form-inline"}))
 {
             <p>
-                @Html.DropDownList("Fecha", (IEnumerable<SelectListItem>)ViewBag.Fecha, htmlAttributes: new { @class = "form-control" })
-
                 Proyecto: @Html.TextBox("palabra")
                 <input type="submit" value="Filter" />
             </p>
@@ -41,18 +39,17 @@
         <th>
             @Html.DisplayNameFor(model => model.FechFin)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Costo)
-        </th>
-        <th></th>
+        </th>*@
     </tr>
 
     @foreach (var item in Model)
     {
 <tr>
     @*<td width="3%">
-        @Html.DisplayFor(modelItem => item.Id_Proyecto)
-    </td>*@
+            @Html.DisplayFor(modelItem => item.Id_Proyecto)
+        </td>*@
     <td>
         @Html.DisplayFor(modelItem => item.Titulo)
     </td>
@@ -65,13 +62,12 @@
     <td>
         @item.FechFin.ToString("dd/MM/yyyy")
     </td>
-    
-    <td >
-        $@Html.DisplayFor(modelItem => item.Costo)
-    </td>
+
+       @*<td >
+            $@Html.DisplayFor(modelItem => item.Costo)
+        </td>*@
     <td width="25%">
         @Html.ActionLink("Act. Costo", "UpdateCosto", new { id = item.Id_Proyecto }, new { @class = "btn btn-default" })
-        @Html.ActionLink("Ver Tareas", "TareasXProyecto", "Tareas", new { id = item.Id_Proyecto }, new { @class = "btn btn-primary" })
         <hr />
         @Html.ActionLink("Editar", "Edit", new { id = item.Id_Proyecto }, new { @class = "btn btn-warning" })
         @Html.ActionLink("Crar", "Create", new { id = item.Id_Proyecto }, new { @class = "btn btn-warning" })

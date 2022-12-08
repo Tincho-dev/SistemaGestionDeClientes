@@ -1,88 +1,101 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Model.Domain;
+using Persistanse;
+using Services;
+using System;
 using System.Web.Mvc;
 
 namespace SistemaGestionDeClientes.Controllers
 {
     public class LlamadaController : Controller
     {
+        private readonly LlamadaServices llamadaServices = new LlamadaServices();
+        private readonly ClienteServices clienteServices = new ClienteServices();
+
         // GET: Llamada
         public ActionResult Index()
         {
-            return View();
+            var listado = llamadaServices.GetAll();
+
+            return View(listado);
         }
 
         // GET: Llamada/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var model = llamadaServices.Get(id);
+            return View("Details", model);
         }
 
         // GET: Llamada/Create
         public ActionResult Create()
         {
+            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
             return View();
         }
 
         // POST: Llamada/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Llamada llamada)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                llamadaServices.Create(llamada);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            //ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom", proyecto.Cliente_DNI);
+
+            return View(llamada);
         }
 
         // GET: Llamada/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = llamadaServices.GetEdit(id);
+            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
+            return View(model);
         }
 
         // POST: Llamada/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Llamada llamada)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    llamadaServices.Update(llamada);
+                }
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                throw new Exception(e.Message);
             }
         }
 
         // GET: Llamada/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var model = llamadaServices.Get(id);
+            return View(model);
         }
 
         // POST: Llamada/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                llamadaServices.Delete(id);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                throw new Exception(e.Message);
             }
         }
     }
