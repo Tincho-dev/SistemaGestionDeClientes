@@ -17,7 +17,7 @@
 {
             <p>
                 Proyecto: @Html.TextBox("palabra")
-                <input type="submit" value="Filter" />
+                <input class ="filtrar" type="submit" value="Filtrar" />
             </p>
 }
 
@@ -69,10 +69,10 @@
     <td width="25%">
         @Html.ActionLink("Act. Costo", "UpdateCosto", new { id = item.Id_Proyecto }, new { @class = "btn btn-default" })
         <hr />
-        @Html.ActionLink("Editar", "Edit", new { id = item.Id_Proyecto }, new { @class = "btn btn-warning" })
-        @Html.ActionLink("Crar", "Create", new { id = item.Id_Proyecto }, new { @class = "btn btn-warning" })
-        @Html.ActionLink("Detalles", "Details", new { id = item.Id_Proyecto }, new { @class = "btn btn-info" })
-        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Proyecto }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Editar", "Edit", new { id = item.Id_Proyecto }, new { @class = "btn" })
+        @Html.ActionLink("Crear", "Create", new { id = item.Id_Proyecto }, new { @class = "btn" })
+        @Html.ActionLink("Detalles", "Details", new { id = item.Id_Proyecto }, new { @class = "btn" })
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Proyecto }, new { @class = "btn" })
     </td>
 </tr>
     }

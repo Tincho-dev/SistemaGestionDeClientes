@@ -7,31 +7,43 @@
     padding-left: 15px;
     padding-right: 15px;
     background-color: #264653;
-    margin: 0px auto;
     align-content: center;
-}
-.h2{
     color: #f1faee;
 }
-.table {
-    color: #f1faee;
+.jumbotron{
+    color: #191818;
 }
 .col-md-4 {
     background-color: #264653;
 }
 
-.col-md-4 h2 {
-color: #f1faee;
+.btn {
+    background-color: #219ebc;
+    color: #191818;
 }
 
-.col-md-4 p {
-    color: #f1faee;
+.filtrar{
+    background-color: #219ebc;
+    color: #191818;
+    border: none;
+}
+
+.filtrar:hover{
+    background-color: #f1faee;
 }
 
 .btn-default {
     background-color: #219ebc;
 }
 
+.btn-success {
+    background-color: #219ebc;
+    border-color: #023047;
+}
+
+.btn:hover {
+    background-color: #f1faee;
+}
 }
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 

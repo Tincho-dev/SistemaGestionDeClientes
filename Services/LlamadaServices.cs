@@ -40,9 +40,10 @@ namespace Services
             {
                 var Llamada = new Llamada();
 
-                Llamada.Cliente_CUIT = llamada.Cliente_CUIT;
+                Llamada.Cliente_CUIT = (
+                        from clie in ctx.Clientes.Where(x => x.DNI == llamada.Cliente_CUIT)
+                        select clie.Id).Single(); ;
                 Llamada.Fecha = llamada.Fecha;
-                Llamada.Id_Llamada = llamada.Id_Llamada;
 
                 ctx.Llamadas.Add(Llamada);
                 ctx.SaveChanges();
