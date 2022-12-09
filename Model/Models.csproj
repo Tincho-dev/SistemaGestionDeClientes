@@ -67,11 +67,14 @@
     <Compile Include="Custom\HistorialesGrid.cs" />
     <Compile Include="Custom\LlamadasGrid.cs" />
     <Compile Include="Custom\ProyectosGrid.cs" />
+    <Compile Include="Custom\ReportePorLlamadasGrid.cs" />
     <Compile Include="Custom\UserGrid.cs" />
+    <Compile Include="Custom\ReporteGrid.cs" />
     <Compile Include="Domain\Cliente\Cliente.cs" />
     <Compile Include="Domain\Cliente\Detalle.cs" />
     <Compile Include="Domain\Empresa\Empleado.cs" />
     <Compile Include="Domain\Empresa\Historial_Roles.cs" />
+    <Compile Include="Domain\Empresa\Reporte.cs" />
     <Compile Include="Domain\Empresa\Usuario.cs" />
     <Compile Include="Domain\Cliente\Factura.cs" />
     <Compile Include="Domain\Cliente\Historial.cs" />

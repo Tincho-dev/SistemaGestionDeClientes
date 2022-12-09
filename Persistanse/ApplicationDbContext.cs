@@ -19,7 +19,7 @@ namespace Persistanse
         public DbSet<Empleado> Empleado { get; set; }
         public DbSet<UserPorEmp> UserPorEmp { get; set; }
         public DbSet<Proyectos> Proyectos { get; set; }
-
+        public DbSet<Reporte> Reporte { get; set; }    
 
         public ApplicationDbContext()
             : base("DefaultConnection")
