@@ -1,44 +1,47 @@
 ﻿@model IEnumerable<Model.Custom.FacturaGrid>
 
-@{
+    @{
     ViewBag.Title = "Facturas";
+    }
+
+    <h2>Facturas</h2>
+
+    <p>
+        @Html.ActionLink("Crear Nueva Factura", "Create", "Factura", new { @class = "btn" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Factura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClienteDNI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreProyecto)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Factura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClienteDNI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreProyecto)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new {  id=item.Id_Factura }, new { @class = "btn" }) |
+                @Html.ActionLink("Detalles", "Details", new {  id=item.Id_Factura }, new { @class = "btn" }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.Id_Factura }, new { @class = "btn" })
+            </td>
+        </tr>
 }
-
-<h2>Facturas</h2>
-
-<p>
-    @Html.ActionLink("Crear Nueva Factura", "Create", "Factura", new { @class = "btn btn-success" })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_Factura)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ClienteDNI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NombreProyecto)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_Factura)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ClienteDNI)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreProyecto)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.Id_Factura }) |
-            @Html.ActionLink("Details", "Details", new {  id=item.Id_Factura }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Factura })
-        </td>
-    </tr>
-}
-</table>
+    </table>
+    <div>
+        <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver al Inicio</a>
+    </div>

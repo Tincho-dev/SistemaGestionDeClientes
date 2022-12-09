@@ -40,9 +40,7 @@ namespace Services
             {
                 var Llamada = new Llamada();
 
-                Llamada.Cliente_CUIT = (
-                        from clie in ctx.Clientes.Where(x => x.DNI == llamada.Cliente_CUIT)
-                        select clie.Id).Single(); ;
+                Llamada.Cliente_CUIT = ctx.Clientes.Where(x => x.DNI == llamada.Cliente_CUIT).Single().Id;
                 Llamada.Fecha = llamada.Fecha;
 
                 ctx.Llamadas.Add(Llamada);

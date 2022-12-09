@@ -11,10 +11,11 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class ReportesServices
+    public class ReportesServices
     {
         private readonly UserService userService = new UserService();
 
+        /*
         public IEnumerable<ReporteGrid> GetAll()
         {
             var result = new List<ReporteGrid>();
@@ -33,10 +34,10 @@ namespace Services
 
             return result;
         }
-
-        public IEnumerable<ReporteGrid> GetReportePorLlamadas()
+         */
+        public IEnumerable<ReportePorLlamadasGrid> GetReportePorLlamadas()
         {
-            var result = new List<ReporteGrid>();
+            var result = new List<ReportePorLlamadasGrid>();
 
             using (var db = new ApplicationDbContext())
             {
@@ -53,40 +54,67 @@ namespace Services
                                             ).Count(),//contar la cantidad de llamadas del cliente
                             ClienteDNI = clie.DNI
                         }
-                    ).OrderBy(x => x.Id).ToList();
+                    ).OrderBy(x => x.TotalLlamadas).ToList();
             }
 
             return result;
         }
 
-        public IEnumerable<ReporteGrid> GetMayorIngresosGenerados()
+        public IEnumerable<ReportePorIngresosGrid> GetMayorIngresosGenerados()
         {
-            var result = new List<ReporteGrid>();
+            var result = new List<ReportePorIngresosGrid>();
 
             using (var db = new ApplicationDbContext())
             {
                 result = (
                         from clie in db.Clientes
-                        from detall in db.Detalle
-                        from fact in db.Factura.Where(x => x.idFactura == detall.idFactura)
-                        from proyec in db.Proyecto.Where(x => x.idProyecto == detall.idProyecto) //
+                        from detall in db.Detalles
+                        from fact in db.Facturas.Where(x => x.Id_Factura == detall.Id_Factura)
+                        from proyec in db.Proyectos.Where(x => x.Id_Proyecto == detall.Id_Detalle) 
                         select new ReportePorIngresosGrid
                         {
                             ApyNom = clie.Nombre + " " + clie.Apellido,
                             TotalIngresos = (
                                             from clie in db.Clientes
-                                            from detall in db.Detalle
-                                            from fact in db.Factura.Where(x => x.idFactura == detall.idFactura)
-                                            from proyec in db.Proyecto.Where(x => x.idProyecto == detall.idProyecto)
-                                            select fact
-                                            ).Sum(),
-                            ClienteDNI = clie.DNI
+                                            from detall in db.Detalles
+                                            from fact in db.Facturas.Where(x => x.Id_Factura == detall.Id_Factura)
+                                            from proy in db.Proyectos.Where(x => x.Id_Proyecto == detall.Id_Detalle)
+                                            select fact //falta hacer el select
+                                            ).Sum(x => x.Total),
+                            ClienteDNI = clie.DNI //cambiar aqui
                         }
-                    ).OrderBy(x => x.Id).ToList();
+                    ).OrderBy(x => x.TotalIngresos).ToList();
             }
 
             return result;
         }
+        /*
+        public IEnumerable<ClientesInactivosGrid> GetClientesInactivos()
+        {
+            var result = new List<ClientesInactivosGrid>();
+
+            using (var db = new ApplicationDbContext())
+            {
+                result = (
+                        from clie in db.Clientes
+                        from his in db.Historiales.Where(x => x.Cliente_DNI == clie.DNI)
+                        from fact in db.Facturas.Where(x => x.Id_Historial == his.Id_Historial)
+                        select new ClientesInactivosGrid
+                        {
+                            ApyNom = clie.Nombre + " " + clie.Apellido,
+                            // a partin de aqui ya no sé AIUDA
+                            from clie in db.Clientes
+                            from his in db.Historiales.Where(x => x.Cliente_DNI == clie.DNI)
+                            from fact in db.Facturas.Where(x => x.Id_Historial == his.Id_Historial)
+                            select fact.fecha between 20211209 and 19900101 //no estoy segura q poner entre las fechas jaja
+                            }
+                    ).OrderBy(x => x.fecha).ToList();
+            }
+
+            return result;
+        }
+ */
+        /*
         public void Create(Reporte model)
         {
             using (var db = new ApplicationDbContext())
@@ -105,7 +133,8 @@ namespace Services
                 db.SaveChanges();
             }
         }
-
+         */
+        /*
         public ReporteGrid Get(int id)
         {
             var result = new ReporteGrid();
@@ -124,7 +153,8 @@ namespace Services
 
             return result;
         }
-
+ */
+        /*
         public Reporte GetEdit(int id)
         {
             var result = new Reporte();
@@ -193,5 +223,17 @@ namespace Services
 
             return Reporte;
         }
+   <script>
+        function printHTML() {
+        if (window.print) {
+            window.print();
+        }
+      }
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+        printHTML();
+    });
+   </script>
+ */
     }
 }

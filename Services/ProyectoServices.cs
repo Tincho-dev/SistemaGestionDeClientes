@@ -29,9 +29,7 @@ namespace Services
                               Costo = pr.Costo
                           }
                           ).ToList();
-
             }
-
             return result;
         }
 
@@ -42,7 +40,7 @@ namespace Services
             using (var db = new ApplicationDbContext())
             {
                 result = (from pr in db.Proyectos.Where(x => x.Id_Proyecto == id)
-                          from cli in db.Clientes.Where(x => x.DNI == pr.Cliente_DNI)
+                          from cli in db.Clientes.Where(x => x.Id == pr.Cliente_DNI)
                           select new ProyectosGrid
                           {
                               Id_Proyecto = pr.Id_Proyecto,
@@ -50,7 +48,8 @@ namespace Services
                               Descripcion = pr.Descripcion,
                               FechInicio = pr.FechInicio,
                               FechFin = pr.FechFin,
-                              ClienteDNI = cli.DNI,
+                              ClienteDNI = (from clie in db.Clientes.Where(x => x.Id == pr.Cliente_DNI)
+                                            select clie.DNI).Single(),
                               Costo = pr.Costo
                           }
                           ).Single();
@@ -84,7 +83,7 @@ namespace Services
                 proyecto.Cliente_DNI = (
                         from clie in db.Clientes.Where(x => x.DNI == model.Cliente_DNI)
                         select clie.Id).Single();
-                proyecto.Costo = 0;
+                proyecto.Costo = model.Costo;
                 proyecto.Finalizado = false;
 
                 db.Proyectos.Add(proyecto);
@@ -142,39 +141,6 @@ namespace Services
                 if (!String.IsNullOrEmpty(palabra))
                 {
                     proyecto = from pr in db.Proyectos.Where(x => x.Titulo.ToUpper().Contains(palabra.ToUpper()))
-                               from cli in db.Clientes.Where(x => x.DNI == pr.Cliente_DNI)
-                               select new ProyectosGrid
-                               {
-                                   Id_Proyecto = pr.Id_Proyecto,
-                                   Titulo = pr.Titulo,
-                                   Descripcion = pr.Descripcion,
-                                   FechInicio = pr.FechInicio,
-                                   FechFin = pr.FechFin,
-                                  //ClienteDNI = cli.DNI,
-                                   Costo = pr.Costo
-                               };
-                }
-
-                if (value == "2")
-                {
-
-                    proyecto = from pr in db.Proyectos.Where(x => x.FechFin < FechaActual)
-                               from cli in db.Clientes.Where(x => x.DNI == pr.Cliente_DNI)
-                               select new ProyectosGrid
-                               {
-                                   Id_Proyecto = pr.Id_Proyecto,
-                                   Titulo = pr.Titulo,
-                                   Descripcion = pr.Descripcion,
-                                   FechInicio = pr.FechInicio,
-                                   FechFin = pr.FechFin,
-                                   Costo = pr.Costo
-                               };
-                }
-
-                if (value == "3")
-                {
-
-                    proyecto = from pr in db.Proyectos.Where(x => x.FechInicio > FechaActual)
                                from cli in db.Clientes.Where(x => x.DNI == pr.Cliente_DNI)
                                select new ProyectosGrid
                                {

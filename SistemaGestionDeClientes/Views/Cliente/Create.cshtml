@@ -12,7 +12,7 @@
 @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h2>Cliente</h2>
+    <h2>Crear Nuevo Cliente</h2>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -80,7 +80,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la Lista", "Index", "Cliente", new { @class = "btn btn-primary" })
 </div>
 
 @section Scripts {

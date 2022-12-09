@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Model.Custom.ProyectosGrid>
+﻿@model IEnumerable<Model.Custom.ReportePorLlamadasGrid>
 @{
     Layout = null;
 }
@@ -31,22 +31,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id_Proyecto)
+            @Html.DisplayNameFor(model => model.ApyNom)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechInicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechFin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Costo)
+            @Html.DisplayNameFor(model => model.TotalLlamadas)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ClienteDNI)
@@ -55,29 +43,17 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id_Proyecto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @item.FechInicio.ToString("dd/MM/yyyy")
-            </td>
-            <td>
-                @item.FechFin.ToString("dd/MM/yyyy")
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.Costo)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.ClienteDNI)
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ApyNom)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TotalLlamadas)
+    </td>
+    <td>
+        $@Html.DisplayFor(modelItem => item.ClienteDNI)
+    </td>
+</tr>
     }
 
 </table>

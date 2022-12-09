@@ -1,39 +1,43 @@
 ﻿@model IEnumerable<Model.Domain.Llamada>
 
-@{
+    @{
     ViewBag.Title = "Index";
+    }
+
+    <h2>Inicio</h2>
+
+    <p>
+        @Html.ActionLink("Registrar Nueva Llamada", "Create", "Llamada", new { @class = "btn" })
+        @Html.ActionLink("Generar Reporte", "Reporte", "Llamada", new { @class = "btn", @target = "_blank" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente_CUIT)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente_CUIT)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id=item.Id_Llamada }, new { @class = "btn" }) |
+                @Html.ActionLink("Detalles", "Details", new { id=item.Id_Llamada }, new { @class = "btn" }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.Id_Llamada }, new { @class = "btn" })
+            </td>
+        </tr>
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Registrar Nueva Llamada", "Create", "Llamada", new { @class = "btn btn-success" })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cliente_CUIT)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente_CUIT)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Llamada }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_Llamada }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Llamada })
-        </td>
-    </tr>
-}
-
-</table>
+    </table>
+    <div>
+        <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver al Inicio</a>
+    </div>

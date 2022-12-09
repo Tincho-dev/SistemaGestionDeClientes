@@ -11,7 +11,7 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h2>Factura</h2>
+    <h2>Crear Factura</h2>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -71,7 +71,8 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la Lista", "Index", "Factura", new { @class = "btn btn-primary" })
+    @*Html.ActionLink("Back to List", "Index")*@
 </div>
 
 @section Scripts {

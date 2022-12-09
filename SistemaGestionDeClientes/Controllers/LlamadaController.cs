@@ -1,7 +1,9 @@
-﻿using Model.Domain;
+﻿using Model.Custom;
+using Model.Domain;
 using Persistanse;
 using Services;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace SistemaGestionDeClientes.Controllers
@@ -10,6 +12,7 @@ namespace SistemaGestionDeClientes.Controllers
     {
         private readonly LlamadaServices llamadaServices = new LlamadaServices();
         private readonly ClienteServices clienteServices = new ClienteServices();
+        private readonly ReportesServices reportesServices = new ReportesServices();
 
         // GET: Llamada
         public ActionResult Index()
@@ -43,7 +46,7 @@ namespace SistemaGestionDeClientes.Controllers
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom", proyecto.Cliente_DNI);
+            ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom", llamada.Cliente_CUIT);
 
             return View(llamada);
         }
@@ -97,6 +100,17 @@ namespace SistemaGestionDeClientes.Controllers
             {
                 throw new Exception(e.Message);
             }
+        }
+
+        //Reportes
+        //[Authorize]
+        public ActionResult Reporte()
+        {
+            IEnumerable<ReportePorLlamadasGrid> llamadas;
+
+            llamadas = reportesServices.GetReportePorLlamadas();
+
+            return View("Reporte", llamadas);
         }
     }
 }
