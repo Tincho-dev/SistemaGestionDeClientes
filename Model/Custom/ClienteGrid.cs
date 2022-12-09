@@ -9,7 +9,7 @@ namespace Model.Custom
         public int DNI { get; set; }
         [Display(Name = "Nombre Completo")]
         public string ApyNom { get; set; }
-        [Display(Name = "Ingrese Telefono")]
+        [Display(Name = "Telefono")]
         public string Telefono { get; set; }
         [Display(Name = "Email")]
         public string Mail { get; set; }

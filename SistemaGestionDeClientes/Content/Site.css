@@ -9,6 +9,9 @@
     background-color: #264653;
     align-content: center;
     color: #f1faee;
+    display: flex;
+    flex-direction:column;
+    min-height:100vh;
 }
 .jumbotron{
     color: #191818;
@@ -60,3 +63,8 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.footer{
+    margin-top:auto;
+}
+

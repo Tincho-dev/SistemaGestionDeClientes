@@ -37,7 +37,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new {  id=item.Id_Factura }, new { @class = "btn" }) |
                 @Html.ActionLink("Detalles", "Details", new {  id=item.Id_Factura }, new { @class = "btn" }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id=item.Id_Factura }, new { @class = "btn" })
+                @Html.ActionLink("Eliminar", "DeleteConfirmed", new { id=item.Id_Factura }, new { @class = "btn" }) |
             </td>
         </tr>
 }
