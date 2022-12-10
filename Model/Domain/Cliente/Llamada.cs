@@ -12,8 +12,8 @@ namespace Model.Domain
         [Display(Name = "Fecha de la Llamada")]
         [DataType(DataType.Date)]
         public DateTime Fecha { get; set; }
-        public int Cliente_CUIT { get; set; }
-        [ForeignKey("Cliente_CUIT")]
+        public int Id_Cliente { get; set; }
+        [ForeignKey("Id_Cliente")]
         public virtual Cliente Cliente { get; set; }
 
     }

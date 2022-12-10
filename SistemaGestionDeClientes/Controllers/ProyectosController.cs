@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-
 namespace SistemaGestionDeClientes.Controllers
 {
     public class ProyectosController : Controller
@@ -45,7 +44,7 @@ namespace SistemaGestionDeClientes.Controllers
         // GET: Proyectos/Create
         public ActionResult Create()
         {
-            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom");
             return View();
         }
 
@@ -60,7 +59,7 @@ namespace SistemaGestionDeClientes.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom", proyecto.Cliente_DNI);
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom", proyecto.Id_Cliente);
 
             return View(proyecto);
         }
@@ -86,7 +85,7 @@ namespace SistemaGestionDeClientes.Controllers
                     proyectoservice.Update(proyecto);
                 }
 
-                ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "Legajo", "ApyNom", proyecto.Cliente_DNI);
+                ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "Legajo", "ApyNom", proyecto.Id_Cliente);
                 return RedirectToAction("Index");
             }
             catch (Exception e)

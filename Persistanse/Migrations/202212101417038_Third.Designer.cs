@@ -7,13 +7,13 @@ namespace Persistanse.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class Third : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Third));
         
         string IMigrationMetadata.Id
         {
-            get { return "202212081326539_Initial"; }
+            get { return "202212101417038_Third"; }
         }
         
         string IMigrationMetadata.Source

@@ -15,7 +15,7 @@
         @using (Html.BeginForm("Buscar", "RolesEmp", FormMethod.Get))
     {
     <p>
-        Nombre: @Html.TextBox("palabra")
+        Nombre: <i style="color:black;">@Html.TextBox("palabra")</i>
         <input class="filtrar" type="submit" value="Filtrar" />
     </p>
     }

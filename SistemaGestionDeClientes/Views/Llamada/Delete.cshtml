@@ -1,14 +1,14 @@
 ﻿@model Model.Domain.Llamada
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar Llamada";
 }
 
-<h2>Eliminar LLamada</h2>
+<h2>Eliminar Llamada</h2>
 
 <h3>Estas seguro que deseas eliminar esta llamada?</h3>
 <div>
-    @*<h4>Llamada</h4>*@
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,11 +20,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Cliente_CUIT)
+            @Html.DisplayNameFor(model => model.Id_Cliente)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Cliente_CUIT)
+            @Html.DisplayFor(model => model.Id_Cliente)
         </dd>
 
     </dl>
@@ -34,7 +34,7 @@
 
     <div class="form-actions no-color">
         <input type="submit" value="Eliminar" class="btn" /> |
-        @Html.ActionLink("Volver a la Lista", "Index", "Llamada" new { @class = "btn" })
+        <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
     </div>
     }
 </div>

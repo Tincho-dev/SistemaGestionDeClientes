@@ -1,6 +1,5 @@
 ﻿using Model.Custom;
 using Model.Domain;
-using Persistanse;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -17,7 +16,7 @@ namespace SistemaGestionDeClientes.Controllers
         // GET: Llamada
         public ActionResult Index()
         {
-            var listado = llamadaServices.GetAll();
+            var listado = llamadaServices.GetAllLlamadasGrid();
 
             return View(listado);
         }
@@ -32,7 +31,7 @@ namespace SistemaGestionDeClientes.Controllers
         // GET: Llamada/Create
         public ActionResult Create()
         {
-            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom");
             return View();
         }
 
@@ -46,7 +45,7 @@ namespace SistemaGestionDeClientes.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom", llamada.Cliente_CUIT);
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom", llamada.Id_Cliente);
 
             return View(llamada);
         }

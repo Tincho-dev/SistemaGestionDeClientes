@@ -35,11 +35,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechNacimiento)
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FechNacimiento)
+            @Html.DisplayFor(model => model.FechaNacimiento)
         </dd>
 
         <dt>
@@ -64,8 +64,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-danger" /> 
-            @Html.ActionLink("Volver a la Lista", "Index", "Empleado", new { @class = "btn btn-primary" })
+            <input type="submit" value="Eliminar" class="btn" /> 
+            <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
         </div>
     }
 </div>

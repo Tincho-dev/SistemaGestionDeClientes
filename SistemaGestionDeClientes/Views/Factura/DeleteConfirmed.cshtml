@@ -11,27 +11,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Total)
+            @Html.DisplayNameFor(model => model.Id_Cliente)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Total)
+            @Html.DisplayFor(model => model.Id_Cliente)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RutaCopiaOriginal)
+            @Html.DisplayNameFor(model => model.Id_Factura)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RutaCopiaOriginal)
+            @Html.DisplayFor(model => model.Id_Factura)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechaEmision)
+            @Html.DisplayNameFor(model => model.NombreProyecto)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FechaEmision)
+            @Html.DisplayFor(model => model.NombreProyecto)
         </dd>
 
         <dt>
@@ -43,20 +43,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Id_Historial)
+            @Html.DisplayNameFor(model => model.FechaEmision)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Id_Historial)
+            @Html.DisplayFor(model => model.FechaEmision)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LegajoEmpleado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LegajoEmpleado)
-        </dd>
+        
 
     </dl>
 
@@ -66,7 +60,6 @@
     <div class="form-actions no-color">
         <input type="submit" value="Delete" class="btn btn-default" /> |
         @Html.ActionLink("Volver a la Lista", "Index", "Factura", new { @class = "btn btn-primary" })
-        @*Html.ActionLink("Back to List", "Index")*@
     </div>
     }
 </div>

@@ -10,6 +10,7 @@ namespace SistemaGestionDeFacturas.Controllers
     {
         private readonly FacturaServices _FacturaService = new FacturaServices();
         private readonly ClienteServices clienteServices = new ClienteServices();
+        private readonly ProyectoServices proyectoServices = new ProyectoServices();
 
         // GET: Factura
         public ActionResult Index()
@@ -30,7 +31,9 @@ namespace SistemaGestionDeFacturas.Controllers
         // GET: Factura/Create
         public ActionResult Create()
         {
-            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom");
+            ViewBag.Id_Proyecto = new SelectList(proyectoServices.GetAll(), "Id_Proyecto", "Titulo");
+
             return View();
         }
 
@@ -44,7 +47,8 @@ namespace SistemaGestionDeFacturas.Controllers
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom", proyecto.Cliente_DNI);
+            ViewBag.Id_Cliente  = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom", factura.Id_Cliente);
+            ViewBag.Id_Proyecto = new SelectList(proyectoServices.GetAll(), "Id_Proyecto", "Titulo", factura.Id_Proyecto);
 
             return View(factura);
         }

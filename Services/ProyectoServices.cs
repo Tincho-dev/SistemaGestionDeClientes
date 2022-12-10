@@ -18,15 +18,15 @@ namespace Services
             {
                 result = (
                           from pr in db.Proyectos
-                          from cli in db.Clientes.Where(x => x.Id == pr.Cliente_DNI)
+                          from clie in db.Clientes.Where(x => x.Id == pr.Id_Cliente)
                           select new ProyectosGrid
                           {
                               Id_Proyecto = pr.Id_Proyecto,
                               Titulo = pr.Titulo,
                               Descripcion = pr.Descripcion,
-                              FechInicio = pr.FechInicio,
-                              FechFin = pr.FechFin,
-                              ClienteDNI = cli.DNI,
+                              FechaInicio = pr.FechaInicio,
+                              FechaFin = pr.FechaFin,
+                              Id_Cliente = clie.DNI,
                               Costo = pr.Costo
                           }
                           ).ToList();
@@ -41,16 +41,15 @@ namespace Services
             using (var db = new ApplicationDbContext())
             {
                 result = (from pr in db.Proyectos.Where(x => x.Id_Proyecto == id)
-                          from cli in db.Clientes.Where(x => x.Id == pr.Cliente_DNI)
+                          from clie in db.Clientes.Where(x => x.Id == pr.Id_Cliente)
                           select new ProyectosGrid
                           {
                               Id_Proyecto = pr.Id_Proyecto,
                               Titulo = pr.Titulo,
                               Descripcion = pr.Descripcion,
-                              FechInicio = pr.FechInicio,
-                              FechFin = pr.FechFin,
-                              ClienteDNI = (from clie in db.Clientes.Where(x => x.Id == pr.Cliente_DNI)
-                                            select clie.DNI).FirstOrDefault(),
+                              FechaInicio = pr.FechaInicio,
+                              FechaFin = pr.FechaFin,
+                              Id_Cliente = clie.Id,
                               Costo = pr.Costo
                           }
                           ).Single();
@@ -79,11 +78,9 @@ namespace Services
 
                 proyecto.Titulo = model.Titulo;
                 proyecto.Descripcion = model.Descripcion;
-                proyecto.FechInicio = model.FechInicio;
-                proyecto.FechFin = model.FechFin;
-                proyecto.Cliente_DNI = (
-                        from clie in db.Clientes.Where(x => x.Id == model.Cliente_DNI)
-                        select clie.DNI).FirstOrDefault();
+                proyecto.FechaInicio = model.FechaInicio;
+                proyecto.FechaFin = model.FechaFin;
+                proyecto.Id_Cliente = model.Id_Cliente;
                 proyecto.Costo = model.Costo;
                 proyecto.Finalizado = false;
 
@@ -100,8 +97,8 @@ namespace Services
 
                 originalEntity.Titulo = model.Titulo;
                 originalEntity.Descripcion = model.Descripcion;
-                originalEntity.FechFin = model.FechFin;
-                originalEntity.Cliente_DNI = model.Cliente_DNI;
+                originalEntity.FechaFin = model.FechaFin;
+                originalEntity.Id_Cliente = model.Id_Cliente;
 
                 db.Entry(originalEntity).State = EntityState.Modified;
                 db.SaveChanges();
@@ -142,15 +139,15 @@ namespace Services
                 if (!String.IsNullOrEmpty(palabra))
                 {
                     proyecto = from pr in db.Proyectos.Where(x => x.Titulo.ToUpper().Contains(palabra.ToUpper()))
-                               from cli in db.Clientes.Where(x => x.DNI == pr.Cliente_DNI)
+                               from cli in db.Clientes.Where(x => x.Id == pr.Id_Cliente)
                                select new ProyectosGrid
                                {
                                    Id_Proyecto = pr.Id_Proyecto,
                                    Titulo = pr.Titulo,
                                    Descripcion = pr.Descripcion,
-                                   FechInicio = pr.FechInicio,
-                                   FechFin = pr.FechFin,
-                                   ClienteDNI = cli.DNI,
+                                   FechaInicio = pr.FechaInicio,
+                                   FechaFin = pr.FechaFin,
+                                   Id_Cliente = cli.DNI,
                                    Costo = pr.Costo
                                };
                 }

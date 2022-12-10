@@ -9,37 +9,46 @@
     <p>
         @Html.ActionLink("Crear Nueva Factura", "Create", "Factura", new { @class = "btn" })
     </p>
+
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id_Factura)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClienteDNI)
+                @Html.DisplayNameFor(model => model.Total)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NombreProyecto)
+                @Html.DisplayNameFor(model => model.FechaEmision)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaVencimiento)
+            </th>
+            <th>
+                @*Botones de Editar,Detalles y Eliminar --> hay que cambiar por un boton de ag*@
+            </th>
         </tr>
 
         @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id_Factura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClienteDNI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreProyecto)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new {  id=item.Id_Factura }, new { @class = "btn" }) |
-                @Html.ActionLink("Detalles", "Details", new {  id=item.Id_Factura }, new { @class = "btn" }) |
-                @Html.ActionLink("Eliminar", "DeleteConfirmed", new { id=item.Id_Factura }, new { @class = "btn" }) |
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_Factura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaEmision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaVencimiento)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new {  id=item.Id_Factura }, new { @class = "btn" }) |
+            @Html.ActionLink("Detalles", "Details", new {  id=item.Id_Factura }, new { @class = "btn" }) |
+            @Html.ActionLink("Eliminar", "DeleteConfirmed", new { id=item.Id_Factura }, new { @class = "btn" }) |
+        </td>
+    </tr>
 }
     </table>
     <div>

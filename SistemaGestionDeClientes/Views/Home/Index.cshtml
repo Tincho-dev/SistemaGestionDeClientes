@@ -18,7 +18,7 @@
     }
 </div>
 
-<div class="row">
+<div class="row" style="display:inline-flex; flex-wrap:nowrap">
     @if (Request.IsAuthenticated)
     {
     <div class="col-md-4">
@@ -28,26 +28,31 @@
     </div>
     <div class="col-md-4">
         <h2>Proyectos</h2>
-        <p> Creación de Proyectos</p>
-        <p><a class="btn" href='@Url.Action("Index", "Proyectos", new { id = "Create"})'>Crear Proyectos &raquo;</a></p>
+        <p> Gestionar de Proyectos</p>
+        <p><a class="btn" href='@Url.Action("Index", "Proyectos", new { id = "Create"})'>Gestionar Proyectos &raquo;</a></p>
+        @*
+            
         <p> Modificación de Proyectos</p>
         <p><a class="btn" href='@Url.Action("Index", "Proyectos", new { id = "Edit"})'>Modificar Proyectos &raquo;</a></p>
         <p> Busqueda de Proyectos</p>
         <p><a class="btn" href='@Url.Action("Index", "Proyectos", new { id = "Create"})'>Buscar Proyecto &raquo;</a></p>
         <p> Eliminación de Proyectos</p>
         <p><a class="btn" href='@Url.Action("Index", "Proyectos", new { id = "Delete"})'>Eliminar Proyectos &raquo;</a></p>
+        
+        *@
         <p> Asociación de Clientes con Proyectos</p>
-        <p><a class="btn" href='@Url.Action("Index", "Proyectos", new { id = "Create"})'>Asociar Cliente &raquo;</a></p>
+        <p><a class="btn" href='@Url.Action("index", "AsociarCliente")'>Asociar Cliente &raquo;</a></p>
+    
     </div>
     <div class="col-md-4">
         <h2>Facturas</h2>
         <p>Mostrar Factura.</p>
-        <p><a class="btn btn-default" href='@Url.Action("Index", "Factura")'>Ver Factura &raquo;</a></p>
+        <p><a class="btn" href='@Url.Action("Index", "Factura")'>Ver Factura &raquo;</a></p>
     </div>
     <div class="col-md-4">
         <h2>Llamadas</h2>
         <p>Mostrar Llamadas.</p>
-        <p><a class="btn btn-default" href='@Url.Action("Index", "Llamada")'>Ver Llamadas &raquo;</a></p>
+        <p><a class="btn" href='@Url.Action("Index", "Llamada")'>Ver Llamadas &raquo;</a></p>
     </div>
       @*<div class="col-md-4">
             <h2>Reportes</h2>

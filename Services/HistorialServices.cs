@@ -9,7 +9,7 @@ using System.Linq;
 namespace Services
 {
     public class HistorialServices
-    {
+    {/*
         //private readonly HistorialServices userService = new HistorialServices();
 
         public IEnumerable<HistorialesGrid> GetAll()
@@ -19,13 +19,7 @@ namespace Services
             using (var db = new ApplicationDbContext())
             {
                 result = (
-                        from his in db.Historiales
-                        select new HistorialesGrid
-                        {
-                            id = his.Id_Historial,
-                            SueldoAdeudado = his.SaldoAdeudado,
-                        
-                        }
+
                     ).ToList();
             }
 
@@ -159,7 +153,6 @@ namespace Services
 
             return historial;
         }
-         */
 
         
         public void UpdateCosto(int id, double costo)
@@ -174,5 +167,6 @@ namespace Services
                 db.SaveChanges();
             }
         }
+      */
     }
 }

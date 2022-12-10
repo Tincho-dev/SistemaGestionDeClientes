@@ -21,6 +21,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Rol }, new { @class = "btn btn-warning" }) 
-    @Html.ActionLink("Volver a la Lista", "Index", "RolesEmp",  new { @class = "btn btn-primary"})
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Rol }, new { @class = "btn" }) 
 </p>
+
+<div>
+    <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
+</div>

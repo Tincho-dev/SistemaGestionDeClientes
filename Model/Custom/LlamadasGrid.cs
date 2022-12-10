@@ -5,9 +5,12 @@ namespace Model.Custom
 {
     public class LlamadaGrid
     {
-        public int Id { get; set; }
         [Display(Name = "id llamada")]
-        public int ClienteDNI { get; set; }
+        public int Id { get; set; }
+
+        public int Id_Cliente { get; set; }
+        [Display(Name = "Nombre y Apellido del Cliente")]
+        public string ApyNom { get; set; }
         [Display(Name = "Fecha")]
         public DateTime Fecha{ get; set; }
     }

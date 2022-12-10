@@ -20,19 +20,19 @@ namespace Model.Domain
         [Display(Name = "Fecha de Inicio")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime FechInicio { get; set; }
+        public DateTime FechaInicio { get; set; }
 
         [Required(ErrorMessage = "Fecha estimada de Fin del Proyecto:")]
         [Display(Name = "Fecha estimada de Fin")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime FechFin { get; set; }
+        public DateTime FechaFin { get; set; }
         [Display(Name = "Finalizado: ")]
         public bool Finalizado { get; set; }
 
-        [Display(Name = "Cliente")]
-        public int Cliente_DNI { get; set; }
-        [ForeignKey("Cliente_DNI")]
+        [Display(Name = "Id_Cliente")]
+        public int Id_Cliente { get; set; }
+        [ForeignKey("Id_Cliente")]
         public virtual Cliente Cliente { get; set; }
 
         public double Costo { get; set; }

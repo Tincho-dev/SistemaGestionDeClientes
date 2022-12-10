@@ -1,4 +1,5 @@
-﻿using Model.Domain;
+﻿using Model.Custom;
+using Model.Domain;
 using Persistanse;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,28 @@ namespace Services
             return result;
         }
 
+        public IEnumerable<LlamadaGrid> GetAllLlamadasGrid()
+        {
+            var result = new List<LlamadaGrid>();
+
+            using (ctx)
+            {
+                result = (
+                        from llam in ctx.Llamadas
+                        from cli in ctx.Clientes.Where(x => x.Id == llam.Id_Cliente)
+                        select new LlamadaGrid
+                        {
+                            Id = llam.Id_Llamada,
+                            Id_Cliente = cli.Id,
+                            ApyNom = cli.Nombre + " " + cli.Apellido,
+                            Fecha = llam.Fecha
+                        }
+                    ).ToList();
+            }
+
+            return result;
+        }
+
         public Llamada Get(int id)
         {
             var result = new Llamada();
@@ -40,8 +63,9 @@ namespace Services
             {
                 var Llamada = new Llamada();
 
-                Llamada.Cliente_CUIT = ctx.Clientes.Where(x => x.DNI == llamada.Cliente_CUIT).Single().Id;
+                Llamada.Id_Cliente = llamada.Id_Cliente;
                 Llamada.Fecha = llamada.Fecha;
+                
 
                 ctx.Llamadas.Add(Llamada);
                 ctx.SaveChanges();
@@ -65,7 +89,7 @@ namespace Services
                 == llamada.Id_Llamada
                 ).Single();
 
-                originalEntity.Cliente_CUIT = llamada.Cliente_CUIT;
+                originalEntity.Id_Cliente = llamada.Id_Cliente;
                 originalEntity.Fecha = llamada.Fecha;
                 originalEntity.Id_Llamada = llamada.Id_Llamada;
 

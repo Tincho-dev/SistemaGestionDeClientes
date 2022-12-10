@@ -15,6 +15,29 @@ namespace Services
     {
         private readonly UserService userService = new UserService();
 
+        
+        public IEnumerable<ReportePorLlamadasGrid> GetReportePorLlamadas()
+        {
+            var result = new List<ReportePorLlamadasGrid>();
+
+            using (var db = new ApplicationDbContext())
+            {
+                result = (
+                        from clie in db.Clientes
+                        from llam in db.Llamadas.Where(x => x.Id_Cliente == clie.Id)
+                        select new ReportePorLlamadasGrid
+                        {
+                            ApyNom = clie.Nombre + " " + clie.Apellido,
+                            TotalLlamadas = (from lla in db.Llamadas.Where(x => x.Id_Cliente == clie.Id)
+                                            select lla
+                                            ).Count(),//contar la cantidad de llamadas del cliente
+                            DNI = clie.DNI
+                        }
+                    ).Distinct().OrderBy(x => x.TotalLlamadas).ToList();
+            }
+
+            return result;
+        }
         /*
         public IEnumerable<ReporteGrid> GetAll()
         {
@@ -30,31 +53,6 @@ namespace Services
                             NombreCliente = rep.NombreCliente,
                         }
                     ).OrderBy(x => x.Id).ToList();
-            }
-
-            return result;
-        }
-         */
-        public IEnumerable<ReportePorLlamadasGrid> GetReportePorLlamadas()
-        {
-            var result = new List<ReportePorLlamadasGrid>();
-
-            using (var db = new ApplicationDbContext())
-            {
-                result = (
-                        from clie in db.Clientes
-                        from llam in db.Llamadas.Where(x => x.Cliente_CUIT == clie.DNI)
-                        select new ReportePorLlamadasGrid
-                        {
-                            ApyNom = clie.Nombre + " " + clie.Apellido,
-                            TotalLlamadas = (
-                                            from cli in db.Clientes
-                                            from lla in db.Llamadas.Where(x => x.Cliente_CUIT == clie.DNI)
-                                            select lla
-                                            ).Count(),//contar la cantidad de llamadas del cliente
-                            ClienteDNI = clie.DNI
-                        }
-                    ).OrderBy(x => x.TotalLlamadas).ToList();
             }
 
             return result;
@@ -79,8 +77,19 @@ namespace Services
                                             from detall in db.Detalles
                                             from fact in db.Facturas.Where(x => x.Id_Factura == detall.Id_Factura)
                                             from proy in db.Proyectos.Where(x => x.Id_Proyecto == detall.Id_Detalle)
-                                            select fact //falta hacer el select
-                                            ).Sum(x => x.Total),
+                                            select //agrego una nueva fila para realizar la suma   //SAQUÉ DE GOOGLE NO SÉ SI ESTÁ BIEN 
+                                                   DataTable dt = Datos();
+                                                   DataRow row = dt.NewRow();
+                                                   dt.Rows.Add(row);
+
+                                                   //mostramos los datos en el datagridview
+                                                   dataGridView1.AutoGenerateColumns = false;
+                                                   dataGridView1.DataSource = dt;
+
+                                                   //Mostramos el valor de 0 en la fila que agregamos
+                                                   DataGridViewRow rowtotal = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+                                                   rowtotal.Cells["Total"].Value = 0;
+                                                        ).Sum(x => x.Total),
                             ClienteDNI = clie.DNI //cambiar aqui
                         }
                     ).OrderBy(x => x.TotalIngresos).ToList();
@@ -88,52 +97,29 @@ namespace Services
 
             return result;
         }
-        /*
-        public IEnumerable<ClientesInactivosGrid> GetClientesInactivos()
+        
+         */
+        
+        public IEnumerable<ReporteClientesInactivosGrid> GetClientesInactivos()
         {
-            var result = new List<ClientesInactivosGrid>();
+            var result = new List<ReporteClientesInactivosGrid>();
 
             using (var db = new ApplicationDbContext())
             {
                 result = (
                         from clie in db.Clientes
-                        from his in db.Historiales.Where(x => x.Cliente_DNI == clie.DNI)
-                        from fact in db.Facturas.Where(x => x.Id_Historial == his.Id_Historial)
-                        select new ClientesInactivosGrid
+                        from llam in db.Llamadas.Where(x=> x.Id_Cliente == clie.Id)
+                        select new ReporteClientesInactivosGrid
                         {
-                            ApyNom = clie.Nombre + " " + clie.Apellido,
-                            // a partin de aqui ya no sé AIUDA
-                            from clie in db.Clientes
-                            from his in db.Historiales.Where(x => x.Cliente_DNI == clie.DNI)
-                            from fact in db.Facturas.Where(x => x.Id_Historial == his.Id_Historial)
-                            select fact.fecha between 20211209 and 19900101 //no estoy segura q poner entre las fechas jaja
-                            }
-                    ).OrderBy(x => x.fecha).ToList();
+
+                        }
+                    ).ToList();
             }
 
             return result;
         }
- */
-        /*
-        public void Create(Reporte model)
-        {
-            using (var db = new ApplicationDbContext())
-            {
-                if (db.Reportes.Any(x => x.id == model.id))
-                {
-                    throw new Exception("Ya existe un empleado con id " + model.id);
-                }
-                var Reporte = new Reporte();
-
-                Reporte.Id_cliente = model.Id_cliente;
-                Reporte.NombreCliente = model.NombreCliente;
-
-
-                db.Reportes.Add(Reporte);
-                db.SaveChanges();
-            }
-        }
-         */
+ 
+        
         /*
         public ReporteGrid Get(int id)
         {
@@ -153,8 +139,7 @@ namespace Services
 
             return result;
         }
- */
-        /*
+        
         public Reporte GetEdit(int id)
         {
             var result = new Reporte();
@@ -166,74 +151,6 @@ namespace Services
             return result;
         }
 
-        public void Update(Reporte model)
-        {
-            var result = new List<Reporte>();
-
-            using (var db = new ApplicationDbContext())
-            {
-                var originalEntity = db.Reportes.Where(x => x.id == model.id).Single();
-
-                //to do
-                originalEntity.id = model.Id_cliente;
-                originalEntity.nombre = model.NombreCliente;
-                //to do
-
-                db.Entry(originalEntity).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-        }
-        
-
-        public UserPorEmp GetUser(int id)
-        {
-            var result = new UserPorEmp(); 
-
-            using (var ctx = new ApplicationDbContext())
-            {
-                result = ctx.UserPorEmp.Where(x => x.id == id).FirstOrDefault();
-            }
-
-            return result;
-        }
-
-
-        public IEnumerable<ReporteGrid> Buscar(string palabra)
-        {
-            IEnumerable<ReporteGrid> Reporte;
-
-            using (var db = new ApplicationDbContext())
-            {
-                Reporte = GetAll();
-                if (!String.IsNullOrEmpty(palabra))
-                {
-                    Reporte = from emp in db.Empleado.Where(x => x.Nombre.ToUpper().Contains(palabra.ToUpper()) //COMO REEMPLAZO "EMPLEADO"?
-                                || x.Apellido.ToUpper().Contains(palabra.ToUpper()))
-                              from uxp in db.UserPorEmp.Where(x => x.Legajo == emp.Legajo).DefaultIfEmpty()
-                              from us in db.ApplicationUsers.Where(x => x.Id == uxp.IdUsuario).DefaultIfEmpty()
-                              from rol in db.RolEmpleado.Where(x => x.Id_Rol == emp.Id_RolServicio).DefaultIfEmpty()
-                              select new ReporteGrid
-                              {
-                                  // to do
-                              };
-                }
-
-                Reporte = Reporte.ToList();
-            }
-
-            return Reporte;
-        }
-   <script>
-        function printHTML() {
-        if (window.print) {
-            window.print();
-        }
-      }
-
-    document.addEventListener("DOMContentLoaded", function (event) {
-        printHTML();
-    });
-   </script>
  */
     }
 }

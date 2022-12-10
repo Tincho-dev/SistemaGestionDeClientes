@@ -10,6 +10,6 @@ namespace Model.Custom
     {
         public string  ApyNom { get; set; }
         public double TotalIngresos { get; set; }
-        public int ClienteDNI { get; set; }
+        public int Id_Cliente { get; set; }
     }
 }

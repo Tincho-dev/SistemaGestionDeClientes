@@ -12,7 +12,7 @@ namespace Model.Custom
         [Display(Name = "Nombre y Apellido")]
         public string ApyNom { get; set; }
         public int TotalLlamadas { get; set; }
-        public int ClienteDNI { get; set; }
+        public int DNI { get; set; }
 
     }
 }

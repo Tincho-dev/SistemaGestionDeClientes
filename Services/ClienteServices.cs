@@ -22,10 +22,12 @@ namespace Services
                         from cli in db.Clientes
                         select new ClienteGrid
                         {
+                            Id_Cliente = cli.Id,
                             DNI = cli.DNI,
                             ApyNom = cli.Nombre + " " + cli.Apellido,
                             FechaNacimiento = cli.FechaNacimiento,
-
+                            Telefono = cli.Telefono,
+                            Mail = cli.Mail
                         }
                     ).OrderBy(x => x.DNI).ToList();
             }
@@ -48,8 +50,8 @@ namespace Services
                 cliente.DNI = model.DNI;
                 cliente.Condicion_Tributaria = model.Condicion_Tributaria;
                 cliente.FechaNacimiento = model.FechaNacimiento;
-                cliente.Mail = cliente.Mail;
-                cliente.Telefono = cliente.Telefono;
+                cliente.Mail = model.Mail;
+                cliente.Telefono = model.Telefono;
 
 
                 db.Clientes.Add(cliente);
@@ -69,7 +71,7 @@ namespace Services
                         {
                             DNI = clie.DNI,
                             ApyNom = clie.Nombre + " " + clie.Apellido,
-                            Telefono = clie.Telefono.ToString(),
+                            Telefono = clie.Telefono,
                             Mail = clie.Mail,
                             FechaNacimiento = clie.FechaNacimiento 
                         }
@@ -96,48 +98,40 @@ namespace Services
 
             using (var db = new ApplicationDbContext())
             {
-                var originalEntity = db.Clientes.Where(x => x.DNI == model.DNI).Single();
+                var originalEntity = db.Clientes.Where(x => x.Id == model.Id).Single();
 
-                //to do
+                originalEntity.Condicion_Tributaria = model.Condicion_Tributaria;
                 originalEntity.Nombre = model.Nombre;
                 originalEntity.Apellido = model.Apellido;
-                //to do
+                originalEntity.DNI = model.DNI;
+                originalEntity.FechaNacimiento = model.FechaNacimiento;
+                originalEntity.Mail = model.Mail;
+                originalEntity.Telefono = model.Telefono;
 
                 db.Entry(originalEntity).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
 
-        public void Delete(int legajo)
+        public void Delete(int id)
         {
             try
             {
                 using (var db = new ApplicationDbContext())
                 {
-                    Empleado empleado = db.Empleado.Where(x => x.Legajo == legajo).Single();
+                    Cliente cliente = db.Clientes.Where(x => x.Id == id).Single();
 
-                    db.Empleado.Remove(empleado);
+                    db.Clientes.Remove(cliente);
                     db.SaveChanges();
                 }
             }
             catch (Exception e)
             {
-
                 throw new Exception(e.Message);
             }
         }
 
-        public UserPorEmp GetUser(int legajo)
-        {
-            var result = new UserPorEmp();
 
-            using (var ctx = new ApplicationDbContext())
-            {
-                result = ctx.UserPorEmp.Where(x => x.Legajo == legajo).FirstOrDefault();
-            }
-
-            return result;
-        }
 
         
         public IEnumerable<ClienteGrid> Buscar(string palabra)
@@ -149,14 +143,14 @@ namespace Services
                 cliente = GetAll();
                 if (!String.IsNullOrEmpty(palabra))
                 {
-                    cliente = from emp in db.Empleado.Where(x => x.Nombre.ToUpper().Contains(palabra.ToUpper())
-                                || x.Apellido.ToUpper().Contains(palabra.ToUpper()))
-                               from uxp in db.UserPorEmp.Where(x => x.Legajo == emp.Legajo).DefaultIfEmpty()
-                               from us in db.ApplicationUsers.Where(x => x.Id == uxp.IdUsuario).DefaultIfEmpty()
-                               from rol in db.RolEmpleado.Where(x => x.Id_Rol == emp.Id_RolServicio).DefaultIfEmpty()
-                               select new ClienteGrid
-                               {
-                                   // to do
+                    cliente = from clie in db.Clientes.Where(x => x.Nombre.ToUpper().Contains(palabra.ToUpper()))
+                              select new ClienteGrid
+                              {
+                                   DNI = clie.DNI,
+                                   ApyNom = clie.Nombre + " " + clie.Apellido,
+                                   Telefono = clie.Telefono,
+                                   Mail = clie.Mail,
+                                   FechaNacimiento = clie.FechaNacimiento
                                };
                 }
 

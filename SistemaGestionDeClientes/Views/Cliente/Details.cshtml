@@ -1,10 +1,9 @@
 ﻿@model Model.Custom.ClienteGrid
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-@*<h2>Details</h2>*@
 
 <div>
     <h2> Detalle de Cliente</h2>
@@ -52,7 +51,10 @@
 
     </dl>
 </div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
-    @Html.ActionLink("Volver a la Lista", "Index", "Cliente", new { @class = "btn btn-primary" })
-</p>
+<div>
+    <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

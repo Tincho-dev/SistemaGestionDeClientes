@@ -213,11 +213,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Cliente\AsociarClienteProyecto.html" />
-    <Content Include="Views\Cliente\CrearCliente.html" />
-    <Content Include="Views\Cliente\EliminarCliente .html" />
     <Content Include="Views\ReportesYFacturas\GenerarReporte.html" />
     <Content Include="Views\ReportesYFacturas\MostrarFactura.html" />
-    <Content Include="Views\Cliente\VisualizarCliente.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -276,19 +273,21 @@
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\Create.cshtml" />
-    <Content Include="Views\Cliente\Edit.cshtml" />
     <Content Include="Views\Factura\Index.cshtml" />
     <Content Include="Views\Factura\Details.cshtml" />
     <Content Include="Views\Factura\Create.cshtml" />
     <Content Include="Views\Factura\Edit.cshtml" />
     <Content Include="Views\Factura\DeleteConfirmed.cshtml" />
-    <Content Include="Views\Llamada\Index.cshtml" />
-    <Content Include="Views\Llamada\Details.cshtml" />
     <Content Include="Views\Llamada\Create.cshtml" />
     <Content Include="Views\Llamada\Edit.cshtml" />
     <Content Include="Views\Llamada\Delete.cshtml" />
     <Content Include="Views\Llamada\Reporte.cshtml" />
     <Content Include="Views\Proyectos\Reporte.cshtml" />
+    <Content Include="Views\Llamada\Index.cshtml" />
+    <Content Include="Views\Cliente\Reporte.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\AsociarCliente\index.cshtml" />
+    <Content Include="Views\Llamada\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

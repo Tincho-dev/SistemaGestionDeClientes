@@ -1,165 +1,201 @@
-﻿
-using Model.Custom;
+﻿using Model.Custom;
 using Model.Domain;
-using Services;
+using Persistanse;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Web.Mvc;
+using System.Data.Entity;
+using System.Linq;
 
-namespace SistemaGestionDeClientes.Controllers
+namespace Services
 {
-    //[Authorize(Roles = "Admin")]
-    public class EmpleadoController : Controller
+    public class EmpleadoServices
     {
-        private readonly EmpleadoServices _empleadoService = new EmpleadoServices();
-        private readonly RolesServices rolesServices = new RolesServices();
         private readonly UserService userService = new UserService();
-
-
-        // GET: Empleado
-        public ActionResult Index()
+        public IEnumerable<EmpleadoGrid> GetAll()
         {
-            var model = _empleadoService.GetAll();
-            return View(model);
-        }
+            var result = new List<EmpleadoGrid>();
 
-        public ActionResult Buscar(string palabra)
-        {
-            var empleados = _empleadoService.Buscar(palabra);
-
-            Session["Palabra"] = palabra;
-
-            return View("Index", empleados);
-        }
-        // GET: Empleado/Details/5
-        public ActionResult Details(int id)
-        {
-            var model = _empleadoService.Get(id);
-            return View("Details", model);
-        }
-
-        // GET: Empleado/Create
-        public ActionResult Create()
-        {
-            ViewBag.Id_RolServicio = new SelectList(rolesServices.GetAll(), "Id_Rol", "Nombre");
-            return View();
-        }
-
-        // POST: Empleado/Create
-        [HttpPost]
-        public ActionResult Create(Empleado empleado)
-        {
-            if (ModelState.IsValid)
+            using (var db = new ApplicationDbContext())
             {
-                _empleadoService.Create(empleado);
-                return RedirectToAction("Index");
+                result = (
+                        from emp in db.Empleado
+                        from uxp in db.UserPorEmp.Where(x => x.Legajo == emp.Legajo).DefaultIfEmpty()
+                        from us in db.ApplicationUsers.Where(x => x.Id == uxp.IdUsuario).DefaultIfEmpty()
+                        from rol in db.RolEmpleado.Where(x => x.Id_Rol == emp.Id_RolServicio).DefaultIfEmpty()
+                        select new EmpleadoGrid
+                        {
+                            Legajo = emp.Legajo,
+                            DNI = emp.DNI,
+                            ApyNom = emp.Nombre + " " + emp.Apellido,
+                            FechaNacimiento = emp.FechaNacimiento,
+                            Usuario = us.Email,
+                            Rol = rol.Nombre
+                        }
+                    ).OrderBy(x => x.FechaNacimiento).ToList();
             }
 
-            ViewBag.Id_RolServicio = new SelectList(rolesServices.GetAll(), "Id_Rol", "Nombre", empleado.Id_RolServicio);
-            return View(empleado);
+            return result;
         }
 
-        // GET: Empleado/Edit/5
-        public ActionResult Edit(int id)
+        public void Create(Empleado model)
         {
-            var model = _empleadoService.GetEdit(id);
-            ViewBag.Id_RolServicio = new SelectList(rolesServices.GetAll(), "Id_Rol", "Nombre");
-            return View(model);
+            using (var db = new ApplicationDbContext())
+            {
+                if (db.Empleado.Any(x => x.DNI == model.DNI))
+                {
+                    throw new Exception("Ya existe un empleado con DNI " + model.DNI);
+                }
+                var empleado = new Empleado();
+
+                empleado.Nombre = model.Nombre;
+                empleado.Apellido = model.Apellido;
+                empleado.DNI = model.DNI;
+                empleado.FechaNacimiento = model.FechaNacimiento;
+                empleado.Id_RolServicio = model.Id_RolServicio;
+
+
+                db.Empleado.Add(empleado);
+                db.SaveChanges();
+            }
         }
 
-        // POST: Empleado/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, Empleado empleado)
+        public EmpleadoGrid Get(int legajo)
+        {
+            var result = new EmpleadoGrid();
+
+            using (var db = new ApplicationDbContext())
+            {
+                result = (
+                        from emp in db.Empleado.Where(x => x.Legajo == legajo)
+                        from uxp in db.UserPorEmp.Where(x => x.Legajo == emp.Legajo).DefaultIfEmpty()
+                        from us in db.ApplicationUsers.Where(x => x.Id == uxp.IdUsuario).DefaultIfEmpty()
+                        from rol in db.RolEmpleado.Where(x => x.Id_Rol == emp.Id_RolServicio).DefaultIfEmpty()
+                        select new EmpleadoGrid
+                        {
+                            Legajo = emp.Legajo,
+                            DNI = emp.DNI,
+                            ApyNom = emp.Nombre + " " + emp.Apellido,
+                            FechaNacimiento = emp.FechaNacimiento,
+                            Usuario = us.Email,
+                            Rol = rol.Nombre
+                        }
+                    ).Single();
+            }
+
+            return result;
+        }
+
+        public Empleado GetEdit(int legajo)
+        {
+            var result = new Empleado();
+
+            using (var db = new ApplicationDbContext())
+            {
+                result = db.Empleado.Where(x => x.Legajo == legajo).Single();
+            }
+
+            return result;
+        }
+
+        public void Update(Empleado model)
+        {
+            var result = new List<Empleado>();
+
+            using (var db = new ApplicationDbContext())
+            {
+                var originalEntity = db.Empleado.Where(x => x.Legajo == model.Legajo).Single();
+
+                originalEntity.Nombre = model.Nombre;
+                originalEntity.Apellido = model.Apellido;
+                originalEntity.FechaNacimiento = model.FechaNacimiento;
+                originalEntity.Id_RolServicio = model.Id_RolServicio;
+
+                db.Entry(originalEntity).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public void Delete(int legajo)
         {
             try
             {
-                if (ModelState.IsValid)
+                using (var db = new ApplicationDbContext())
                 {
-                    _empleadoService.Update(empleado);
+                    Empleado empleado = db.Empleado.Where(x => x.Legajo == legajo).Single();
+
+                    db.Empleado.Remove(empleado);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
+
+        public UserPorEmp GetUser(int legajo)
+        {
+            var result = new UserPorEmp();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                result = ctx.UserPorEmp.Where(x => x.Legajo == legajo).FirstOrDefault();
+            }
+
+            return result;
+        }
+
+        public void AddUserToEmp(int legajo, string userid)
+        {
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    ctx.UserPorEmp.Add(new UserPorEmp
+                    {
+                        Legajo = legajo,
+                        IdUsuario = userid
+                    });
+                    ctx.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
+
+        public IEnumerable<EmpleadoGrid> Buscar(string palabra)
+        {
+            IEnumerable<EmpleadoGrid> empleado;
+
+            using (var db = new ApplicationDbContext())
+            {
+                empleado = GetAll();
+                if (!String.IsNullOrEmpty(palabra))
+                {
+                    empleado = from emp in db.Empleado.Where(x => x.Nombre.ToUpper().Contains(palabra.ToUpper())
+                                || x.Apellido.ToUpper().Contains(palabra.ToUpper()))
+                               from uxp in db.UserPorEmp.Where(x => x.Legajo == emp.Legajo).DefaultIfEmpty()
+                               from us in db.ApplicationUsers.Where(x => x.Id == uxp.IdUsuario).DefaultIfEmpty()
+                               from rol in db.RolEmpleado.Where(x => x.Id_Rol == emp.Id_RolServicio).DefaultIfEmpty()
+                               select new EmpleadoGrid
+                               {
+                                   Legajo = emp.Legajo,
+                                   DNI = emp.DNI,
+                                   ApyNom = emp.Nombre + " " + emp.Apellido,
+                                   FechaNacimiento = emp.FechaNacimiento,
+                                   Usuario = us.Email,
+                                   Rol = rol.Nombre
+                               };
                 }
 
-                ViewBag.Id_RolServicio = new SelectList(rolesServices.GetAll(), "Id_Rol", "Nombre", empleado.Id_RolServicio);
-
-                return RedirectToAction("Index");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-
-        // GET: Empleado/Delete/5
-        public ActionResult Delete(int id)
-        {
-            var model = _empleadoService.Get(id);
-            return View(model);
-        }
-
-        // POST: Empleado/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            try
-            {
-                _empleadoService.Delete(id);
-
-                return RedirectToAction("Index");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-
-        public ActionResult Get(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                empleado = empleado.ToList();
             }
 
-            int legajo = int.Parse(id);
-
-            var model = _empleadoService.GetEdit(legajo);
-            ViewBag.Usuario = userService.GetAll();
-            if (model == null)
-            {
-                return HttpNotFound();
-            }
-            return View(model);
-        }
-
-        public ActionResult AddUserToEmp(int legajo, string user)
-        {
-            var usuario = _empleadoService.GetUser(legajo);
-
-            if (usuario != null)
-            {
-                throw new Exception("El Empleado ya tiene un Usuario, se permite uno por Empleado");
-            }
-
-            _empleadoService.AddUserToEmp(legajo, user);
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Reporte()
-        {
-            IEnumerable<EmpleadoGrid> empleados;
-
-            if (Session["Palabra"] != null)
-            {
-                string palabra = Session["Palabra"].ToString();
-
-                empleados = _empleadoService.Buscar(palabra);
-            }
-            else
-            {
-                empleados = _empleadoService.GetAll();
-            }
-
-            return View("Reporte", empleados);
+            return empleado;
         }
     }
 }

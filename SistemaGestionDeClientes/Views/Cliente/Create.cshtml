@@ -4,9 +4,6 @@
     ViewBag.Title = "Create";
 }
 
-@*<h2>Create</h2>*@
-
-
 @using (Html.BeginForm())
 {
 @Html.AntiForgeryToken()
@@ -14,6 +11,7 @@
 <div class="form-horizontal">
     <h2>Crear Nuevo Cliente</h2>
     <hr />
+    <h3> Datos del Cliente</h3>
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.DNI, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -73,14 +71,14 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Crear Cliente" class="btn" />
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Volver a la Lista", "Index", "Cliente", new { @class = "btn btn-primary" })
+    <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
 </div>
 
 @section Scripts {

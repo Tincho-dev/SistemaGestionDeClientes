@@ -53,7 +53,6 @@ namespace Services
                 empleado.FechaNacimiento = model.FechaNacimiento;
                 empleado.Id_RolServicio = model.Id_RolServicio;
 
-
                 db.Empleado.Add(empleado);
                 db.SaveChanges();
             }

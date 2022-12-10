@@ -11,13 +11,16 @@
     color: #f1faee;
     display: flex;
     flex-direction:column;
-    min-height:100vh;
 }
 .jumbotron{
     color: #191818;
 }
 .col-md-4 {
     background-color: #264653;
+}
+.row{
+    margin-right:30px;
+    margin-left:80px;
 }
 
 .btn {
@@ -66,5 +69,6 @@ textarea {
 
 .footer{
     margin-top:auto;
+
 }
 

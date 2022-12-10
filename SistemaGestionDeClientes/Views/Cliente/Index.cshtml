@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<Model.Custom.ClienteGrid>
 
     @{
-    ViewBag.Title = "Clientes";
+    ViewBag.Title = "Cliente";
     }
 
     <h2>Clientes</h2>
 
     <p>
         @Html.ActionLink("Crear Nuevo Cliente", "Create", "Cliente", new { @class = "btn" })
+        @Html.ActionLink("Generar Reporte", "Reporte", "Cliente", new { @class = "btn"})
     </p>
     <table class="table">
         <tr>

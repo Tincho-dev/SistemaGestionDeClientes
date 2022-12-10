@@ -1,42 +1,35 @@
-﻿@model Model.Custom.FacturaGrid
+﻿@model Model.Domain.Llamada
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Detalles de Llamadas</h2>
+<h2>Details</h2>
 
 <div>
-    @*<h4>FacturaGrid</h4>*@
+    <h4>Llamada</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Id_Factura)
+            @Html.DisplayNameFor(model => model.Fecha)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Id_Factura)
+            @Html.DisplayFor(model => model.Fecha)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ClienteDNI)
+            @Html.DisplayNameFor(model => model.Id_Cliente)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ClienteDNI)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NombreProyecto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NombreProyecto)
+            @Html.DisplayFor(model => model.Id_Cliente)
         </dd>
 
     </dl>
 </div>
+
 <p>
-    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Volver a la Lista", "Index", "Llamada" new { @class = "btn btn-primary" })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Llamada }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

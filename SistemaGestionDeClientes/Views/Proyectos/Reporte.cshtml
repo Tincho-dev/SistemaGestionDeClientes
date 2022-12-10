@@ -40,16 +40,16 @@
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechInicio)
+            @Html.DisplayNameFor(model => model.FechaInicio)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechFin)
+            @Html.DisplayNameFor(model => model.FechaFin)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Costo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ClienteDNI)
+            @Html.DisplayNameFor(model => model.Id_Cliente)
         </th>
     </tr>
 
@@ -66,16 +66,16 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @item.FechInicio.ToString("dd/MM/yyyy")
+                @item.FechaInicio.ToString("dd/MM/yyyy")
             </td>
             <td>
-                @item.FechFin.ToString("dd/MM/yyyy")
+                @item.FechaFin.ToString("dd/MM/yyyy")
             </td>
             <td>
                 $@Html.DisplayFor(modelItem => item.Costo)
             </td>
             <td>
-                $@Html.DisplayFor(modelItem => item.ClienteDNI)
+                $@Html.DisplayFor(modelItem => item.Id_Cliente)
             </td>
         </tr>
     }

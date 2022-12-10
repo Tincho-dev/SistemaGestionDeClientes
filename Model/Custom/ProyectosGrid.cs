@@ -9,12 +9,12 @@ namespace Model.Custom
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
         [Display(Name = "Fecha de Inicio")]
-        public DateTime FechInicio { get; set; }
+        public DateTime FechaInicio { get; set; }
         [Display(Name = "Fecha estimada de Fin")]
-        public DateTime FechFin { get; set; }
+        public DateTime FechaFin { get; set; }
         [Display(Name = "Costo Total")]
         public double Costo { get; set; }
         [Display(Name = "DNI Cliente")]
-        public int ClienteDNI { get; set; }
+        public int Id_Cliente { get; set; }
     }
 }

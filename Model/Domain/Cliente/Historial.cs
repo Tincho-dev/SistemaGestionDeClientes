@@ -7,8 +7,8 @@ namespace Model.Domain
         [Key]
         public int Id_Historial { get; set; }
         public double SaldoAdeudado { get; set; }
-        public int Cliente_DNI { get; set; }
-        [ForeignKey("Cliente_DNI")]
+        public int Id_Cliente { get; set; }
+        [ForeignKey("Id_Cliente")]
         public virtual Cliente Cliente { get; set; } 
     }
 }

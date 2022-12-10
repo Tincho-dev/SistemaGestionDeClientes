@@ -1,13 +1,13 @@
 ﻿@model Model.Custom.ProyectosGrid
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>ProyectosGrid</h4>
+    <h4>Proyectos</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -35,25 +35,32 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechInicio)
+            @Html.DisplayNameFor(model => model.FechaInicio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FechInicio)
+            @Html.DisplayFor(model => model.FechaInicio)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechFin)
+            @Html.DisplayNameFor(model => model.FechaFin)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FechFin)
+            @Html.DisplayFor(model => model.FechaFin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Cliente)
         </dd>
 
-     
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Proyecto }, new { @class = "btn btn-warning" }) 
-    @Html.ActionLink("Volver a la Lista", "Index", "Proyectos", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Proyecto }, new { @class = "btn" }) 
+    @Html.ActionLink("Volver a la Lista", "Index", "Proyectos", new { @class = "btn" })
 </p>

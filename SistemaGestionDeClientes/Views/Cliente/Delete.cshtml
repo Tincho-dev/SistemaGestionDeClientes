@@ -2,7 +2,7 @@
 
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar";
 }
 
 <h2>Eliminar Cliente</h2>
@@ -29,37 +29,30 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Condicion_Tributaria)
+            @Html.DisplayNameFor(model => model.CondicionTributaria)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Condicion_Tributaria)
+            @Html.DisplayFor(model => model.CondicionTributaria)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.DisplayNameFor(model => model.ApyNom)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Nombre)
+            @Html.DisplayFor(model => model.ApyNom)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Apellido)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Apellido)
-        </dd>
 
     </dl>
 
     @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        @Html.ActionLink("Volver a la Lista", "Index", "Cliente", new { @class = "btn btn-primary" })
-    </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn" /> |
+            <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
+        </div>
     }
 </div>

@@ -1,6 +1,7 @@
 ﻿using Model.Domain;
 using Services;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace SistemaGestionDeClientes.Controllers
@@ -9,6 +10,7 @@ namespace SistemaGestionDeClientes.Controllers
     public class ClienteController : Controller
     {
         private readonly ClienteServices clienteServices = new ClienteServices();
+        private readonly ReportesServices reportesServices = new ReportesServices();
 
         // GET: Cliente
         public ActionResult Index()
@@ -106,6 +108,19 @@ namespace SistemaGestionDeClientes.Controllers
                 throw new Exception(e.Message);
             }
         }
+        /*
+        //Reportes
+        //[Authorize]
+        public ActionResult Reporte()
+        {
+            IEnumerable<ReporteClientesInactivos> llamadas;
+
+            llamadas = reportesServices.get();
+
+            return View("Reporte", llamadas);
+        }
+         */
+         
     }
 }
 

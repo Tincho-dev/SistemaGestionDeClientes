@@ -1,4 +1,5 @@
-﻿using Model.Custom;
+﻿using Common;
+using Model.Custom;
 using Model.Domain;
 using Persistanse;
 using System;
@@ -20,13 +21,13 @@ namespace Services
             {
                 result = (
                         from fac in db.Facturas
-                        from hist in db.Historiales.Where(x => x.Id_Historial == fac.Id_Historial)
-                        from pro in db.Proyectos.Where(x => x.Id_Proyecto == hist.Id_Historial)
-                        from cli in db.Clientes.Where(x => x.DNI == hist.Cliente_DNI)
+                        //from hist in db.Historiales.Where(x => x.Id_Historial == fac.Id_Historial)
+                        from pro in db.Proyectos.Where(x => x.Id_Proyecto == fac.Id_Proyecto)
+                        from cli in db.Clientes.Where(x => x.Id == fac.Id_Cliente)
                         select new FacturaGrid
                         {
                             Id_Factura = fac.Id_Factura,
-                            ClienteDNI = cli.DNI,
+                            Id_Cliente = cli.DNI,
                             NombreProyecto = pro.Titulo
                         }
                     ).ToList();
@@ -38,15 +39,23 @@ namespace Services
         {
             using (var db = new ApplicationDbContext())
             {
-                var Factura = new Factura();
-                Factura.Empleado = model.Empleado;
-                Factura.FechaEmision = model.FechaEmision;
-                Factura.FechaVencimiento = model.FechaVencimiento;
-                Factura.Historial = model.Historial;
-                Factura.Id_Factura = model.Id_Factura;
-                Factura.LegajoEmpleado = Factura.LegajoEmpleado;
-                Factura.Total = model.Total;
-                Factura.RutaCopiaOriginal = model.RutaCopiaOriginal;
+                var Factura = new Factura
+                {
+                    FechaEmision = model.FechaEmision,
+                    FechaVencimiento = model.FechaVencimiento,
+                    Descripcion = model.Descripcion,
+                    Precio = model.Precio,
+                    Cantidad = model.Cantidad,
+                    Subtotal = model.Precio * model.Cantidad,
+                    Id_Proyecto = model.Id_Proyecto,
+                    Id_Cliente = model.Id_Cliente,
+                    LegajoEmpleado = (from emp in db.Empleado.Where(x => x.Nombre == CurrentUser.Get.Name)
+                                      select emp.Legajo).Single()
+                };
+
+                //Factura.Id_Factura = model.Id_Factura;
+                //Factura.Total = model.Total;
+                //Factura.RutaCopiaOriginal = model.RutaCopiaOriginal;
 
                 db.Facturas.Add(Factura);
                 db.SaveChanges();
@@ -60,14 +69,14 @@ namespace Services
             using (var db = new ApplicationDbContext())
             {
                 result = (from fac in db.Facturas.Where(x => x.Id_Factura == id).DefaultIfEmpty()
-                          from hist in db.Historiales.Where(x => x.Id_Historial == fac.Id_Historial)
-                          from pro in db.Proyectos.Where(x => x.Id_Proyecto == hist.Id_Historial)
-                          from cli in db.Clientes.Where(x => x.DNI == hist.Cliente_DNI)
+                          //from hist in db.Historiales.Where(x => x.Id_Historial == fac.Id_Historial)
+                          from pro in db.Proyectos.Where(x => x.Id_Proyecto == fac.Id_Proyecto)
+                          from cli in db.Clientes.Where(x => x.Id == fac.Id_Cliente)
 
                           select new FacturaGrid
                           {
                               Id_Factura = fac.Id_Factura,
-                              ClienteDNI = cli.DNI,
+                              Id_Cliente = cli.DNI,
                               NombreProyecto = pro.Titulo
                           }
                         ).Single();
@@ -96,9 +105,9 @@ namespace Services
                 var originalEntity = db.Facturas.Where(x => x.Id_Factura == model.Id_Factura).Single();
 
                 originalEntity.Id_Factura = model.Id_Factura;
-                originalEntity.Id_Historial = model.Id_Historial;
-                originalEntity.LegajoEmpleado = model.LegajoEmpleado;
-                originalEntity.RutaCopiaOriginal = model.RutaCopiaOriginal;
+                //originalEntity.Id_Historial = model.Id_Historial;
+                //originalEntity.LegajoEmpleado = model.LegajoEmpleado;
+                //originalEntity.RutaCopiaOriginal = model.RutaCopiaOriginal;
                 originalEntity.Total = model.Total;
 
                 db.Entry(originalEntity).State = EntityState.Modified;
