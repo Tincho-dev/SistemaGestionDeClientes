@@ -16,8 +16,9 @@ namespace Services
 
             using (var db = new ApplicationDbContext())
             {
-                result = (from cli in db.Clientes
-                          from pr in db.Proyectos.Where(x => x.Cliente_DNI == cli.DNI)
+                result = (
+                          from pr in db.Proyectos
+                          from cli in db.Clientes.Where(x => x.Id == pr.Cliente_DNI)
                           select new ProyectosGrid
                           {
                               Id_Proyecto = pr.Id_Proyecto,
@@ -49,7 +50,7 @@ namespace Services
                               FechInicio = pr.FechInicio,
                               FechFin = pr.FechFin,
                               ClienteDNI = (from clie in db.Clientes.Where(x => x.Id == pr.Cliente_DNI)
-                                            select clie.DNI).Single(),
+                                            select clie.DNI).FirstOrDefault(),
                               Costo = pr.Costo
                           }
                           ).Single();
@@ -81,8 +82,8 @@ namespace Services
                 proyecto.FechInicio = model.FechInicio;
                 proyecto.FechFin = model.FechFin;
                 proyecto.Cliente_DNI = (
-                        from clie in db.Clientes.Where(x => x.DNI == model.Cliente_DNI)
-                        select clie.Id).Single();
+                        from clie in db.Clientes.Where(x => x.Id == model.Cliente_DNI)
+                        select clie.DNI).FirstOrDefault();
                 proyecto.Costo = model.Costo;
                 proyecto.Finalizado = false;
 
