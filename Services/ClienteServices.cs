@@ -59,14 +59,14 @@ namespace Services
             }
         }
 
-        public ClienteGrid Get(int dni)
+        public ClienteGrid Get(int id)
         {
             var result = new ClienteGrid();
 
             using (var db = new ApplicationDbContext())
             {
                 result = (
-                        from clie in db.Clientes.Where(x => x.DNI == dni)
+                        from clie in db.Clientes.Where(x => x.Id == id)
                         select new ClienteGrid
                         {
                             DNI = clie.DNI,
@@ -81,13 +81,36 @@ namespace Services
             return result;
         }
 
-        public Cliente GetEdit(int dni)
+        public Cliente GetEdit(int id)
         {
             var result = new Cliente();
 
             using (var db = new ApplicationDbContext())
             {
-                result = db.Clientes.Where(x => x.DNI == dni).Single();
+                result = db.Clientes.Where(x => x.Id == id).Single();
+            }
+            return result;
+        }
+
+        public IEnumerable<ProyectosGrid> GetProyectos(int id)
+        {
+            var result = new List<ProyectosGrid>();
+
+            using (var db = new ApplicationDbContext())
+            {
+                result = (
+                          from pr in db.Proyectos.Where(x => x.Id_Cliente == id)
+                          select new ProyectosGrid
+                          {
+                              Id_Proyecto = pr.Id_Proyecto,
+                              Titulo = pr.Titulo,
+                              Descripcion = pr.Descripcion,
+                              FechaInicio = pr.FechaInicio,
+                              FechaFin = pr.FechaFin,
+                              Id_Cliente = pr.Id_Cliente,
+                              Costo = pr.Costo
+                          }
+                          ).ToList();
             }
             return result;
         }

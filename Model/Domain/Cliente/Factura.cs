@@ -8,22 +8,12 @@ namespace Model.Domain
     {
         [Key]
         public int Id_Factura { get; set; }
-
         public double Total { get; set; }
-
         public string Descripcion { get; set; }
-
         public double Precio { get;  set; }
-
         public int Cantidad { get; set; }
-
         public double Subtotal { get;  set; }
 
-
-        /*public string RutaCopiaOriginal { get; set; }
-         
-
-         */
         [Required(ErrorMessage = "Fecha de Emision necesaria:")]
         [Display(Name = "Fecha de Emision")]
         [DataType(DataType.Date)]
@@ -33,12 +23,6 @@ namespace Model.Domain
         [Display(Name = "Fecha de Vencimiento")]
         [DataType(DataType.Date)]
         public DateTime FechaVencimiento { get; set; }
-
-        /*
-        public int Id_Historial { get; set; }
-        [ForeignKey("Id_Historial")]
-        public virtual Historial Historial { get; set; }
-         */
 
         public int Id_Cliente { get; set; }
         [ForeignKey("Id_Cliente")]

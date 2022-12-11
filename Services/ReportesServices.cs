@@ -19,7 +19,6 @@ namespace Services
         public IEnumerable<ReportePorLlamadasGrid> GetReportePorLlamadas()
         {
             var result = new List<ReportePorLlamadasGrid>();
-
             using (var db = new ApplicationDbContext())
             {
                 result = (
@@ -33,9 +32,32 @@ namespace Services
                                             ).Count(),//contar la cantidad de llamadas del cliente
                             DNI = clie.DNI
                         }
-                    ).Distinct().OrderBy(x => x.TotalLlamadas).ToList();
+                    ).Distinct().OrderByDescending(x => x.TotalLlamadas).ToList();
             }
-
+            return result;
+        }
+        
+        public IEnumerable<ReporteProyectosClientesGrid> GetReporteProyectosClientes()
+        {
+            var result = new List<ReporteProyectosClientesGrid>();
+            using (var db = new ApplicationDbContext())
+            {
+                result = (
+                        from clie in db.Clientes
+                        from pro in db.Proyectos.Where(x => x.Id_Cliente == clie.Id)
+                        select new ReporteProyectosClientesGrid
+                        {
+                            ApyNom = clie.Nombre + " " + clie.Apellido,
+                            TotalProyectos = (from proy in db.Proyectos.Where(x => x.Id_Cliente == clie.Id)
+                                            select proy
+                                            ).Count(),//contar la cantidad de proyectos del cliente
+                            DNI = clie.DNI,
+                            TotalIngresos = (from proy in db.Proyectos.Where(x => x.Id_Cliente == clie.Id)
+                                             select proy.Costo
+                                            ).Sum()// suma el total de todos los proyectos
+                        }
+                    ).Distinct().OrderByDescending(x => x.TotalProyectos).ToList();
+            }
             return result;
         }
         /*

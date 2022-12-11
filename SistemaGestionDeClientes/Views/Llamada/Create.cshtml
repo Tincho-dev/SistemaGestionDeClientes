@@ -39,10 +39,9 @@
 }
 
 <div>
-    @Html.ActionLink("Volver a la Lista", "Index", "Llamada", new { @class = "btn btn-primary" })
+    <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
 </div>
 
-@section Scripts{
-
-    @Scripts.Render("~/bundles/queryval")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

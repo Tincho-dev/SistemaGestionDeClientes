@@ -11,7 +11,10 @@ namespace Model.Custom
     {
         [Display(Name = "Nombre y Apellido")]
         public string ApyNom { get; set; }
-        public int TotalLlamadas { get; set; }
+        [Display(Name = "Fecha de Ultima Factura")]
+        public DateTime UltimaFactura{ get; set; }
+        [Display(Name = "Fecha de Ultima Llamada")]
+        public DateTime UltimaLlamada{ get; set; }
         public int Id_Cliente { get; set; }
     }
 }

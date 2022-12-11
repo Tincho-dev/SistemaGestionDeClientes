@@ -6,10 +6,10 @@
 
 <h2>Crear nuevo Empleado</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
+@Html.AntiForgeryToken()
+
 <div class="form-horizontal">
     <h4>Empleado</h4>
     <hr />
@@ -64,10 +64,9 @@
 }
 
 <div>
-    @Html.ActionLink("Volver a la Lista", "Index", "Empleado", new { @class = "btn btn-primary" })
+    <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
 </div>
 
-@section Scripts{
-
-    @Scripts.Render("~/bundles/queryval")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

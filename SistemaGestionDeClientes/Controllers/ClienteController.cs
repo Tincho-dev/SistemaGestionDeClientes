@@ -1,4 +1,5 @@
-﻿using Model.Domain;
+﻿using Model.Custom;
+using Model.Domain;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,14 @@ namespace SistemaGestionDeClientes.Controllers
         public ActionResult Index()
         {
             var listado = clienteServices.GetAll();
+
+            return View(listado);
+        }
+        
+
+        public ActionResult GetProyectos(int id)
+        {
+            var listado = clienteServices.GetProyectos(id);
 
             return View(listado);
         }
@@ -108,18 +117,19 @@ namespace SistemaGestionDeClientes.Controllers
                 throw new Exception(e.Message);
             }
         }
-        /*
+
+        
         //Reportes
         //[Authorize]
         public ActionResult Reporte()
         {
-            IEnumerable<ReporteClientesInactivos> llamadas;
+            IEnumerable<ReporteProyectosClientesGrid> proyectos;
 
-            llamadas = reportesServices.get();
+            proyectos = reportesServices.GetReporteProyectosClientes();
 
-            return View("Reporte", llamadas);
+            return View("Reporte", proyectos);
         }
-         */
+         
          
     }
 }

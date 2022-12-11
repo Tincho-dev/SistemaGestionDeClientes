@@ -1,13 +1,12 @@
 ﻿@model Model.Custom.FacturaGrid
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
 <h2>Detalle de Factura</h2>
 
 <div>
-    @*<h4>FacturaGrid</h4>*@
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -36,8 +35,11 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Volver a la Lista", "Index", "Factura", new { @class = "btn btn-primary" })
-    @*Html.ActionLink("Back to List", "Index")*@
-</p>
+<div>
+    <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

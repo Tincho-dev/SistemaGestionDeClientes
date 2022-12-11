@@ -1,13 +1,13 @@
 ﻿@model Model.Custom.FacturaGrid
 
 @{
-    ViewBag.Title = "DeleteConfirmed";
+    ViewBag.Title = "Confirmar Eliminación";
 }
 
 
 @*<h3>Are you sure you want to delete this?</h3>*@
 <div>
-    <h2>Confirmar Eliminacion de Factura</h2>
+    <h2>Confirmar Eliminación de Factura</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -57,9 +57,9 @@
     @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        @Html.ActionLink("Volver a la Lista", "Index", "Factura", new { @class = "btn btn-primary" })
-    </div>
+      <div class="form-actions no-color">
+         <input type="submit" value="Eliminar" class="btn btn-default" /> |
+         <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
+      </div>
     }
 </div>

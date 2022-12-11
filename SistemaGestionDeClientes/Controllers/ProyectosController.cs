@@ -65,6 +65,35 @@ namespace SistemaGestionDeClientes.Controllers
         }
 
         //[Authorize(Roles = "Admin")]
+        // GET: Proyectos/AsociarCliente/5
+        public ActionResult AsociarCliente(int id)
+        {
+            var model = proyectoservice.GetEdit(id);
+            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
+            return View(model);
+        }
+        //[Authorize(Roles = "Admin")]
+        // POST: Proyectos/Edit/5
+        [HttpPost]
+        public ActionResult AsociarCliente(int id, Proyectos proyecto)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    proyectoservice.Update(proyecto);
+                }
+
+                ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "Legajo", "ApyNom", proyecto.Id_Cliente);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        //[Authorize(Roles = "Admin")]
         // GET: Proyectos/Edit/5
         public ActionResult Edit(int id)
         {
@@ -121,19 +150,6 @@ namespace SistemaGestionDeClientes.Controllers
             }
         }
 
-        public ActionResult UpdateCosto(int id)
-        {
-            List<SelectListItem> Fecha = new List<SelectListItem>()
-            {
-                new SelectListItem { Text="Todos", Value="1"},
-                new SelectListItem { Text="Proyectos Atrasados", Value="2" },
-                new SelectListItem { Text="Proyectos Proximos a Iniciar", Value="3" }
-            };
-
-            ViewBag.Fecha = Fecha;
-
-            return RedirectToAction("Index");
-        }
 
         //Reportes
         //[Authorize]

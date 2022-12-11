@@ -70,6 +70,7 @@
     <Compile Include="Custom\ProyectosGrid.cs" />
     <Compile Include="Custom\ReportePorIngresosGrid.cs" />
     <Compile Include="Custom\ReportePorLlamadasGrid.cs" />
+    <Compile Include="Custom\ReporteProyectosClientesGrid.cs" />
     <Compile Include="Custom\UserGrid.cs" />
     <Compile Include="Domain\Cliente\Cliente.cs" />
     <Compile Include="Domain\Cliente\Detalle.cs" />

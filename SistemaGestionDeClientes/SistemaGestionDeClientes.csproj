@@ -288,6 +288,8 @@
     <Content Include="Views\Cliente\Edit.cshtml" />
     <Content Include="Views\AsociarCliente\index.cshtml" />
     <Content Include="Views\Llamada\Details.cshtml" />
+    <Content Include="Views\Cliente\GetProyectos.cshtml" />
+    <Content Include="Views\Proyectos\AsociarCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

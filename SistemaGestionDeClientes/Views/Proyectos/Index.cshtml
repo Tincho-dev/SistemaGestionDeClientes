@@ -11,7 +11,6 @@
         @Html.ActionLink("Generar Reporte", "Reporte", "Proyectos", new { @class = "btn", @target = "_blank" })
     </p>
 
-
     @using (Html.BeginForm("Buscar", "Proyectos", FormMethod.Get, new { @class = "form-inline"}))
 {
     <p >
@@ -74,12 +73,13 @@
         </td>
         <td width="25%">
             @*
-            @Html.ActionLink("Act. Costo", "UpdateCosto", new { id = item.Id_Proyecto }, new { @class = "btn" })
-            @Html.ActionLink("Crear", "Create", new { id = item.Id_Proyecto }, new { @class = "btn" })
+        @Html.ActionLink("Act. Costo", "UpdateCosto", new { id = item.Id_Proyecto }, new { @class = "btn" })
+        @Html.ActionLink("Crear", "Create", new { id = item.Id_Proyecto }, new { @class = "btn" })
             *@
             @Html.ActionLink("Editar", "Edit", new { id = item.Id_Proyecto }, new { @class = "btn" })
             @Html.ActionLink("Detalles", "Details", new { id = item.Id_Proyecto }, new { @class = "btn" })
             @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Proyecto }, new { @class = "btn" })
+            @Html.ActionLink("Asociar Cliente", "AsociarCliente", new { id = item.Id_Proyecto }, new { @class = "btn" }) |
         </td>
     </tr>
     }
@@ -97,5 +97,5 @@
     </form>
 
     <div>
-        <a class="btn" href='@Url.Action("Index", "Home")'>Volver al Inicio &raquo;</a>
+        <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver al Inicio</a>
     </div>

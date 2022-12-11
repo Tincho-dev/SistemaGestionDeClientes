@@ -104,6 +104,20 @@ namespace Services
                 db.SaveChanges();
             }
         }
+        
+        public void AsociarCliente(Proyectos model)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var originalEntity = db.Proyectos.Where(x => x.Id_Proyecto == model.Id_Proyecto).Single();
+
+                originalEntity.Id_Cliente = (from cli in db.Clientes.Where(x => x.DNI == model.Id_Cliente)
+                                             select cli).Single().Id;
+
+                db.Entry(originalEntity).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
 
         public void Delete(int id)
         {

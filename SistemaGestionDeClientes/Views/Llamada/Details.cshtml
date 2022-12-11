@@ -1,13 +1,12 @@
 ﻿@model Model.Domain.Llamada
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Detalles de Llamada</h2>
 
 <div>
-    <h4>Llamada</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,7 +28,10 @@
     </dl>
 </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Llamada }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div>
+    <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -39,7 +39,7 @@ namespace Services
         {
             using (var db = new ApplicationDbContext())
             {
-                var Factura = new Factura
+            var Factura = new Factura
                 {
                     FechaEmision = model.FechaEmision,
                     FechaVencimiento = model.FechaVencimiento,

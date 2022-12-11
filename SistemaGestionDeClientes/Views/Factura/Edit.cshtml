@@ -1,7 +1,7 @@
 ﻿@model Model.Domain.Factura
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
 }
 
 <h2>Editar Factura</h2>
@@ -9,8 +9,8 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
+@Html.AntiForgeryToken()
+
 <div class="form-horizontal">
     @*<h4>Factura</h4>*@
     <hr />
@@ -25,14 +25,14 @@
         </div>
     </div>
     @*
-        
-    <div class="form-group">
-        @Html.LabelFor(model => model.RutaCopiaOriginal, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.RutaCopiaOriginal, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.RutaCopiaOriginal, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RutaCopiaOriginal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RutaCopiaOriginal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RutaCopiaOriginal, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
     *@
     <div class="form-group">
@@ -59,26 +59,26 @@
         </div>
     </div>
     @*
-        
-    <div class="form-group">
-        @Html.LabelFor(model => model.LegajoEmpleado, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.LegajoEmpleado, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.LegajoEmpleado, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LegajoEmpleado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LegajoEmpleado, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LegajoEmpleado, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
     *@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Editar" class="btn" />
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Volver a la Lista", "Index", "Factura", new { @class = "btn btn-primary" })
+    <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
 </div>
 
 @section Scripts {
