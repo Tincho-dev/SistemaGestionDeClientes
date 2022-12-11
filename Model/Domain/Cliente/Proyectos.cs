@@ -19,7 +19,7 @@ namespace Model.Domain
         [Required(ErrorMessage = "Fecha de Inicio del Proyecto:")]
         [Display(Name = "Fecha de Inicio")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaInicio { get; set; }
 
         [Required(ErrorMessage = "Fecha estimada de Fin del Proyecto:")]

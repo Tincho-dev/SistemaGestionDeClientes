@@ -21,15 +21,13 @@ namespace Services
                         from emp in db.Empleado
                         from uxp in db.UserPorEmp.Where(x => x.Legajo == emp.Legajo).DefaultIfEmpty()
                         from us in db.ApplicationUsers.Where(x => x.Id == uxp.IdUsuario).DefaultIfEmpty()
-                        from rol in db.RolEmpleado.Where(x => x.Id_Rol == emp.Id_RolServicio).DefaultIfEmpty()
                         select new EmpleadoGrid
                         {
-                            Legajo = emp.Legajo,
+                            LegajoEmpleado = emp.Legajo,
                             DNI = emp.DNI,
                             ApyNom = emp.Nombre + " " + emp.Apellido,
                             FechaNacimiento = emp.FechaNacimiento,
                             Usuario = us.Email,
-                            Rol = rol.Nombre
                         }
                     ).OrderBy(x => x.FechaNacimiento).ToList();
             }
@@ -51,7 +49,7 @@ namespace Services
                 empleado.Apellido = model.Apellido;
                 empleado.DNI = model.DNI;
                 empleado.FechaNacimiento = model.FechaNacimiento;
-                empleado.Id_RolServicio = model.Id_RolServicio;
+                empleado.FechaIngreso = DateTime.Now;
 
                 db.Empleado.Add(empleado);
                 db.SaveChanges();
@@ -68,15 +66,13 @@ namespace Services
                         from emp in db.Empleado.Where(x => x.Legajo == legajo)
                         from uxp in db.UserPorEmp.Where(x => x.Legajo == emp.Legajo).DefaultIfEmpty()
                         from us in db.ApplicationUsers.Where(x => x.Id == uxp.IdUsuario).DefaultIfEmpty()
-                        from rol in db.RolEmpleado.Where(x => x.Id_Rol == emp.Id_RolServicio).DefaultIfEmpty()
                         select new EmpleadoGrid
                         {
-                            Legajo = emp.Legajo,
+                            LegajoEmpleado = emp.Legajo,
                             DNI = emp.DNI,
                             ApyNom = emp.Nombre + " " + emp.Apellido,
                             FechaNacimiento = emp.FechaNacimiento,
                             Usuario = us.Email,
-                            Rol = rol.Nombre
                         }
                     ).Single();
             }
@@ -107,7 +103,6 @@ namespace Services
                 originalEntity.Nombre = model.Nombre;
                 originalEntity.Apellido = model.Apellido;
                 originalEntity.FechaNacimiento = model.FechaNacimiento;
-                originalEntity.Id_RolServicio = model.Id_RolServicio;
 
                 db.Entry(originalEntity).State = EntityState.Modified;
                 db.SaveChanges();
@@ -179,15 +174,13 @@ namespace Services
                                 || x.Apellido.ToUpper().Contains(palabra.ToUpper()))
                                from uxp in db.UserPorEmp.Where(x => x.Legajo == emp.Legajo).DefaultIfEmpty()
                                from us in db.ApplicationUsers.Where(x => x.Id == uxp.IdUsuario).DefaultIfEmpty()
-                               from rol in db.RolEmpleado.Where(x => x.Id_Rol == emp.Id_RolServicio).DefaultIfEmpty()
                                select new EmpleadoGrid
                                {
-                                   Legajo = emp.Legajo,
+                                   LegajoEmpleado = emp.Legajo,
                                    DNI = emp.DNI,
                                    ApyNom = emp.Nombre + " " + emp.Apellido,
                                    FechaNacimiento = emp.FechaNacimiento,
                                    Usuario = us.Email,
-                                   Rol = rol.Nombre
                                };
                 }
 

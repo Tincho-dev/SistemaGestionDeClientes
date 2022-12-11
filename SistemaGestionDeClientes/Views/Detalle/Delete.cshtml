@@ -1,0 +1,63 @@
+﻿@model Model.Domain.Detalle
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro que quieres eliminar?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioUnitario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioUnitario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Proyecto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Proyecto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Factura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Factura)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn" /> |
+            <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
+        </div>
+    }
+</div>

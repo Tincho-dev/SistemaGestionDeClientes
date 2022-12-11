@@ -1,11 +1,127 @@
 ﻿using Model.Domain;
+using Persistanse;
 using Services;
 using System;
+using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 
-namespace SistemaGestionDeFacturas.Controllers
+namespace SistemaGestionDeClientes.Controllers
 {
+    public class FacturaController : Controller
+    {
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly EmpleadoServices empleadoServices = new EmpleadoServices();
+        private readonly ClienteServices clienteServices= new ClienteServices();
+        private readonly ProyectoServices proyectoServices= new ProyectoServices();
+        private readonly FacturaServices facturaServices= new FacturaServices();
 
+        //
+        // GET: /Factura/
+
+        public ViewResult Index()
+        {
+            var Facturas = facturaServices.GetAll();
+            return View(Facturas);
+        }
+
+        //
+        // GET: /Factura/Details/5
+
+        public ViewResult Details(int id)
+        {
+            var Factura = facturaServices.Get(id);
+            return View(Factura);
+        }
+
+        //
+        // GET: /Factura/Create
+
+        public ActionResult Create()
+        {
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom");
+            ViewBag.Id_Proyecto = new SelectList(proyectoServices.GetAll(), "Id_Proyecto", "Titulo");
+            ViewBag.LegajoEmpleado = new SelectList(empleadoServices.GetAll(), "LegajoEmpleado", "ApyNom");
+            return View();
+        }
+
+        //
+        // POST: /Factura/Create
+
+        [HttpPost]
+        public ActionResult Create(Factura factura)
+        {
+            if (ModelState.IsValid)
+            {
+                facturaServices.Create(factura);
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id", "ApyNom",factura.Id_Cliente);
+            ViewBag.LegajoEmpleado = new SelectList(empleadoServices.GetAll(), "Legajo", "ApyNom",factura.LegajoEmpleado);
+            return View(factura);
+        }
+
+        //
+        // GET: /Factura/Edit/5
+
+        public ActionResult Edit(int id)
+        {
+            Factura Factura = facturaServices.GetEdit(id);
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom");
+            ViewBag.Id_Proyecto = new SelectList(proyectoServices.GetAll(), "Id_Proyecto", "Titulo");
+            ViewBag.LegajoEmpleado = new SelectList(empleadoServices.GetAll(), "LegajoEmpleado", "ApyNom");
+            return View(Factura);
+        }
+
+        //
+        // POST: /Factura/Edit/5
+
+        [HttpPost]
+        public ActionResult Edit(Factura factura)
+        {
+            if (ModelState.IsValid)
+            {
+                facturaServices.Update(factura);
+                return RedirectToAction("Index");
+            }
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id", "ApyNom", factura.Id_Cliente);
+            ViewBag.LegajoEmpleado = new SelectList(empleadoServices.GetAll(), "Legajo", "ApyNom", factura.LegajoEmpleado);
+            return View(factura);
+        }
+
+        //
+        // GET: /Factura/Delete/5
+
+        public ActionResult Delete(int id)
+        {
+            var model = facturaServices.Get(id);
+            return View(model);
+        }
+
+        //[Authorize(Roles = "Admin")]
+        // POST: Proyectos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            try
+            {
+                facturaServices.Delete(id);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+    }
+
+
+    /*
     public class FacturaController : Controller
     {
         private readonly FacturaServices _FacturaService = new FacturaServices();
@@ -104,4 +220,5 @@ namespace SistemaGestionDeFacturas.Controllers
             }
         }
     }
+     */
 }

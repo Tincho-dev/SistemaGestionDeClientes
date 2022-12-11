@@ -20,7 +20,7 @@ namespace SistemaGestionDeClientes.Controllers
 
             return View(listado);
         }
-        
+
 
         public ActionResult GetProyectos(int id)
         {
@@ -71,27 +71,22 @@ namespace SistemaGestionDeClientes.Controllers
         public ActionResult Edit(int id)
         {
             var model = clienteServices.GetEdit(id);
-            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
+            //ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
             return View(model);
         }
 
         // POST: Cliente/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Cliente cliente)
+        public ActionResult Edit(Cliente cliente)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    clienteServices.Update(cliente);
-                }
 
+            if (ModelState.IsValid)
+            {
+                clienteServices.Update(cliente);
                 return RedirectToAction("Index");
             }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+
+            return View(cliente);
         }
 
         // GET: Cliente/Delete/5
@@ -106,19 +101,11 @@ namespace SistemaGestionDeClientes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                clienteServices.Delete(id);
-
-                return RedirectToAction("Index");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            clienteServices.Delete(id);
+            return RedirectToAction("Index");
         }
 
-        
+
         //Reportes
         //[Authorize]
         public ActionResult Reporte()
@@ -129,8 +116,8 @@ namespace SistemaGestionDeClientes.Controllers
 
             return View("Reporte", proyectos);
         }
-         
-         
+
+
     }
 }
 

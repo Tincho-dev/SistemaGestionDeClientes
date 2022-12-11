@@ -76,9 +76,9 @@
         @Html.ActionLink("Act. Costo", "UpdateCosto", new { id = item.Id_Proyecto }, new { @class = "btn" })
         @Html.ActionLink("Crear", "Create", new { id = item.Id_Proyecto }, new { @class = "btn" })
             *@
-            @Html.ActionLink("Editar", "Edit", new { id = item.Id_Proyecto }, new { @class = "btn" })
-            @Html.ActionLink("Detalles", "Details", new { id = item.Id_Proyecto }, new { @class = "btn" })
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Proyecto }, new { @class = "btn" })
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id_Proyecto }, new { @class = "btn" }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.Id_Proyecto }, new { @class = "btn" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Proyecto }, new { @class = "btn" }) |
             @Html.ActionLink("Asociar Cliente", "AsociarCliente", new { id = item.Id_Proyecto }, new { @class = "btn" }) |
         </td>
     </tr>
@@ -97,5 +97,5 @@
     </form>
 
     <div>
-        <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver al Inicio</a>
+        @Html.ActionLink("Volver al Inicio", "Index", "Home", null , new{ @class = "btn" } )
     </div>

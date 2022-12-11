@@ -1,23 +1,16 @@
 ﻿@model Model.Custom.FacturaGrid
 
 @{
-    ViewBag.Title = "Confirmar Eliminación";
+    ViewBag.Title = "Delete";
 }
 
+<h2>Delete</h2>
 
-@*<h3>Are you sure you want to delete this?</h3>*@
+<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h2>Confirmar Eliminación de Factura</h2>
+    <h4>FacturaGrid</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Id_Cliente)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Id_Cliente)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Id_Factura)
         </dt>
@@ -27,12 +20,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NombreProyecto)
+            @Html.DisplayNameFor(model => model.Id_Cliente)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NombreProyecto)
+            @Html.DisplayFor(model => model.Id_Cliente)
         </dd>
+
+
 
         <dt>
             @Html.DisplayNameFor(model => model.FechaVencimiento)
@@ -50,16 +45,22 @@
             @Html.DisplayFor(model => model.FechaEmision)
         </dd>
 
-        
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
 
     </dl>
 
     @using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-      <div class="form-actions no-color">
-         <input type="submit" value="Eliminar" class="btn btn-default" /> |
-         <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
-      </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
     }
 </div>

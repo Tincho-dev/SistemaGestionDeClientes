@@ -32,18 +32,18 @@ namespace Model.Domain
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaIngreso { get; set; }
-        public int Telefono { get; set; }
+        public long Telefono { get; set; }
 
         //[Display(Name = "Domicilio")]
         //public int Id_Domicilio { get; set; }
         //[ForeignKey("Id_Domicilio")]
         //public virtual Domicilio Domicilio { get; set; }
 
-        [Display(Name = "Rol de Servicio")]
-        public int Id_RolServicio { get; set; }
+        //[Display(Name = "Rol de Servicio")]
+        //public int Id_RolServicio { get; set; }
 
-        [ForeignKey("Id_RolServicio")]
-        public virtual RolEmp RolEmp { get; set; }
+        //[ForeignKey("Id_RolServicio")]
+        //public virtual RolEmp RolEmp { get; set; }
 
     }
 }

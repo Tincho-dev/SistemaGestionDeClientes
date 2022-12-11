@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Model.Custom.DetalleGrid>
+    @{
+    Layout = null;
+    }
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+    <h2 class="text-center">Imprimir Detalle</h2>
+
+    <br />
+
+    <form>
+        <div class="form-inline row center-block" style="display:flex; align-items:center; justify-content:center;">
+            <label class="col-xs-2" style="margin-left:1rem;"><b>Empleado:</b></label>
+            <div class="col-xs-2">
+                <input class="form-control" type="text" style="border:0;" readonly value="@Common.CurrentUser.Get.Name @Common.CurrentUser.Get.LastName" />
+            </div>
+            <label class="col-xs-2" style="margin-left:1rem;"> <b> Fecha:</b></label>
+            <div class="col-xs-2">
+                <input class="form-control" type="text" style="border:0;" readonly value="@DateTime.Now" />
+            </div>
+            <label class="col-xs-1" style="margin-left:1rem;"> <b>Usuario:</b> </label>
+            <div class="col-xs-2">
+                <input class="form-control" type="text" style="border:0; width: 120%;" readonly value="@Common.CurrentUser.Get.Email" />
+            </div>
+        </div>
+    </form>
+
+    <br />
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Proyecto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Proyecto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+        </tr>
+}
+    </table>
+
+    <br />
+    <hr />
+    <form>
+        <div class="form-inline row center-block">
+            <label class="col-xs-2" style="margin-left:1rem;"><b>Cantidad de Registros:</b></label>
+            <div class="col-xs-2">
+                <input class="form-control" type="text" style="border:0;" readonly value="@Model.Count()" />
+            </div>
+        </div>
+    </form>
+    <script>
+        function printHTML() {
+            if (window.print) {
+                window.print();
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            printHTML();
+        });
+    </script>

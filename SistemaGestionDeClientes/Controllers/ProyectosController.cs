@@ -64,16 +64,20 @@ namespace SistemaGestionDeClientes.Controllers
             return View(proyecto);
         }
 
-        //[Authorize(Roles = "Admin")]
+
+
+        //[Authorize]
         // GET: Proyectos/AsociarCliente/5
         public ActionResult AsociarCliente(int id)
         {
             var model = proyectoservice.GetEdit(id);
-            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom");
+            ViewBag.Id_Proyecto = new SelectList(proyectoservice.GetAll(), "Id_Proyecto", "Titulo");
             return View(model);
         }
-        //[Authorize(Roles = "Admin")]
-        // POST: Proyectos/Edit/5
+
+        //[Authorize]
+        // POST: Proyectos/AsociarCliente/5
         [HttpPost]
         public ActionResult AsociarCliente(int id, Proyectos proyecto)
         {
@@ -81,24 +85,25 @@ namespace SistemaGestionDeClientes.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    proyectoservice.Update(proyecto);
+                    proyectoservice.Asociar(proyecto);
                 }
 
-                ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "Legajo", "ApyNom", proyecto.Id_Cliente);
-                return RedirectToAction("Index");
+                ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom", proyecto.Id_Cliente);
+                ViewBag.Id_Proyecto = new SelectList(proyectoservice.GetAll(), "Id_Proyecto", "Titulo", proyecto.Id_Proyecto);
+                return //RedirectToAction("Index");
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
         }
-
+        
         //[Authorize(Roles = "Admin")]
         // GET: Proyectos/Edit/5
         public ActionResult Edit(int id)
         {
             var model = proyectoservice.GetEdit(id);
-            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom");
             return View(model);
         }
 
@@ -114,7 +119,7 @@ namespace SistemaGestionDeClientes.Controllers
                     proyectoservice.Update(proyecto);
                 }
 
-                ViewBag.ClienteDNI = new SelectList(clienteServices.GetAll(), "Legajo", "ApyNom", proyecto.Id_Cliente);
+                ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom", proyecto.Id_Cliente);
                 return RedirectToAction("Index");
             }
             catch (Exception e)
@@ -124,7 +129,7 @@ namespace SistemaGestionDeClientes.Controllers
             }
         }
 
-        //[Authorize(Roles = "Admin")]
+        //[Authorize]
         // GET: Proyectos/Delete/5
         public ActionResult Delete(int id)
         {

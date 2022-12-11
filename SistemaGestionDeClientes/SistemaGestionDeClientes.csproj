@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AsociarController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\DetalleController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
@@ -277,7 +278,6 @@
     <Content Include="Views\Factura\Details.cshtml" />
     <Content Include="Views\Factura\Create.cshtml" />
     <Content Include="Views\Factura\Edit.cshtml" />
-    <Content Include="Views\Factura\DeleteConfirmed.cshtml" />
     <Content Include="Views\Llamada\Create.cshtml" />
     <Content Include="Views\Llamada\Edit.cshtml" />
     <Content Include="Views\Llamada\Delete.cshtml" />
@@ -290,10 +290,18 @@
     <Content Include="Views\Llamada\Details.cshtml" />
     <Content Include="Views\Cliente\GetProyectos.cshtml" />
     <Content Include="Views\Proyectos\AsociarCliente.cshtml" />
+    <Content Include="Views\Detalle\Index.cshtml" />
+    <Content Include="Views\Detalle\Details.cshtml" />
+    <Content Include="Views\Detalle\Create.cshtml" />
+    <Content Include="Views\Detalle\Edit.cshtml" />
+    <Content Include="Views\Detalle\Delete.cshtml" />
+    <Content Include="Views\Factura\ReporteFactura.cshtml" />
+    <Content Include="Views\Detalle\Reporte.cshtml" />
+    <Content Include="Views\Factura\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Detalle\" />
+    <Folder Include="Views\Asociar\" />
     <Folder Include="Views\HistorialRoles\" />
     <Folder Include="Views\Historial\" />
     <Folder Include="Views\Rol\" />

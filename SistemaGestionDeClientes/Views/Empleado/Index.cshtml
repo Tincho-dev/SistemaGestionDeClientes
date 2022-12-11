@@ -8,72 +8,68 @@
 
     <p>
         @Html.ActionLink("Crear Nuevo", "Create", "Empleado", new { @class = "btn" })
-        @Html.ActionLink("Generar Reporte", "Reporte", "Empleado", new { @class = "btn" })
+        @Html.ActionLink("Generar Reporte", "Reporte", "Empleado", new { @class = "btn", @target = "_blank" })
     </p>
 
 
     @using (Html.BeginForm("Buscar", "Empleado", FormMethod.Get))
     {
-    <p>
-        Nombre: @Html.TextBox("palabra")
-        <input class="btn" type="submit" value="Filtrar" />
-    </p>
+        <p>
+          Nombre: <i style="color:black;">@Html.TextBox("palabra")</i>
+          <input class="filtrar" type="submit" value="Filtrar" />
+        </p>
     }
 
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Legajo)
+                @Html.DisplayNameFor(model => model.ApyNom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegajoEmpleado)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DNI)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApyNom)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.FechaNacimiento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rol)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Usuario)
             </th>
-            <th></th>
+
         </tr>
 
         @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Legajo)
-            </td>
-            <td>
-                @Html.ActionLink(@item.DNI.ToString(), "Get", new { id = item.Legajo })
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApyNom)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.FechNacimiento)*@
-                @item.FechaNacimiento.ToString("dd/MM/yyyy")
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rol)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Legajo }, new { @class = "btn" })
-                @Html.ActionLink("Detalles", "Details", new { id = item.Legajo }, new { @class = "btn" })
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.Legajo }, new { @class = "btn" })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApyNom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LegajoEmpleado)
+        </td>
+        <td>
+            @Html.ActionLink(@item.DNI.ToString(), "Get", new { id = item.LegajoEmpleado })
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.FechNacimiento)*@
+            @item.FechaNacimiento.ToString("dd/MM/yyyy")
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.LegajoEmpleado }, new { @class = "btn" })
+            @Html.ActionLink("Detalles", "Details", new { id = item.LegajoEmpleado }, new { @class = "btn" })
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.LegajoEmpleado }, new { @class = "btn" })
+        </td>
+    </tr>
 }
 
     </table>
+
     <div>
-        <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver al Inicio</a>
+        @Html.ActionLink("Volver al Inicio", "Index", "Home", null , new{ @class = "btn" } )
     </div>

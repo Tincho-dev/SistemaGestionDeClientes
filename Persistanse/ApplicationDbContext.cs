@@ -11,7 +11,6 @@ namespace Persistanse
         public DbSet<ApplicationRol> ApplicationRole { get; set; }
         public DbSet<ApplicationUserRole> ApplicationUserRoles { get; set; }
         public DbSet<Factura> Facturas { get; set; }
-        //public DbSet<Historial> Historiales { get; set; }
         public DbSet<Llamada> Llamadas { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Detalle> Detalles { get; set; }

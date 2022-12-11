@@ -11,8 +11,6 @@ namespace Services
 {
     public class FacturaServices
     {
-        //private readonly FacturaServices userService = new FacturaServices();
-
         public IEnumerable<FacturaGrid> GetAll()
         {
             var result = new List<FacturaGrid>();
@@ -21,42 +19,32 @@ namespace Services
             {
                 result = (
                         from fac in db.Facturas
-                        //from hist in db.Historiales.Where(x => x.Id_Historial == fac.Id_Historial)
-                        from pro in db.Proyectos.Where(x => x.Id_Proyecto == fac.Id_Proyecto)
                         from cli in db.Clientes.Where(x => x.Id == fac.Id_Cliente)
                         select new FacturaGrid
                         {
                             Id_Factura = fac.Id_Factura,
                             Id_Cliente = cli.DNI,
-                            NombreProyecto = pro.Titulo
+                            Total = fac.Total
                         }
-                    ).ToList();
+                    ).Distinct().ToList();
             }
 
             return result;
         }
+
         public void Create(Factura model)
         {
             using (var db = new ApplicationDbContext())
             {
-            var Factura = new Factura
+                var Factura = new Factura
                 {
                     FechaEmision = model.FechaEmision,
                     FechaVencimiento = model.FechaVencimiento,
-                    Descripcion = model.Descripcion,
-                    Precio = model.Precio,
-                    Cantidad = model.Cantidad,
-                    Subtotal = model.Precio * model.Cantidad,
-                    Id_Proyecto = model.Id_Proyecto,
+                    //Id_Proyecto = model.Id_Proyecto,
                     Id_Cliente = model.Id_Cliente,
                     LegajoEmpleado = (from emp in db.Empleado.Where(x => x.Nombre == CurrentUser.Get.Name)
                                       select emp.Legajo).Single()
                 };
-
-                //Factura.Id_Factura = model.Id_Factura;
-                //Factura.Total = model.Total;
-                //Factura.RutaCopiaOriginal = model.RutaCopiaOriginal;
-
                 db.Facturas.Add(Factura);
                 db.SaveChanges();
             }
@@ -69,15 +57,16 @@ namespace Services
             using (var db = new ApplicationDbContext())
             {
                 result = (from fac in db.Facturas.Where(x => x.Id_Factura == id).DefaultIfEmpty()
-                          //from hist in db.Historiales.Where(x => x.Id_Historial == fac.Id_Historial)
-                          from pro in db.Proyectos.Where(x => x.Id_Proyecto == fac.Id_Proyecto)
+                          from det in db.Detalles.Where(x => x.Id_Factura == id)
+                          from pro in db.Proyectos.Where(x => x.Id_Proyecto == det.Id_Proyecto)
                           from cli in db.Clientes.Where(x => x.Id == fac.Id_Cliente)
 
                           select new FacturaGrid
                           {
                               Id_Factura = fac.Id_Factura,
                               Id_Cliente = cli.DNI,
-                              NombreProyecto = pro.Titulo
+                              ApyNom = cli.Apellido + " " + cli.Nombre,
+                              Total = fac.Total
                           }
                         ).Single();
             }
@@ -98,22 +87,32 @@ namespace Services
 
         public void Update(Factura model)
         {
-            var result = new List<Factura>();
-
             using (var db = new ApplicationDbContext())
             {
                 var originalEntity = db.Facturas.Where(x => x.Id_Factura == model.Id_Factura).Single();
 
+               
+                var total = (from det in db.Detalles.Where(x => x.Id_Factura == model.Id_Factura)
+                             select det.SubTotal);
+                if(total.Count() > 0)
+                {
+                    originalEntity.Total = total.Sum();
+                } else
+                {
+                    originalEntity.Total = 0;
+                }
                 originalEntity.Id_Factura = model.Id_Factura;
-                //originalEntity.Id_Historial = model.Id_Historial;
-                //originalEntity.LegajoEmpleado = model.LegajoEmpleado;
-                //originalEntity.RutaCopiaOriginal = model.RutaCopiaOriginal;
-                originalEntity.Total = model.Total;
+                originalEntity.Id_Cliente = model.Id_Cliente;
+                originalEntity.FechaEmision = model.FechaEmision;
+                originalEntity.FechaVencimiento = model.FechaVencimiento;
+                originalEntity.LegajoEmpleado = model.LegajoEmpleado;
 
                 db.Entry(originalEntity).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
+
+
 
         public void Delete(int id)
         {

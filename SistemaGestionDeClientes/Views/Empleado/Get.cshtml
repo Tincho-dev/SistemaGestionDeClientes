@@ -1,5 +1,4 @@
-﻿
-@model Model.Domain.Empleado
+﻿@model Model.Domain.Empleado
 @{
     List<Model.Custom.UserGrid> users = ViewBag.Usuario;
 }
@@ -21,24 +20,28 @@
 
 @using (Html.BeginForm("AddUserToEmp", "Empleado", FormMethod.Post))
 {
-    @Html.HiddenFor(x => x.Legajo)
-    <div class="form-group">
-        <select name="user" class="form-control">
-            @foreach (var u in users)
+@Html.HiddenFor(x => x.Legajo)
+<div class="form-group">
+    <select name="user" class="form-control">
+        @foreach (var u in users)
             {
-                <option value="@u.Id">@u.Email</option>
+        <option value="@u.Id">@u.Email</option>
             }
-        </select>
-        <br />
-        <button type="submit" class="btn btn-default">
-            Agregar
-        </button>
+    </select>
+    <br />
+    <button type="submit" class="btn">
+        Agregar
+    </button>
 
-    </div>
+</div>
 }
 
 <hr />
 <div class="form-group">
     <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver a la Lista</a>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 

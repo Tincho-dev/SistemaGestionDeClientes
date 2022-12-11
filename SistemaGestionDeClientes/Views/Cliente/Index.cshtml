@@ -40,34 +40,34 @@
 
         @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApyNom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DNI)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mail)
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.FechaNacimiento)*@
-            @item.FechaNacimiento.ToString("dd/MM/yyyy")
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.Id_Cliente }, new { @class = "btn" }) |
-            @Html.ActionLink("Detalles", "Details", new { id = item.Id_Cliente }, new { @class = "btn" }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Cliente }, new { @class = "btn" }) |
-            @Html.ActionLink("Proyectos Asociados", "GetProyectos", new { id = item.Id_Cliente }, new { @class = "btn" }) |
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApyNom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DNI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mail)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.FechaNacimiento)*@
+                @item.FechaNacimiento.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id_Cliente }, new { @class = "btn" }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id_Cliente }, new { @class = "btn" }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Cliente }, new { @class = "btn" }) |
+                @Html.ActionLink("Proyectos Asociados", "GetProyectos", new { id = item.Id_Cliente }, new { @class = "btn" }) |
+            </td>
+        </tr>
 
     }
     </table>
-
     <div>
-        <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver al Inicio</a>
+    @Html.ActionLink("Volver al Inicio", "Index", "Home", null , new{ @class = "btn" } )
     </div>
+

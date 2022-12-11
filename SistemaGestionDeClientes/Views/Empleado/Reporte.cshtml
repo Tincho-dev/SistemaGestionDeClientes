@@ -31,7 +31,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Legajo)
+            @Html.DisplayNameFor(model => model.LegajoEmpleado)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DNI)
@@ -42,9 +42,7 @@
         <th>
             @Html.DisplayNameFor(model => model.FechaNacimiento)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rol)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Usuario)
         </th>
@@ -54,7 +52,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Legajo)
+                @Html.DisplayFor(modelItem => item.LegajoEmpleado)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DNI)
@@ -65,9 +63,7 @@
             <td>
                 @item.FechaNacimiento.ToString("dd/MM/yyyy")
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rol)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Usuario)
             </td>

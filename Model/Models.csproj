@@ -60,6 +60,7 @@
     <Compile Include="Auth\ApplicationRol.cs" />
     <Compile Include="Auth\ApplicationUserRole.cs" />
     <Compile Include="Auth\ApplicationUser.cs" />
+    <Compile Include="Custom\AsociarGrid.cs" />
     <Compile Include="Custom\ClienteGrid.cs" />
     <Compile Include="Custom\ReporteClientesInactivosGrid.cs" />
     <Compile Include="Custom\DetalleGrid.cs" />

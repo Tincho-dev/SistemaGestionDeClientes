@@ -13,5 +13,10 @@ namespace Model.Custom
         public Double SubTotal { get; set; }
         [Display(Name = "Cantidad")]
         public int Cantidad { get; set; }
+
+        [Display(Name = "Id Proyecto")]
+        public int Id_Proyecto { get; set; }
+        [Display(Name = "Titulo Proyecto")]
+        public string Titulo { get; set; }
     }
 }

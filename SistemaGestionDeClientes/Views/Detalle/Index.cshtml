@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Model.Custom.DetalleGrid>
+
+    @{
+    ViewBag.Title = "Detalle";
+    }
+
+    <h2>Detalle</h2>
+
+    <p>
+        @Html.ActionLink("Crear Nuevo Detalle", "Create", "Detalle", new { @class = "btn" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Proyecto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Proyecto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id=item.id }, new { @class = "btn" }) |
+                @Html.ActionLink("Detalles", "Details", new { id=item.id }, new { @class = "btn" }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.id }, new { @class = "btn" }) |
+                @Html.ActionLink("Imprimir", "Reporte", new {  id=item.id }, new { @class = "btn" })|
+            </td>
+        </tr>
+}
+    </table>
+    <div>
+        @Html.ActionLink("Volver al Inicio", "Index", "Home", null , new{ @class = "btn" } )
+    </div>

@@ -1,56 +1,60 @@
 ﻿@model IEnumerable<Model.Custom.FacturaGrid>
 
-    @{
-    ViewBag.Title = "Facturas";
-    }
+@{
+    ViewBag.Title = "Factura";
+}
 
-    <h2>Facturas</h2>
+<h2>Factura</h2>
 
-    <p>
-        @Html.ActionLink("Crear Nueva Factura", "Create", "Factura", new { @class = "btn" })
-    </p>
+<p>
+    @Html.ActionLink("Crear Nueva Factura", "Create", "Factura", new { @class = "btn" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Factura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Cliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaVencimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEmision)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th></th>
+    </tr>
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id_Factura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Total)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaEmision)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaVencimiento)
-            </th>
-            <th>
-                @*Botones de Editar,Detalles y Eliminar --> hay que cambiar por un boton de ag*@
-            </th>
-        </tr>
-
-        @foreach (var item in Model) {
+@foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Id_Factura)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaEmision)
+            @Html.DisplayFor(modelItem => item.Id_Cliente)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FechaVencimiento)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new {  id=item.Id_Factura }, new { @class = "btn" }) |
+            @Html.DisplayFor(modelItem => item.FechaEmision)
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new {  id=item.Id_Factura  }, new { @class = "btn" }) |
             @Html.ActionLink("Detalles", "Details", new {  id=item.Id_Factura }, new { @class = "btn" }) |
-            @Html.ActionLink("Eliminar", "DeleteConfirmed", new { id=item.Id_Factura }, new { @class = "btn" }) |
+            @Html.ActionLink("Eliminar", "Delete", new {  id=item.Id_Factura }, new { @class = "btn" }) |
+            @Html.ActionLink("Imprimir", "ReporteFactura", new {  id=item.Id_Factura }, new { @class = "btn" })|
         </td>
     </tr>
 }
-    </table>
-    <div>
-        <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Volver al Inicio</a>
-    </div>
+</table>
+<div>
+    @Html.ActionLink("Volver al Inicio", "Index", "Home", null , new{ @class = "btn" } )
+</div>

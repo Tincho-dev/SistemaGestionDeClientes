@@ -13,7 +13,7 @@
         <h1>Sistema de Gestión de Clientes</h1>
         <p class="lead">Inicie Sesión para comenzar.</p>
         <p>
-            <a href='@Url.Action("Login", "Account")' class="btn btn-primary btn-lg">Iniciar Sesión &raquo;</a>
+            <a href='@Url.Action("Login", "Account")' class="btn">Iniciar Sesión &raquo;</a>
         </p>
     }
 </div>
@@ -40,25 +40,26 @@
         <p><a class="btn" href='@Url.Action("Index", "Proyectos", new { id = "Delete"})'>Eliminar Proyectos &raquo;</a></p>
         
         *@
-        <p> Asociación de Clientes con Proyectos</p>
-        <p><a class="btn" href='@Url.Action("index", "AsociarCliente")'>Asociar Cliente &raquo;</a></p>
     
     </div>
     <div class="col-md-4">
         <h2>Facturas</h2>
         <p>Mostrar Factura.</p>
         <p><a class="btn" href='@Url.Action("Index", "Factura")'>Ver Factura &raquo;</a></p>
+        <p> Crear Detalle</p>
+        <p><a class="btn" href='@Url.Action("Index", "Detalle", new { id = "Edit"})'>Crear Detalle &raquo;</a></p>
+
     </div>
     <div class="col-md-4">
         <h2>Llamadas</h2>
         <p>Mostrar Llamadas.</p>
         <p><a class="btn" href='@Url.Action("Index", "Llamada")'>Ver Llamadas &raquo;</a></p>
     </div>
-      @*<div class="col-md-4">
-            <h2>Reportes</h2>
-            <p>Generar Reporte</p>
-            <p><a class="btn btn-default" href='@Url.Action("Index", "Reporte")'>Generar &raquo;</a></p>
-        </div>*@
+      <div class="col-md-4">
+            <h2>Empleados</h2>
+            <p>Gestionar Empleados</p>
+            <p><a class="btn" href='@Url.Action("Index", "Empleado")'>Empleados &raquo;</a></p>
+        </div>
     @*<div class="col-md-4">
                <h2>Usuarios</h2>
                <p>Creacion de Usuarios.</p>

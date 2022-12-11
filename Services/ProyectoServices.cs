@@ -34,6 +34,8 @@ namespace Services
             return result;
         }
 
+        
+
         public ProyectosGrid Get(int id)
         {
             var result = new ProyectosGrid();
@@ -81,7 +83,6 @@ namespace Services
                 proyecto.FechaInicio = model.FechaInicio;
                 proyecto.FechaFin = model.FechaFin;
                 proyecto.Id_Cliente = model.Id_Cliente;
-                proyecto.Costo = model.Costo;
                 proyecto.Finalizado = false;
 
                 db.Proyectos.Add(proyecto);
@@ -89,12 +90,23 @@ namespace Services
             }
         }
 
-        public void Update(Proyectos model)
+        public void Update(Proyectos model) 
         {
             using (var db = new ApplicationDbContext())
             {
                 var originalEntity = db.Proyectos.Where(x => x.Id_Proyecto == model.Id_Proyecto).Single();
-
+                
+                var total = (from det in db.Detalles.Where(x=>x.Id_Proyecto == model.Id_Proyecto)
+                             from fac in db.Facturas.Where(x=> x.Id_Factura == det.Id_Factura)
+                             select fac.Total);
+                if (total.Count() > 0)
+                {
+                    originalEntity.Costo = total.Sum();
+                }
+                else
+                {
+                    originalEntity.Costo = 0;
+                }
                 originalEntity.Titulo = model.Titulo;
                 originalEntity.Descripcion = model.Descripcion;
                 originalEntity.FechaFin = model.FechaFin;
@@ -105,19 +117,20 @@ namespace Services
             }
         }
         
-        public void AsociarCliente(Proyectos model)
+        public void Asociar(Proyectos model)
         {
             using (var db = new ApplicationDbContext())
             {
                 var originalEntity = db.Proyectos.Where(x => x.Id_Proyecto == model.Id_Proyecto).Single();
 
-                originalEntity.Id_Cliente = (from cli in db.Clientes.Where(x => x.DNI == model.Id_Cliente)
-                                             select cli).Single().Id;
+                
+                originalEntity.Id_Cliente = model.Id_Cliente;
 
                 db.Entry(originalEntity).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
+        
 
         public void Delete(int id)
         {
@@ -133,7 +146,6 @@ namespace Services
             }
             catch (Exception e)
             {
-
                 throw new Exception(e.Message);
             }
         }
@@ -185,17 +197,5 @@ namespace Services
             }
         }
 
-        public void UpdateCosto(int id, double costo)
-        {
-            using (var db = new ApplicationDbContext())
-            {
-                var originalEntity = db.Proyectos.Where(x => x.Id_Proyecto == id).Single();
-
-                originalEntity.Costo = costo;
-
-                db.Entry(originalEntity).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-        }
     }
 }

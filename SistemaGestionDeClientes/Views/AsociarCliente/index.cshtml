@@ -30,17 +30,12 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Asociar" class="btn btn-default" />
+            <input type="submit" value="Asociar" class="btn" />
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Volver a la Lista", "index", "AsociarCliente", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Volver al Inicio", "Index", "Home", null , new{ @class = "btn" } )
 </div>
-
-@section Scripts{
-
-    @Scripts.Render("~/bundles/queryval")
-}
