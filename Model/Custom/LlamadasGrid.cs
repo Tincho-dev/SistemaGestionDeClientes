@@ -7,7 +7,8 @@ namespace Model.Custom
     {
         [Display(Name = "id llamada")]
         public int Id { get; set; }
-
+        [Display(Name = "DNI")]
+        public int DNI { get; set; }
         public int Id_Cliente { get; set; }
         [Display(Name = "Nombre y Apellido del Cliente")]
         public string ApyNom { get; set; }

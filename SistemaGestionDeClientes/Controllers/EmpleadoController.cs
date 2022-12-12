@@ -9,21 +9,23 @@ using System.Web.Mvc;
 
 namespace Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class EmpleadoController : Controller
     {
         private readonly EmpleadoServices _empleadoService = new EmpleadoServices();
         private readonly RolesServices rolesServices = new RolesServices();
         private readonly UserService userService = new UserService();
+        private readonly ReportesServices reportesServices = new ReportesServices();
 
 
         // GET: Empleado
+        [Authorize]
         public ActionResult Index()
         {
             var model = _empleadoService.GetAll();
             return View(model);
         }
-
+        [Authorize]
         public ActionResult Buscar(string palabra)
         {
             var empleados = _empleadoService.Buscar(palabra);
@@ -33,6 +35,7 @@ namespace Controllers
             return View("Index", empleados);
         }
         // GET: Empleado/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             var model = _empleadoService.Get(id);
@@ -40,6 +43,7 @@ namespace Controllers
         }
 
         // GET: Empleado/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.Id_RolServicio = new SelectList(rolesServices.GetAll(), "Id_Rol", "Nombre");
@@ -47,6 +51,7 @@ namespace Controllers
         }
 
         // POST: Empleado/Create
+        [Authorize]
         [HttpPost]
         public ActionResult Create(Empleado empleado)
         {
@@ -60,6 +65,7 @@ namespace Controllers
         }
 
         // GET: Empleado/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var model = _empleadoService.GetEdit(id);
@@ -69,6 +75,7 @@ namespace Controllers
 
         // POST: Empleado/Edit/5
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, Empleado empleado)
         {
             try
@@ -89,6 +96,7 @@ namespace Controllers
         }
 
         // GET: Empleado/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
             var model = _empleadoService.Get(id);
@@ -96,6 +104,7 @@ namespace Controllers
         }
 
         // POST: Empleado/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -111,7 +120,7 @@ namespace Controllers
                 throw new Exception(e.Message);
             }
         }
-
+        [Authorize]
         public ActionResult Get(string id)
         {
             if (id == null)
@@ -129,7 +138,7 @@ namespace Controllers
             }
             return View(model);
         }
-
+        [Authorize]
         public ActionResult AddUserToEmp(int legajo, string user)
         {
             var usuario = _empleadoService.GetUser(legajo);
@@ -143,22 +152,6 @@ namespace Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Reporte()
-        {
-            IEnumerable<EmpleadoGrid> empleados;
 
-            if (Session["Palabra"] != null)
-            {
-                string palabra = Session["Palabra"].ToString();
-
-                empleados = _empleadoService.Buscar(palabra);
-            }
-            else
-            {
-                empleados = _empleadoService.GetAll();
-            }
-
-            return View("Reporte", empleados);
-        }
     }
 }

@@ -24,7 +24,10 @@ namespace Services
                         {
                             Id_Factura = fac.Id_Factura,
                             Id_Cliente = cli.DNI,
-                            Total = fac.Total
+                            Total = fac.Total,
+                            FechaEmision = fac.FechaEmision,
+                            FechaVencimiento = fac.FechaVencimiento,
+                            CondicionTributaria = cli.Condicion_Tributaria
                         }
                     ).Distinct().ToList();
             }
@@ -40,15 +43,17 @@ namespace Services
                 {
                     FechaEmision = model.FechaEmision,
                     FechaVencimiento = model.FechaVencimiento,
-                    //Id_Proyecto = model.Id_Proyecto,
                     Id_Cliente = model.Id_Cliente,
-                    LegajoEmpleado = (from emp in db.Empleado.Where(x => x.Nombre == CurrentUser.Get.Name)
-                                      select emp.Legajo).Single()
+                    LegajoEmpleado = model.LegajoEmpleado
+                    //LegajoEmpleado = (from emp in db.Empleado.Where(x => x.Nombre == CurrentUser.Get.Name)
+                    //                  select emp.Legajo).Single()
                 };
                 db.Facturas.Add(Factura);
                 db.SaveChanges();
             }
         }
+
+ 
 
         public FacturaGrid Get(int id)
         {
@@ -57,8 +62,6 @@ namespace Services
             using (var db = new ApplicationDbContext())
             {
                 result = (from fac in db.Facturas.Where(x => x.Id_Factura == id).DefaultIfEmpty()
-                          from det in db.Detalles.Where(x => x.Id_Factura == id)
-                          from pro in db.Proyectos.Where(x => x.Id_Proyecto == det.Id_Proyecto)
                           from cli in db.Clientes.Where(x => x.Id == fac.Id_Cliente)
 
                           select new FacturaGrid
@@ -66,13 +69,18 @@ namespace Services
                               Id_Factura = fac.Id_Factura,
                               Id_Cliente = cli.DNI,
                               ApyNom = cli.Apellido + " " + cli.Nombre,
-                              Total = fac.Total
+                              Total = fac.Total,
+                              FechaEmision = fac.FechaEmision,
+                              FechaVencimiento = fac.FechaVencimiento,
+                              CondicionTributaria = cli.Condicion_Tributaria
                           }
                         ).Single();
             }
 
             return result;
         }
+
+
 
         public Factura GetEdit(int id)
         {

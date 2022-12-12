@@ -37,7 +37,8 @@ namespace Services
                             Id = llam.Id_Llamada,
                             Id_Cliente = cli.Id,
                             ApyNom = cli.Nombre + " " + cli.Apellido,
-                            Fecha = llam.Fecha
+                            Fecha = llam.Fecha,
+                            DNI = cli.DNI
                         }
                     ).ToList();
             }

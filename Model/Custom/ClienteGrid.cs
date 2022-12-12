@@ -13,6 +13,7 @@ namespace Model.Custom
         public string ApyNom { get; set; }
         [Display(Name = "Telefono")]
         public long Telefono { get; set; }
+
         [Display(Name = "Email")]
         public string Mail { get; set; }
         [Display(Name = "Fecha de Nacimiento")]

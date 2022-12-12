@@ -4,6 +4,7 @@
     ViewBag.Title = "Proyectos";
     }
 
+
     <h2>Proyectos</h2>
 
     <p>
@@ -43,6 +44,9 @@
             <th>
             @Html.DisplayNameFor(model => model.Costo)
         </th>
+            <th>
+
+            </th>
         </tr>
 
         @foreach (var item in Model)
@@ -65,13 +69,13 @@
         <td>
             @item.FechaFin.ToString("dd/MM/yyyy")
         </td>
-        <th>
+        <td>
             @Html.DisplayFor(modelItem => item.Id_Cliente)
-        </th>
+        </td>
         <td >
             $@Html.DisplayFor(modelItem => item.Costo)
         </td>
-        <td width="25%">
+        <td class="botones">
             @*
         @Html.ActionLink("Act. Costo", "UpdateCosto", new { id = item.Id_Proyecto }, new { @class = "btn" })
         @Html.ActionLink("Crear", "Create", new { id = item.Id_Proyecto }, new { @class = "btn" })
@@ -79,7 +83,7 @@
             @Html.ActionLink("Editar", "Edit", new { id = item.Id_Proyecto }, new { @class = "btn" }) |
             @Html.ActionLink("Detalles", "Details", new { id = item.Id_Proyecto }, new { @class = "btn" }) |
             @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Proyecto }, new { @class = "btn" }) |
-            @Html.ActionLink("Asociar Cliente", "AsociarCliente", new { id = item.Id_Proyecto }, new { @class = "btn" }) |
+            @Html.ActionLink("Asociar Cliente", "AsociarCliente", new { id = item.Id_Proyecto }, new { @class = "btn" })
         </td>
     </tr>
     }

@@ -46,11 +46,10 @@
         <td>
             $@Html.DisplayFor(modelItem => item.Total)
         </td>
-        <td>
+        <td class="botones">
             @Html.ActionLink("Editar", "Edit", new {  id=item.Id_Factura  }, new { @class = "btn" }) |
-            @Html.ActionLink("Detalles", "Details", new {  id=item.Id_Factura }, new { @class = "btn" }) |
             @Html.ActionLink("Eliminar", "Delete", new {  id=item.Id_Factura }, new { @class = "btn" }) |
-            @Html.ActionLink("Imprimir", "ReporteFactura", new {  id=item.Id_Factura }, new { @class = "btn" })|
+            @Html.ActionLink("Imprimir", "Imprimir", new {  id=item.Id_Factura }, new { @class = "btn", @target = "_blank" })
         </td>
     </tr>
 }

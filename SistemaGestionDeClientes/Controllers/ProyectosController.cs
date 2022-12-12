@@ -13,7 +13,7 @@ namespace SistemaGestionDeClientes.Controllers
         private readonly ClienteServices clienteServices = new ClienteServices();
 
         // GET: Proyectos
-        //[Authorize]
+        [Authorize]
         public ActionResult Index()
         {
             var listado = proyectoservice.GetAll();
@@ -21,7 +21,7 @@ namespace SistemaGestionDeClientes.Controllers
             return View(listado);
         }
 
-        //[Authorize]
+        [Authorize]
         public ActionResult Buscar(string palabra, string Fecha)
         {
             var proyectos = proyectoservice.Buscar(palabra, Fecha);
@@ -32,7 +32,7 @@ namespace SistemaGestionDeClientes.Controllers
             return View("Index", proyectos);
         }
 
-        //[Authorize]
+        [Authorize]
         // GET: Proyectos/Details/5
         public ActionResult Details(int id)
         {
@@ -40,7 +40,7 @@ namespace SistemaGestionDeClientes.Controllers
             return View("Details", model);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         // GET: Proyectos/Create
         public ActionResult Create()
         {
@@ -48,7 +48,7 @@ namespace SistemaGestionDeClientes.Controllers
             return View();
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         // POST: Proyectos/Create
         [HttpPost]
         public ActionResult Create(Proyectos proyecto)
@@ -66,7 +66,7 @@ namespace SistemaGestionDeClientes.Controllers
 
 
 
-        //[Authorize]
+        [Authorize]
         // GET: Proyectos/AsociarCliente/5
         public ActionResult AsociarCliente(int id)
         {
@@ -76,7 +76,7 @@ namespace SistemaGestionDeClientes.Controllers
             return View(model);
         }
 
-        //[Authorize]
+        [Authorize]
         // POST: Proyectos/AsociarCliente/5
         [HttpPost]
         public ActionResult AsociarCliente(int id, Proyectos proyecto)
@@ -90,7 +90,7 @@ namespace SistemaGestionDeClientes.Controllers
 
                 ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom", proyecto.Id_Cliente);
                 ViewBag.Id_Proyecto = new SelectList(proyectoservice.GetAll(), "Id_Proyecto", "Titulo", proyecto.Id_Proyecto);
-                return //RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             catch (Exception e)
             {
@@ -98,7 +98,7 @@ namespace SistemaGestionDeClientes.Controllers
             }
         }
         
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         // GET: Proyectos/Edit/5
         public ActionResult Edit(int id)
         {
@@ -107,7 +107,7 @@ namespace SistemaGestionDeClientes.Controllers
             return View(model);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         // POST: Proyectos/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, Proyectos proyecto)
@@ -129,7 +129,7 @@ namespace SistemaGestionDeClientes.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         // GET: Proyectos/Delete/5
         public ActionResult Delete(int id)
         {
@@ -137,7 +137,7 @@ namespace SistemaGestionDeClientes.Controllers
             return View(model);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         // POST: Proyectos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -157,7 +157,7 @@ namespace SistemaGestionDeClientes.Controllers
 
 
         //Reportes
-        //[Authorize]
+        [Authorize]
         public ActionResult Reporte()
         {
             IEnumerable<ProyectosGrid> proyectos;

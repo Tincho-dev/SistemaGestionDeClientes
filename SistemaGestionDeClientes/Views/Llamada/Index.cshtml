@@ -13,7 +13,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id_Cliente)
+                @Html.DisplayNameFor(model => model.DNI)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ApyNom)
@@ -27,15 +27,15 @@
         @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id_Cliente)
+                @Html.DisplayFor(modelItem => item.DNI)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ApyNom)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
+                @item.Fecha.ToString("dd/MM/yyyy")
             </td>
-            <td>
+            <td class="botones">
                 @Html.ActionLink("Editar", "Edit", new { id=item.Id }, new { @class = "btn" }) |
                 @Html.ActionLink("Detalles", "Details", new { id=item.Id }, new { @class = "btn" }) |
                 @Html.ActionLink("Eliminar", "Delete", new { id=item.Id }, new { @class = "btn" })|

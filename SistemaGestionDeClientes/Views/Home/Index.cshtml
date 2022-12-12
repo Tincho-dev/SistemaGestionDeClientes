@@ -6,7 +6,7 @@
     @if (Request.IsAuthenticated)
     {
         <h1>Hola @Common.CurrentUser.Get.Name</h1>
-        <p class="lead">Bienvenido!!! Menu Gestión de Clientes</p>
+        <p class="lead">Bienvenido!!! Menu para la Gestión de Clientes</p>
     }
     else
     {
@@ -45,9 +45,9 @@
     <div class="col-md-4">
         <h2>Facturas</h2>
         <p>Mostrar Factura.</p>
-        <p><a class="btn" href='@Url.Action("Index", "Factura")'>Ver Factura &raquo;</a></p>
+        <p><a class="btn" href='@Url.Action("Index", "Factura")'>Ver Facturas &raquo;</a></p>
         <p> Crear Detalle</p>
-        <p><a class="btn" href='@Url.Action("Index", "Detalle", new { id = "Edit"})'>Crear Detalle &raquo;</a></p>
+        <p><a class="btn" href='@Url.Action("Index", "Detalle", new { id = "Edit"})'>Ver Detalles &raquo;</a></p>
 
     </div>
     <div class="col-md-4">

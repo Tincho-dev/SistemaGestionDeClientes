@@ -168,12 +168,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AsociarController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\DetalleController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\FacturaController.cs" />
-    <Compile Include="Controllers\HistorialController.cs" />
     <Compile Include="Controllers\HistorialRolesController.cs" />
     <Compile Include="Controllers\LlamadaController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
@@ -213,7 +211,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Views\Cliente\AsociarClienteProyecto.html" />
     <Content Include="Views\ReportesYFacturas\GenerarReporte.html" />
     <Content Include="Views\ReportesYFacturas\MostrarFactura.html" />
     <Content Include="Web.config" />
@@ -296,15 +293,14 @@
     <Content Include="Views\Detalle\Edit.cshtml" />
     <Content Include="Views\Detalle\Delete.cshtml" />
     <Content Include="Views\Factura\ReporteFactura.cshtml" />
-    <Content Include="Views\Detalle\Reporte.cshtml" />
     <Content Include="Views\Factura\Delete.cshtml" />
+    <Content Include="Views\Factura\Imprimir.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Asociar\" />
-    <Folder Include="Views\HistorialRoles\" />
-    <Folder Include="Views\Historial\" />
-    <Folder Include="Views\Rol\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

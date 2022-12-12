@@ -51,7 +51,7 @@ namespace Services
                               Descripcion = pr.Descripcion,
                               FechaInicio = pr.FechaInicio,
                               FechaFin = pr.FechaFin,
-                              Id_Cliente = clie.Id,
+                              Id_Cliente = clie.DNI,
                               Costo = pr.Costo
                           }
                           ).Single();
@@ -97,8 +97,7 @@ namespace Services
                 var originalEntity = db.Proyectos.Where(x => x.Id_Proyecto == model.Id_Proyecto).Single();
                 
                 var total = (from det in db.Detalles.Where(x=>x.Id_Proyecto == model.Id_Proyecto)
-                             from fac in db.Facturas.Where(x=> x.Id_Factura == det.Id_Factura)
-                             select fac.Total);
+                             select det.SubTotal);
                 if (total.Count() > 0)
                 {
                     originalEntity.Costo = total.Sum();
@@ -125,7 +124,6 @@ namespace Services
 
                 
                 originalEntity.Id_Cliente = model.Id_Cliente;
-
                 db.Entry(originalEntity).State = EntityState.Modified;
                 db.SaveChanges();
             }
@@ -196,6 +194,5 @@ namespace Services
                 db.SaveChanges();
             }
         }
-
     }
 }

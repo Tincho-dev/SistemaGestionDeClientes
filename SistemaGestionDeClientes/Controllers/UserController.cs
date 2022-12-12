@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace SistemaGestionDeClientes.Controllers
 {
-   // [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly UserService userService = new UserService();
@@ -120,6 +120,36 @@ namespace SistemaGestionDeClientes.Controllers
 
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
             return View(model);
+        }
+
+        public ActionResult Details(string id)
+        {
+            var model = userService.GetDetails(id);
+
+            return View("Details", model);
+        }
+
+        // GET: Tareas/Delete/5
+        public ActionResult Delete(string id)
+        {
+            var model = userService.GetDetails(id);
+            return View(model);
+        }
+        // POST: Tareas/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            try
+            {
+                userService.Delete(id);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

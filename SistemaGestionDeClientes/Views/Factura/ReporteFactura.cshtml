@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Model.Custom.FacturaGrid>
+﻿@model IEnumerable<Model.Custom.ReporteFacturaGrid>
     @{
     Layout = null;
     }
@@ -32,49 +32,37 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id_Factura)
+                @Html.DisplayNameFor(model => model.ApyNom)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Id_Cliente)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NombreProyecto)
+                @Html.DisplayNameFor(model => model.Id_Factura)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaVencimiento)
+                @Html.DisplayNameFor(model => model.TotalIngresos)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaEmision)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Total)
-            </th>
-            <th></th>
         </tr>
 
-        @foreach (var item in Model) {
+        @foreach (var item in Model)
+    {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id_Factura)
+                @Html.DisplayFor(modelItem => item.ApyNom)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Id_Cliente)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NombreProyecto)
+                @Html.DisplayFor(modelItem => item.Id_Factura)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaVencimiento)
+                $@Html.DisplayFor(modelItem => item.TotalIngresos)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaEmision)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.Total)
-            </td>
-            <td>
         </tr>
-}
+    }
+
     </table>
 
     <br />
@@ -87,6 +75,7 @@
             </div>
         </div>
     </form>
+
     <script>
         function printHTML() {
             if (window.print) {

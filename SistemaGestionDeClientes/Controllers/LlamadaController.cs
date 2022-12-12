@@ -14,6 +14,7 @@ namespace SistemaGestionDeClientes.Controllers
         private readonly ReportesServices reportesServices = new ReportesServices();
 
         // GET: Llamada
+        [Authorize]
         public ActionResult Index()
         {
             var listado = llamadaServices.GetAllLlamadasGrid();
@@ -22,6 +23,7 @@ namespace SistemaGestionDeClientes.Controllers
         }
 
         // GET: Llamada/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             var model = llamadaServices.Get(id);
@@ -29,6 +31,7 @@ namespace SistemaGestionDeClientes.Controllers
         }
 
         // GET: Llamada/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente", "ApyNom");
@@ -37,6 +40,7 @@ namespace SistemaGestionDeClientes.Controllers
 
         // POST: Llamada/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(Llamada llamada)
         {
             if (ModelState.IsValid)
@@ -51,33 +55,31 @@ namespace SistemaGestionDeClientes.Controllers
         }
 
         // GET: Llamada/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var model = llamadaServices.GetEdit(id);
-            ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
+            ViewBag.Id_Cliente = new SelectList(clienteServices.GetAll(), "Id_Cliente   ", "ApyNom");
             return View(model);
         }
 
         // POST: Llamada/Edit/5
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, Llamada llamada)
         {
-            try
-            {
+            
                 if (ModelState.IsValid)
                 {
                     llamadaServices.Update(llamada);
                 }
 
                 return RedirectToAction("Index");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            
         }
 
         // GET: Llamada/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
             var model = llamadaServices.Get(id);
@@ -85,6 +87,7 @@ namespace SistemaGestionDeClientes.Controllers
         }
 
         // POST: Llamada/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -102,7 +105,7 @@ namespace SistemaGestionDeClientes.Controllers
         }
 
         //Reportes
-        //[Authorize]
+        [Authorize]
         public ActionResult Reporte()
         {
             IEnumerable<ReportePorLlamadasGrid> llamadas;

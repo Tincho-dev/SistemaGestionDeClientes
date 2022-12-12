@@ -26,7 +26,7 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Usuarios", "Index", "User")</li>
-                        <li>@Html.ActionLink("Roles", "Index", "RolesEmp")</li>
+                        @*<li>@Html.ActionLink("Roles", "Index", "RolesEmp")</li>*@
                         <li>@Html.ActionLink("Empleados", "Index", "Empleado")</li>
                     }
                 </ul>
@@ -38,7 +38,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Administracion de Recursos - Gestion de Clientes</p>
+            <p>&copy; Copyright @DateTime.Now.Year - Gestion de Clientes - ArmaTronic SRL</p>
         </footer>
     </div>
 

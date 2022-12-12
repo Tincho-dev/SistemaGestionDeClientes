@@ -154,8 +154,6 @@ namespace Services
             }
         }
 
-
-
         
         public IEnumerable<ClienteGrid> Buscar(string palabra)
         {
@@ -169,6 +167,7 @@ namespace Services
                     cliente = from clie in db.Clientes.Where(x => x.Nombre.ToUpper().Contains(palabra.ToUpper()))
                               select new ClienteGrid
                               {
+                                  Id_Cliente = clie.Id,
                                    DNI = clie.DNI,
                                    ApyNom = clie.Nombre + " " + clie.Apellido,
                                    Telefono = clie.Telefono,

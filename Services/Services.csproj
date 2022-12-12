@@ -83,7 +83,6 @@
     <Compile Include="DetalleServices.cs" />
     <Compile Include="EmpleadoServices.cs" />
     <Compile Include="FacturaServices.cs" />
-    <Compile Include="HistorialServices.cs" />
     <Compile Include="LlamadaServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectoServices.cs" />

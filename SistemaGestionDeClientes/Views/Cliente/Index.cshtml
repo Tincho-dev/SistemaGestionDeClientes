@@ -57,7 +57,7 @@
                 @*@Html.DisplayFor(modelItem => item.FechaNacimiento)*@
                 @item.FechaNacimiento.ToString("dd/MM/yyyy")
             </td>
-            <td>
+            <td class="botones">
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id_Cliente }, new { @class = "btn" }) |
                 @Html.ActionLink("Detalles", "Details", new { id = item.Id_Cliente }, new { @class = "btn" }) |
                 @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Cliente }, new { @class = "btn" }) |

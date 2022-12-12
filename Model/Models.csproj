@@ -60,18 +60,16 @@
     <Compile Include="Auth\ApplicationRol.cs" />
     <Compile Include="Auth\ApplicationUserRole.cs" />
     <Compile Include="Auth\ApplicationUser.cs" />
-    <Compile Include="Custom\AsociarGrid.cs" />
     <Compile Include="Custom\ClienteGrid.cs" />
     <Compile Include="Custom\ReporteClientesInactivosGrid.cs" />
     <Compile Include="Custom\DetalleGrid.cs" />
     <Compile Include="Custom\EmpleadoGrid.cs" />
     <Compile Include="Custom\FacturaGrid.cs" />
-    <Compile Include="Custom\HistorialesGrid.cs" />
     <Compile Include="Custom\LlamadasGrid.cs" />
     <Compile Include="Custom\ProyectosGrid.cs" />
+    <Compile Include="Custom\ReporteFacturaGrid.cs" />
     <Compile Include="Custom\ReportePorIngresosGrid.cs" />
     <Compile Include="Custom\ReportePorLlamadasGrid.cs" />
-    <Compile Include="Custom\ReporteProyectosClientesGrid.cs" />
     <Compile Include="Custom\UserGrid.cs" />
     <Compile Include="Domain\Cliente\Cliente.cs" />
     <Compile Include="Domain\Cliente\Detalle.cs" />
@@ -79,7 +77,6 @@
     <Compile Include="Domain\Empresa\Historial_Roles.cs" />
     <Compile Include="Domain\Empresa\Usuario.cs" />
     <Compile Include="Domain\Cliente\Factura.cs" />
-    <Compile Include="Domain\Cliente\Historial.cs" />
     <Compile Include="Domain\Cliente\Llamada.cs" />
     <Compile Include="Domain\Cliente\Proyectos.cs" />
     <Compile Include="Domain\Empresa\RolEmp.cs" />

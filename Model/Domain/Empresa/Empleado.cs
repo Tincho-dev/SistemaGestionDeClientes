@@ -8,27 +8,27 @@ namespace Model.Domain
     {
         [Key]
         [Required(ErrorMessage = "Debe Ingresar el Legajo del empleado")]
-        [Display(Name = "Legajo")]
+        [Display(Name = "Legajo: ")]
         public int Legajo { get; set; }
         [MaxLength(120)]
         [Required(ErrorMessage = "Debe Ingresar el Nombre del empleado")]
-        [Display(Name = "Nombre")]
+        [Display(Name = "Nombre: ")]
         public string Nombre { get; set; }
         [MaxLength(120)]
         [Required(ErrorMessage = "Debe Ingresar el Apellido del empleado")]
-        [Display(Name = "Apellido")]
+        [Display(Name = "Apellido: ")]
         public string Apellido { get; set; }
         [Required(ErrorMessage = "Debe Ingresar el DNI del empleado")]
-        [Display(Name = "DNI")]
+        [Display(Name = "DNI: ")]
         public int DNI { get; set; }
         [Required(ErrorMessage = "Debe Ingresar la Fecha de Nacimiento")]
-        [Display(Name = "Fecha de Nacimiento")]
+        [Display(Name = "Fecha de Nacimiento: ")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaNacimiento { get; set; }
 
         [Required(ErrorMessage = "Debe Ingresar la Fecha de Ingreso")]
-        [Display(Name = "Fecha de Nacimiento")]
+        [Display(Name = "Fecha de Nacimiento: ")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaIngreso { get; set; }

@@ -5,6 +5,7 @@ namespace Model.Custom
 {
     public class EmpleadoGrid
     {
+        [Display(Name = "Legajo: ")]
         public int LegajoEmpleado { get; set; }
         public int DNI { get; set; }
         [Display(Name = "Nombre Completo")]

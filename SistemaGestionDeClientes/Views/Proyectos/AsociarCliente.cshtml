@@ -19,45 +19,41 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DisplayFor(model => model.Titulo)
+            @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control", @readonly= "readonly" } })
+            @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DisplayFor(model => model.Descripcion)
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly= "readonly" } })
+            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
         </div>
-            </div>
+    </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.FechaInicio)
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.FechaFin, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.FechaFin)
-                </div>
-            </div>
-        
-            <div class="form-group">
-                @Html.LabelFor(model => model.Id_Cliente, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Id_Cliente", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Id_Cliente, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Asociar" class="btn"/>
-                </div>
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaFin, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @class = "form-control", @readonly= "readonly" } })
+            @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
         </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Id_Cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Id_Cliente", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Id_Cliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Asociar" class="btn" />
+        </div>
+    </div>
+</div>
         }
 
         <div>

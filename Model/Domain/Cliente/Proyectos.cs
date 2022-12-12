@@ -17,20 +17,20 @@ namespace Model.Domain
         public string Descripcion { get; set; }
 
         [Required(ErrorMessage = "Fecha de Inicio del Proyecto:")]
-        [Display(Name = "Fecha de Inicio")]
+        [Display(Name = "Fecha de Inicio: ")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaInicio { get; set; }
 
         [Required(ErrorMessage = "Fecha estimada de Fin del Proyecto:")]
-        [Display(Name = "Fecha estimada de Fin")]
+        [Display(Name = "Fecha estimada de Fin: ")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaFin { get; set; }
         [Display(Name = "Finalizado: ")]
         public bool Finalizado { get; set; }
 
-        [Display(Name = "Id_Cliente")]
+        [Display(Name = "ID Cliente")]
         public int Id_Cliente { get; set; }
         [ForeignKey("Id_Cliente")]
         public virtual Cliente Cliente { get; set; }

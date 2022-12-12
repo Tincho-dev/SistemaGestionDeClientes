@@ -29,7 +29,8 @@ namespace Services
                             SubTotal = det.SubTotal,
                             Cantidad = det.Cantidad,
                             Id_Proyecto = det.Id_Proyecto,
-                            Titulo = det.Proyectos.Titulo
+                            Titulo = det.Proyectos.Titulo,
+                            Descripcion = det.Descripcion
                         }
                     ).ToList();
 
@@ -53,7 +54,9 @@ namespace Services
                                Cantidad = det.Cantidad,
                                SubTotal = det.SubTotal,
                                Id_Proyecto = det.Id_Proyecto,
-                               Titulo = det.Proyectos.Titulo
+                               Titulo = det.Proyectos.Titulo,
+                               Descripcion = det.Descripcion
+                               
                            }).Single();
             }
 
@@ -109,6 +112,7 @@ namespace Services
                 originalEntity.Cantidad = Detalle.Cantidad;
                 originalEntity.PrecioUnitario = Detalle.PrecioUnitario;
                 originalEntity.SubTotal = Detalle.PrecioUnitario * Detalle.Cantidad;
+                originalEntity.Descripcion = Detalle.Descripcion;   
 
                 
                 ctx.Entry(originalEntity).State = EntityState.Modified;
@@ -119,6 +123,17 @@ namespace Services
 
                 proyectoServices.Update(proyecto);
             }
+        }
+
+        public IEnumerable<Detalle> DetallesDeFactura(int id)
+        {
+            var result = new List<Detalle>();
+            using (var db = new ApplicationDbContext())
+            {
+                result = db.Detalles.Where(x => x.Id_Factura == id).ToList();
+            }
+
+            return result;
         }
 
         public void Delete(int id)

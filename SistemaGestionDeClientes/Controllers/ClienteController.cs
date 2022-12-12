@@ -14,6 +14,7 @@ namespace SistemaGestionDeClientes.Controllers
         private readonly ReportesServices reportesServices = new ReportesServices();
 
         // GET: Cliente
+        [Authorize]
         public ActionResult Index()
         {
             var listado = clienteServices.GetAll();
@@ -21,7 +22,7 @@ namespace SistemaGestionDeClientes.Controllers
             return View(listado);
         }
 
-
+        [Authorize]
         public ActionResult GetProyectos(int id)
         {
             var listado = clienteServices.GetProyectos(id);
@@ -29,6 +30,7 @@ namespace SistemaGestionDeClientes.Controllers
             return View(listado);
         }
 
+        [Authorize]
         public ActionResult Buscar(string palabra)
         {
             var empleados = clienteServices.Buscar(palabra);
@@ -38,6 +40,7 @@ namespace SistemaGestionDeClientes.Controllers
             return View("Index", empleados);
         }
         // GET: Cliente/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             var model = clienteServices.Get(id);
@@ -45,6 +48,7 @@ namespace SistemaGestionDeClientes.Controllers
         }
 
         // GET: Cliente/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.DNI = new SelectList(clienteServices.GetAll(), "DNI", "ApyNom");
@@ -53,6 +57,7 @@ namespace SistemaGestionDeClientes.Controllers
 
         // POST: Cliente/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(Cliente cliente)
         {
             if (ModelState.IsValid)
@@ -68,6 +73,7 @@ namespace SistemaGestionDeClientes.Controllers
 
 
         // GET: Cliente/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var model = clienteServices.GetEdit(id);
@@ -76,6 +82,7 @@ namespace SistemaGestionDeClientes.Controllers
         }
 
         // POST: Cliente/Edit/5
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Cliente cliente)
         {
@@ -90,6 +97,7 @@ namespace SistemaGestionDeClientes.Controllers
         }
 
         // GET: Cliente/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
             var model = clienteServices.Get(id);
@@ -97,6 +105,7 @@ namespace SistemaGestionDeClientes.Controllers
         }
 
         // POST: Cliente/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -105,18 +114,16 @@ namespace SistemaGestionDeClientes.Controllers
             return RedirectToAction("Index");
         }
 
-
         //Reportes
-        //[Authorize]
+        [Authorize]
         public ActionResult Reporte()
         {
-            IEnumerable<ReporteProyectosClientesGrid> proyectos;
+            IEnumerable<ReportePorIngresosGrid> ingresos;
 
-            proyectos = reportesServices.GetReporteProyectosClientes();
+            ingresos = reportesServices.GetMayorIngresosGenerados();
 
-            return View("Reporte", proyectos);
+            return View("Reporte", ingresos);
         }
-
 
     }
 }

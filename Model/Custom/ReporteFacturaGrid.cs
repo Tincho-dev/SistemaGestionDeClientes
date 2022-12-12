@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Model.Custom
 {
-    public class ReporteProyectosClientesGrid
+    public class ReporteFacturaGrid
     {
         [Display(Name = "Nombre y Apellido")]
         public string ApyNom { get; set; }
-        public int TotalProyectos { get; set; }
-        public int DNI { get; set; }
+        public int Id_Cliente { get; set; }
+        public int Id_Factura { get; set; }
         public double TotalIngresos { get; set; }
     }
 }

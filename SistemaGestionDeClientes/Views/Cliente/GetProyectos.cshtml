@@ -44,10 +44,10 @@
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaInicio)
+            @item.FechaInicio.ToString("dd/MM/yyyy")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaFin)
+            @item.FechaFin.ToString("dd/MM/yyyy")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Costo)
@@ -55,11 +55,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Id_Cliente)
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Editar", "Edit", new {  id=item.Id_Proyecto  }, new { @class = "btn" }) |
             @Html.ActionLink("Detalles", "Details", new {  id=item.Id_Proyecto  }, new { @class = "btn" }) |
             @Html.ActionLink("Eliminar", "Delete", new {  id=item.Id_Proyecto  }, new { @class = "btn" })
-        </td>
+        </td>*@
     </tr>
 }
 

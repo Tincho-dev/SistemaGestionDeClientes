@@ -8,7 +8,6 @@
 
     <p>
         @Html.ActionLink("Crear Nuevo", "Create", "Empleado", new { @class = "btn" })
-        @Html.ActionLink("Generar Reporte", "Reporte", "Empleado", new { @class = "btn", @target = "_blank" })
     </p>
 
 
@@ -37,6 +36,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Usuario)
             </th>
+            <th>
+
+            </th>
 
         </tr>
 
@@ -50,7 +52,7 @@
             @Html.DisplayFor(modelItem => item.LegajoEmpleado)
         </td>
         <td>
-            @Html.ActionLink(@item.DNI.ToString(), "Get", new { id = item.LegajoEmpleado })
+            @Html.ActionLink(@item.DNI.ToString(), "Get", new { id = item.LegajoEmpleado}, new{ @class = "MiEstilo"})
         </td>
         <td>
             @*@Html.DisplayFor(modelItem => item.FechNacimiento)*@
@@ -60,7 +62,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Usuario)
         </td>
-        <td>
+        <td class="botones">
             @Html.ActionLink("Editar", "Edit", new { id = item.LegajoEmpleado }, new { @class = "btn" })
             @Html.ActionLink("Detalles", "Details", new { id = item.LegajoEmpleado }, new { @class = "btn" })
             @Html.ActionLink("Eliminar", "Delete", new { id = item.LegajoEmpleado }, new { @class = "btn" })

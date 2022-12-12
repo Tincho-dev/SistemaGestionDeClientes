@@ -17,7 +17,7 @@ namespace SistemaGestionDeClientes.Controllers
 
         //
         // GET: /Detalle/
-
+        [Authorize]
         public ViewResult Index()
         {
             var Detalle = detalleServices.GetAll();
@@ -26,7 +26,7 @@ namespace SistemaGestionDeClientes.Controllers
 
         //
         // GET: /Detalle/Details/5
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             var Detalle = detalleServices.Get(id);
@@ -36,7 +36,7 @@ namespace SistemaGestionDeClientes.Controllers
 
         //
         // GET: /Detalle/Create
-
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.Id_Factura = new SelectList(facturaServices.GetAll(), "Id_Factura", "Id_Factura");
@@ -46,7 +46,7 @@ namespace SistemaGestionDeClientes.Controllers
 
         //
         // POST: /Detalle/Create
-
+        [Authorize]
         [HttpPost]
         public ActionResult Create(Detalle detalle)
         {
@@ -62,7 +62,7 @@ namespace SistemaGestionDeClientes.Controllers
 
         //
         // GET: /Detalle/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Detalle Detalle = detalleServices.GetEdit(id);
@@ -73,7 +73,7 @@ namespace SistemaGestionDeClientes.Controllers
 
         //
         // POST: /Detalle/Edit/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Detalle detalle)
         {
@@ -89,7 +89,7 @@ namespace SistemaGestionDeClientes.Controllers
 
         //
         // GET: /Detalle/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Detalle Detalle = db.Detalles.Find(id);
@@ -98,7 +98,7 @@ namespace SistemaGestionDeClientes.Controllers
 
         //
         // POST: /Detalle/Delete/5
-
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -109,86 +109,5 @@ namespace SistemaGestionDeClientes.Controllers
 
     }
 
-    /*
-    public class DetalleController : Controller
-    {
-        // GET: Detalle
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Detalle/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Detalle/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Detalle/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Detalle/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Detalle/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Detalle/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Detalle/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
-     */
+    
 }

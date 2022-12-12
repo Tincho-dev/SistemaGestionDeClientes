@@ -10,7 +10,6 @@ namespace Model.Domain
         public int Legajo { get; set; }
         [ForeignKey("Legajo")]
         public virtual Empleado Empleado { get; set; }
-
         public string IdUsuario { get; set; }
         [ForeignKey("IdUsuario")]
         public virtual ApplicationUser ApplicationUser { get; set; }

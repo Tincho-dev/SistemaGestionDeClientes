@@ -20,6 +20,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Cantidad)
             </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Id_Proyecto)
             </th>
@@ -41,16 +44,18 @@
                 @Html.DisplayFor(modelItem => item.Cantidad)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Descripcion  )
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Id_Proyecto)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Titulo)
             </td>
-            <td>
+            <td class="botones">
                 @Html.ActionLink("Editar", "Edit", new { id=item.id }, new { @class = "btn" }) |
                 @Html.ActionLink("Detalles", "Details", new { id=item.id }, new { @class = "btn" }) |
                 @Html.ActionLink("Eliminar", "Delete", new { id=item.id }, new { @class = "btn" }) |
-                @Html.ActionLink("Imprimir", "Reporte", new {  id=item.id }, new { @class = "btn" })|
             </td>
         </tr>
 }
