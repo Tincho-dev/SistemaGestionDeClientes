@@ -21,7 +21,7 @@ namespace Services
             using (var db = new ApplicationDbContext())
             {
                 result = (
-                        from det in db.Detalles
+                        from det in db.Detalles.Where(x=>x.Emitida == false)
                         select new DetalleGrid
                         {
                             id = det.Id_Detalle,
@@ -87,6 +87,26 @@ namespace Services
                 proyectoServices.Update(proyecto);
             }
         }
+        public void CreateEmitida(Detalle detalle)
+        {
+            using (ctx)
+            {
+                var Detalle = new DetalleEmitido
+                {
+                    Id_Detalle = detalle.Id_Detalle,
+                    PrecioUnitario = detalle.PrecioUnitario,
+                    Cantidad = detalle.Cantidad,
+                    Descripcion = detalle.Descripcion,
+                    SubTotal = detalle.Cantidad * detalle.PrecioUnitario,
+                    Id_Proyecto = detalle.Id_Proyecto,
+                    Titulo = detalle.Proyectos.Titulo,
+                    Id_Factura = detalle.Id_Factura,
+                };
+
+                ctx.DetallesEmitidos.Add(Detalle);  
+                //ctx.SaveChanges();
+            }
+        }
         public Detalle GetEdit(int id)
         {
             var result = new Detalle();
@@ -112,8 +132,8 @@ namespace Services
                 originalEntity.Cantidad = Detalle.Cantidad;
                 originalEntity.PrecioUnitario = Detalle.PrecioUnitario;
                 originalEntity.SubTotal = Detalle.PrecioUnitario * Detalle.Cantidad;
-                originalEntity.Descripcion = Detalle.Descripcion;   
-
+                originalEntity.Descripcion = Detalle.Descripcion;
+                originalEntity.Emitida = Detalle.Emitida;
                 
                 ctx.Entry(originalEntity).State = EntityState.Modified;
                 ctx.SaveChanges();
@@ -124,6 +144,30 @@ namespace Services
                 proyectoServices.Update(proyecto);
             }
         }
+        
+        public void Emitir(Detalle Detalle)
+        {
+            using (ctx)
+            {
+                var originalEntity = ctx.Detalles.Where(x => x.Id_Detalle
+                == Detalle.Id_Detalle
+                ).Single();
+
+                originalEntity.Id_Detalle = Detalle.Id_Detalle;
+                originalEntity.Id_Proyecto = Detalle.Id_Proyecto;
+                originalEntity.Id_Factura = Detalle.Id_Factura;
+                originalEntity.Cantidad = Detalle.Cantidad;
+                originalEntity.PrecioUnitario = Detalle.PrecioUnitario;
+                originalEntity.SubTotal = Detalle.PrecioUnitario * Detalle.Cantidad;
+                originalEntity.Descripcion = Detalle.Descripcion;
+                originalEntity.Emitida = true;
+                
+                ctx.Entry(originalEntity).State = EntityState.Modified;
+                ctx.SaveChanges();
+
+                CreateEmitida(Detalle);
+            }
+        }
 
         public IEnumerable<Detalle> DetallesDeFactura(int id)
         {
@@ -131,6 +175,17 @@ namespace Services
             using (var db = new ApplicationDbContext())
             {
                 result = db.Detalles.Where(x => x.Id_Factura == id).ToList();
+            }
+
+            return result;
+        }
+
+        public IEnumerable<DetalleEmitido> DetallesDeFacturaEmitida(int id)
+        {
+            var result = new List<DetalleEmitido>();
+            using (var db = new ApplicationDbContext())
+            {
+                result = db.DetallesEmitidos.Where(x => x.Id_Factura == id).ToList();
             }
 
             return result;

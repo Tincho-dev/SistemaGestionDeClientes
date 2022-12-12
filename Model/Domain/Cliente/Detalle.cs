@@ -22,6 +22,6 @@ namespace Model.Domain
         [Display(Name = "Descripción: ")]
         public string Descripcion { get; set; }
         public double SubTotal { get; set; }
-
+        public bool Emitida { get; set; }
     }
 }

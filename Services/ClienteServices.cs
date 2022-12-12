@@ -27,7 +27,10 @@ namespace Services
                             ApyNom = cli.Nombre + " " + cli.Apellido,
                             FechaNacimiento = cli.FechaNacimiento,
                             Telefono = cli.Telefono,
-                            Mail = cli.Mail
+                            Mail = cli.Mail,
+                            ProyectosAsociados = (from proy in db.Proyectos.Where(x=> x.Id_Cliente == cli.Id) 
+                                                  select proy).Count()
+                            
                         }
                     ).OrderBy(x => x.DNI).ToList();
             }

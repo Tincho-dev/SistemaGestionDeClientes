@@ -73,6 +73,8 @@
     <Compile Include="Custom\UserGrid.cs" />
     <Compile Include="Domain\Cliente\Cliente.cs" />
     <Compile Include="Domain\Cliente\Detalle.cs" />
+    <Compile Include="Domain\Cliente\DetalleEmitido.cs" />
+    <Compile Include="Domain\Cliente\FacturaEmitida.cs" />
     <Compile Include="Domain\Empresa\Empleado.cs" />
     <Compile Include="Domain\Empresa\Historial_Roles.cs" />
     <Compile Include="Domain\Empresa\Usuario.cs" />

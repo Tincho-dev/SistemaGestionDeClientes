@@ -172,6 +172,7 @@
     <Compile Include="Controllers\DetalleController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\FacturaController.cs" />
+    <Compile Include="Controllers\FacturaEmitidaController.cs" />
     <Compile Include="Controllers\HistorialRolesController.cs" />
     <Compile Include="Controllers\LlamadaController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
@@ -297,6 +298,8 @@
     <Content Include="Views\Factura\Imprimir.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\FacturaEmitida\Index.cshtml" />
+    <Content Include="Views\FacturaEmitida\Imprimir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

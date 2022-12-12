@@ -20,5 +20,9 @@ namespace Model.Custom
         public DateTime FechaNacimiento { get; set; }
         [Display(Name = "Condicion Tributaria")]
         public string CondicionTributaria { get; set; }
+
+        [Display(Name = "Proyectos Asociados")]
+        public int ProyectosAsociados { get; set; }
+
     }
 }

@@ -35,35 +35,41 @@
             <th>
                 @Html.DisplayNameFor(model => model.FechaNacimiento)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectosAsociados)
+            </th>
             <th></th>
         </tr>
-
         @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApyNom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DNI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mail)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.FechaNacimiento)*@
-                @item.FechaNacimiento.ToString("dd/MM/yyyy")
-            </td>
-            <td class="botones">
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id_Cliente }, new { @class = "btn" }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.Id_Cliente }, new { @class = "btn" }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Cliente }, new { @class = "btn" }) |
-                @Html.ActionLink("Proyectos Asociados", "GetProyectos", new { id = item.Id_Cliente }, new { @class = "btn" }) |
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApyNom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DNI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mail)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.FechaNacimiento)*@
+            @item.FechaNacimiento.ToString("dd/MM/yyyy")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProyectosAsociados)
+        </td>
+
+        <td class="botones">
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id_Cliente }, new { @class = "btn" }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.Id_Cliente }, new { @class = "btn" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Cliente }, new { @class = "btn" }) |
+            @Html.ActionLink("Proyectos Asociados", "GetProyectos", new { id = item.Id_Cliente }, new { @class = "btn" }) |
+        </td>
+    </tr>
 
     }
     </table>

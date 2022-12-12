@@ -55,57 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\202212081335349_Initial2.cs" />
-    <Compile Include="Migrations\202212081335349_Initial2.Designer.cs">
-      <DependentUpon>202212081335349_Initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212081626490_Initial3.cs" />
-    <Compile Include="Migrations\202212081626490_Initial3.Designer.cs">
-      <DependentUpon>202212081626490_Initial3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212101255280_second.cs" />
-    <Compile Include="Migrations\202212101255280_second.Designer.cs">
-      <DependentUpon>202212101255280_second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212101417038_Third.cs" />
-    <Compile Include="Migrations\202212101417038_Third.Designer.cs">
-      <DependentUpon>202212101417038_Third.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212101629211_Forth.cs" />
-    <Compile Include="Migrations\202212101629211_Forth.Designer.cs">
-      <DependentUpon>202212101629211_Forth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212102224554_Fifth.cs" />
-    <Compile Include="Migrations\202212102224554_Fifth.Designer.cs">
-      <DependentUpon>202212102224554_Fifth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212111421049_sixth.cs" />
-    <Compile Include="Migrations\202212111421049_sixth.Designer.cs">
-      <DependentUpon>202212111421049_sixth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212111432159_seventh.cs" />
-    <Compile Include="Migrations\202212111432159_seventh.Designer.cs">
-      <DependentUpon>202212111432159_seventh.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212111722493_eighth.cs" />
-    <Compile Include="Migrations\202212111722493_eighth.Designer.cs">
-      <DependentUpon>202212111722493_eighth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212111746163_nineth.cs" />
-    <Compile Include="Migrations\202212111746163_nineth.Designer.cs">
-      <DependentUpon>202212111746163_nineth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212111748477_tenth.cs" />
-    <Compile Include="Migrations\202212111748477_tenth.Designer.cs">
-      <DependentUpon>202212111748477_tenth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212111759040_eleventh.cs" />
-    <Compile Include="Migrations\202212111759040_eleventh.Designer.cs">
-      <DependentUpon>202212111759040_eleventh.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212112317472_twelveth.cs" />
-    <Compile Include="Migrations\202212112317472_twelveth.Designer.cs">
-      <DependentUpon>202212112317472_twelveth.cs</DependentUpon>
+    <Compile Include="Migrations\202212122113071_thirth.cs" />
+    <Compile Include="Migrations\202212122113071_thirth.Designer.cs">
+      <DependentUpon>202212122113071_thirth.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,44 +73,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202212081335349_Initial2.resx">
-      <DependentUpon>202212081335349_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212081626490_Initial3.resx">
-      <DependentUpon>202212081626490_Initial3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212101255280_second.resx">
-      <DependentUpon>202212101255280_second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212101417038_Third.resx">
-      <DependentUpon>202212101417038_Third.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212101629211_Forth.resx">
-      <DependentUpon>202212101629211_Forth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212102224554_Fifth.resx">
-      <DependentUpon>202212102224554_Fifth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212111421049_sixth.resx">
-      <DependentUpon>202212111421049_sixth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212111432159_seventh.resx">
-      <DependentUpon>202212111432159_seventh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212111722493_eighth.resx">
-      <DependentUpon>202212111722493_eighth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212111746163_nineth.resx">
-      <DependentUpon>202212111746163_nineth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212111748477_tenth.resx">
-      <DependentUpon>202212111748477_tenth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212111759040_eleventh.resx">
-      <DependentUpon>202212111759040_eleventh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212112317472_twelveth.resx">
-      <DependentUpon>202212112317472_twelveth.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202212122113071_thirth.resx">
+      <DependentUpon>202212122113071_thirth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,13 +1,9 @@
-﻿using Model.Custom;
-using Model.Domain;
+﻿using Model.Domain;
 using Persistanse;
 using Services;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Globalization;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+//using Microsoft.AspNetCore.Hosting;
 
 namespace SistemaGestionDeClientes.Controllers
 {
@@ -20,14 +16,13 @@ namespace SistemaGestionDeClientes.Controllers
         private readonly FacturaServices facturaServices= new FacturaServices();
         private readonly DetalleServices detallesServices= new DetalleServices();
 
-        //
-        // GET: /Factura/
         [Authorize]
         public ViewResult Index()
         {
             var Facturas = facturaServices.GetAll();
             return View(Facturas);
         }
+
 
 
 
@@ -40,6 +35,24 @@ namespace SistemaGestionDeClientes.Controllers
             return View(invoice);
         }
 
+        [Authorize]
+        public ActionResult Imprimir(int id)
+        {
+            var factura = facturaServices.Get(id);
+            ViewBag.FacturaGrid = factura;
+
+            var model = detallesServices.DetallesDeFactura(id);
+
+            facturaServices.Emitir(db.Facturas.Find(id));
+
+            foreach (var det in db.Facturas.Find(id).DetallesFactura)
+            {
+                detallesServices.Emitir(det);
+            }
+
+            return View(model);
+        }
+
         //
         // GET: /Factura/Create
         [Authorize]
@@ -49,17 +62,7 @@ namespace SistemaGestionDeClientes.Controllers
             ViewBag.LegajoEmpleado = new SelectList(empleadoServices.GetAll(), "LegajoEmpleado", "ApyNom");
             return View();
         }
-        [Authorize]
-        public ActionResult Imprimir(int id)
-        {
-            //int id = int.Parse(Session["Id"].ToString());
 
-            var factura = facturaServices.Get(id);
-            ViewBag.FacturaGrid = factura;
-
-            var model = detallesServices.DetallesDeFactura(id);
-            return View(model);
-        }
 
         //
         // POST: /Factura/Create
@@ -115,7 +118,7 @@ namespace SistemaGestionDeClientes.Controllers
 
         
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         // POST: Proyectos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -132,7 +135,5 @@ namespace SistemaGestionDeClientes.Controllers
                 return View();
             }
         }
-
-
     }
 }

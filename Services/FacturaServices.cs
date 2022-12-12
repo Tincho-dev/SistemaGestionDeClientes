@@ -11,6 +11,7 @@ namespace Services
 {
     public class FacturaServices
     {
+
         public IEnumerable<FacturaGrid> GetAll()
         {
             var result = new List<FacturaGrid>();
@@ -18,7 +19,7 @@ namespace Services
             using (var db = new ApplicationDbContext())
             {
                 result = (
-                        from fac in db.Facturas
+                        from fac in db.Facturas.Where(x=>x.Emitida == false)
                         from cli in db.Clientes.Where(x => x.Id == fac.Id_Cliente)
                         select new FacturaGrid
                         {
@@ -31,7 +32,18 @@ namespace Services
                         }
                     ).Distinct().ToList();
             }
+            return result;
+        }
 
+        public IEnumerable<FacturaEmitida> GetAllEmitidas()
+        {
+            var result = new List<FacturaEmitida>();
+
+            using (var db = new ApplicationDbContext())
+            {
+                result = (from fac in db.FacturasEmitidas
+                        select fac).Distinct().ToList();
+            }
             return result;
         }
 
@@ -39,16 +51,39 @@ namespace Services
         {
             using (var db = new ApplicationDbContext())
             {
-                var Factura = new Factura
+                var factura = new Factura
                 {
                     FechaEmision = model.FechaEmision,
                     FechaVencimiento = model.FechaVencimiento,
                     Id_Cliente = model.Id_Cliente,
-                    LegajoEmpleado = model.LegajoEmpleado
-                    //LegajoEmpleado = (from emp in db.Empleado.Where(x => x.Nombre == CurrentUser.Get.Name)
-                    //                  select emp.Legajo).Single()
+                    LegajoEmpleado = model.LegajoEmpleado,
+                    Emitida = false
                 };
-                db.Facturas.Add(Factura);
+                db.Facturas.Add(factura);
+                db.SaveChanges();
+            }
+        }
+        
+        public void CreateEmitida(Factura model)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var factura = new FacturaEmitida
+                {
+                    Id_Factura = model.Id_Factura,
+                    Total = model.Total,
+                    FechaEmision = model.FechaEmision,
+                    FechaVencimiento = model.FechaVencimiento,
+                    Id_Cliente = model.Id_Cliente,
+                    DNI = model.Cliente.DNI,
+                    ApyNom = model.Cliente.Apellido + " " + model.Cliente.Nombre,
+                    CondicionTributaria = model.Cliente.Condicion_Tributaria,
+                    LegajoEmpleado = model.LegajoEmpleado,
+                    ApyNomEmp = model.Empleado.Apellido + " " + model.Empleado.Nombre
+
+                };
+
+                db.FacturasEmitidas.Add(factura);
                 db.SaveChanges();
             }
         }
@@ -114,13 +149,43 @@ namespace Services
                 originalEntity.FechaEmision = model.FechaEmision;
                 originalEntity.FechaVencimiento = model.FechaVencimiento;
                 originalEntity.LegajoEmpleado = model.LegajoEmpleado;
+                originalEntity.Emitida = model.Emitida;
+                
 
                 db.Entry(originalEntity).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
 
+        public void Emitir(Factura model)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var originalEntity = db.Facturas.Where(x => x.Id_Factura == model.Id_Factura).Single();
 
+               
+                var total = (from det in db.Detalles.Where(x => x.Id_Factura == model.Id_Factura)
+                             select det.SubTotal);
+
+                if(total.Count() > 0)
+                {
+                    originalEntity.Total = total.Sum();
+                } else
+                {
+                    originalEntity.Total = 0;
+                }
+                originalEntity.Id_Factura = model.Id_Factura;
+                originalEntity.Id_Cliente = model.Id_Cliente;
+                originalEntity.FechaEmision = model.FechaEmision;
+                originalEntity.FechaVencimiento = model.FechaVencimiento;
+                originalEntity.LegajoEmpleado = model.LegajoEmpleado;
+                originalEntity.Emitida = true;
+
+                db.Entry(originalEntity).State = EntityState.Modified;
+                db.SaveChanges();
+                CreateEmitida(model);
+            }
+        }
 
         public void Delete(int id)
         {

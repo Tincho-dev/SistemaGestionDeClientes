@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Model.Domain.FacturaEmitida>
+
+@{
+    ViewBag.Title = "Facturas Emitidas";
+}
+
+<h2>Facturas Emitidas</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Factura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEmision)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaVencimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Cliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DNI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApyNom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CondicionTributaria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LegajoEmpleado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApyNomEmp)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Factura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaEmision)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaVencimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DNI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApyNom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CondicionTributaria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LegajoEmpleado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApyNomEmp)
+            </td>
+            <td>
+                @Html.ActionLink("Imprimir", "Imprimir", new { id = item.Id_Factura }, new { @class = "btn", @target = "_blank" })
+            </td>
+        </tr>
+    }
+
+</table> 
+
+<div>
+    @Html.ActionLink("Volver al Inicio", "Index", "Home", null , new{ @class = "btn" } )
+</div>

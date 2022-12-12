@@ -1,0 +1,152 @@
+﻿@model IEnumerable<Model.Domain.DetalleEmitido>
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+<h2 class="text-center">Factura Numero: @ViewBag.FacturaGrid.Id_Factura </h2>
+
+
+<h2 class="text-center">Empresa Emisora: ArmaTronic SRL </h2>
+
+<br />
+
+<form>
+    <div class="form-inline row center-block" style="display:flex; align-items:center; justify-content:center;">
+        <label class="col-xs-2" style="margin-left:1rem;"><b>Realizado por:</b></label>
+        <div class="col-xs-2">
+            <input class="form-control" type="text" style="border:0;" readonly value="@Common.CurrentUser.Get.Name @Common.CurrentUser.Get.LastName" />
+        </div>
+        <label class="col-xs-2" style="margin-left:1rem;"> <b> Fecha:</b></label>
+        <div class="col-xs-2">
+            <input class="form-control" type="text" style="border:0;" readonly value="@DateTime.Now" />
+        </div>
+        <label class="col-xs-1" style="margin-left:1rem;"> <b>Usuario:</b> </label>
+        <div class="col-xs-2">
+            <input class="form-control" type="text" style="border:0; width: 120%;" readonly value="@Common.CurrentUser.Get.Email" />
+        </div>
+    </div>
+</form>
+
+<br />
+<form>
+
+    <div class="form-inline row">
+        <label class="col-md-2"><b>Detalle de Factura:</b></label>
+        @*<div class="col-sm-5">
+                <textarea class="form-control" style="border:0; background-color:white;" readonly cols="40" rows="2">@ViewBag.FacturaGrid.Descripcion</textarea>
+            </div>
+            <label class="col-md-1"><b>Costo:</b></label>
+            <div class="col-md-2">
+                <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.FacturaGrid.Costo" />
+            </div>*@
+    </div>
+    <br />
+    <div class="form-inline row">
+        <label class="col-md-1"><b>Fecha de Emision:</b></label>
+        <div class="col-md-2">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.FacturaGrid.FechaEmision.ToString("dd/MM/yyyy")" />
+        </div>
+        <label class="col-md-1"><b>Fecha de Vencimiento:</b></label>
+        <div class="col-md-2">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.FacturaGrid.FechaVencimiento.ToString("dd/MM/yyyy")" />
+        </div>
+        <label class="col-md-1"><b>DNI   de Cliente:</b></label>
+        <div class="col-md-2">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@(ViewBag.FacturaGrid.Id_Cliente)" />
+        </div>
+
+        <label class="col-md-1"><b>Condicion Tributaria:</b></label>
+        <div class="col-md-2">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@(ViewBag.FacturaGrid.CondicionTributaria)" />
+        </div>
+    </div>
+    <br />
+    <div class="form-inline row">
+        <label class="col-md-2"><b>Nombre de Cliente:</b></label>
+        <div class="col-md-3">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="@ViewBag.FacturaGrid.ApyNom" />
+        </div>
+        <label class="col-md-2"><b>Total:</b></label>
+        <div class="col-md-3">
+            <input class="form-control" type="text" style="border:0; background-color:white;" readonly value="$@ViewBag.FacturaGrid.Total" />
+        </div>
+    </div>
+
+</form>
+
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Detalle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Proyecto)
+        </th>
+         <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioUnitario) ($)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubTotal) ($)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Detalle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Proyecto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                $ @Html.DisplayFor(modelItem => item.PrecioUnitario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                $ @Html.DisplayFor(modelItem => item.SubTotal)
+            </td>
+        </tr>
+    }
+</table>
+
+<hr />
+
+<form>
+    <div class="form-inline row center-block">
+        <label class="col-xs-2" style="margin-left:1rem;"><b>Cantidad de Items:</b></label>
+        <div class="col-xs-2">
+            <input class="form-control" type="text" style="border:0;" readonly value="@Model.Count()" />
+        </div>
+    </div>
+</form>
+
+<script>
+    function printHTML() {
+        if (window.print) {
+            window.print();
+        }
+    }
+    document.addEventListener("DOMContentLoaded", function (event) {
+        printHTML();
+    });
+</script>
